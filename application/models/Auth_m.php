@@ -1,0 +1,25 @@
+<?php defined('BASEPATH') or exit('No direct script access allowed');
+
+class Auth_m extends CI_Model
+{
+    public function user_login($username, $password)
+    {
+
+        $this->db->select('u.*');
+        $this->db->from('user u');
+        $where = '(email = "' . $username . '")';
+        // $this->db->join('mast_regional m', 'u.id_regional=m.id', 'left');
+
+        $this->db->where($where);
+
+        $this->db->where('u.active', 1);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        $user = $query->row();
+        if (!empty($user) && password_verify($password, $user->password) && $user->active == 1) {
+            return $user;
+        } else {
+            return false;
+        }
+    }
+}
