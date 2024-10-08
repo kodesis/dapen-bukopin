@@ -50,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'index';
-$route['404_override'] = '';
+$route['404_override'] = 'error404';
 $route['translate_uri_dashes'] = FALSE;
 
 // Hide the User and Admin
@@ -62,3 +62,5 @@ $route['SaldoUsers'] = 'admin/SaldoUser';
 
 // Routing for User Controllers
 $route['SaldoUser'] = 'user/SaldoUser';
+$route['Formulir_Iuran'] = 'formulir/Formulir_Iuran';
+$route['Formulir_Permohonan'] = 'formulir/Formulir_Permohonan';

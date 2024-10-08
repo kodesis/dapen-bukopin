@@ -57,9 +57,15 @@
                                                         echo "active";
                                                     } ?>"><a href="<?= base_url('Peraturan') ?>">Peraturan</a>
                                         </li>
-                                        <li class="<?php if ($url == "Formulir") {
+                                        <li class="<?php if ($url == "Formulir_Permohonan") {
                                                         echo "active";
-                                                    } ?>"><a href="<?= base_url('Formulir') ?>">Formulir</a></li>
+                                                    } ?>"><a href="<?= base_url('Formulir_Permohonan') ?>">Formulir Permohonan</a></li>
+                                        <li class="<?php if ($url == "Formulir_Iuran") {
+                                                        echo "active";
+                                                    } ?>"><a href="<?= base_url('Formulir_Iuran') ?>">Formulir Iuran</a></li>
+                                        <li class="<?php if ($url == "Buku_Layanan") {
+                                                        echo "active";
+                                                    } ?>"><a href="<?= base_url('Buku_Layanan') ?>">Buku Layanan Kepesertaan</a></li>
                                     </ul>
                                 </div>
                                 <!-- <div class="tgmenu__action tgmenu__action-five d-none d-md-block">

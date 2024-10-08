@@ -7,7 +7,7 @@
     <title>Dana Pensiun Bank Bukopin</title>
     <meta name="description" content="Apexa - Business Consulting HTML Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>/assets/user/img/favicon.png">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>/assets/user/img/favicon.png"> -->
     <!-- Place favicon.ico in the root directory -->
     <!-- CSS here -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/user/css/bootstrap.min.css">

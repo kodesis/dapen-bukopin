@@ -29,7 +29,16 @@ class Auth extends CI_Controller
         $data['content_js'] = 'webview/auth/login/login_js';
         $this->load->view('_parts/Wrapper_auth', $data);
     }
+    public function register()
+    {
+        if ($this->session->userdata('user_logged_in') == 'true') {
+            redirect('dashboard');
+        }
 
+        $data['content']  = 'webview/auth/register/register_view';
+        $data['content_js'] = 'webview/auth/register/register_js';
+        $this->load->view('_parts/Wrapper_auth', $data);
+    }
     public function login_process()
     {
 
@@ -69,6 +78,52 @@ class Auth extends CI_Controller
             echo json_encode(array("status" => 'Gagal Cari'));
         }
     }
+
+    public function register_process()
+    {
+        $this->load->model('Auth_m', 'regis');
+
+        $this->db->select('*');
+        $this->db->from('user');
+        $user = $this->db->get()->result();
+
+        foreach ($user as $u) {
+            $nik_r   = $u->nik;
+            $email_r  = $u->email;
+        }
+
+        if ($nik_r == $this->input->post('nip')) {
+            $data = array("status" => 'NIP Sudah Dipakai');
+            echo json_encode($data);
+        } else if ($email_r == $this->input->post('email')) {
+            $data = array("status" => 'Email Sudah Dipakai');
+            echo json_encode($data);
+        } else {
+
+
+
+            $enc_password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+
+            $this->load->helper('string');
+            $date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+
+            $data = array(
+                'created'         => $date->format('Y-m-d H:i:s'),
+                'nama'       => $this->input->post('nama'),
+                'nik'            => $this->input->post('nip'),
+                'email'           => $this->input->post('email'),
+                'tgl_lahir'  => $this->input->post('tgl_lahir'),
+                'active'          => 1,
+                'password'        => $enc_password,
+            );
+            $this->regis->save($data);
+
+            $email = $this->input->post('email');
+            $data = array("status" => 'berhasil', "email" => $email);
+            echo json_encode($data);
+        }
+    }
+
     public function logout()
     {
 

@@ -22,4 +22,9 @@ class Auth_m extends CI_Model
             return false;
         }
     }
+    public function save($data)
+    {
+
+        return $this->db->insert('user', $data);
+    }
 }

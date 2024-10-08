@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="breadcrumb__content">
-                        <h2 class="title">Formulir</h2>
+                        <h2 class="title">Buku Layanan</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Formulir</li>
+                                <li class="breadcrumb-item active" aria-current="page">Buku Layanan</li>
                             </ol>
                         </nav>
                     </div>
@@ -32,32 +32,38 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section-title white-title text-center mb-50">
-                        <span class="sub-title">DAFTAR FORMULIR</span>
-                        <h2 class="title">Silahkan Pilih Formulir</h2>
+                        <span class="sub-title">DAFTAR BUKU LAYANAN</span>
+                        <h2 class="title">Silahkan Pilih Buku Layanan</h2>
                     </div>
                 </div>
             </div>
 
             <div class="row justify-content-center gutter-24">
                 <?php
-                foreach ($formulir as $item) {
+                if (isset($peraturan) && !empty($peraturan)) {
+                    foreach ($peraturan as $item) {
                 ?>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="services__item-three">
-                            <div class="services__item-top">
-                                <div class="services__icon-three">
-                                    <i class="flaticon-profit"></i>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="services__item-three">
+                                <div class="services__item-top">
+                                    <div class="services__icon-three">
+                                        <i class="flaticon-profit"></i>
+                                    </div>
+                                    <div class="services__item-top-title">
+                                        <h2 class="title"><a href="services-details.html"><?= $item->nama_file ?></a></h2>
+                                    </div>
                                 </div>
-                                <div class="services__item-top-title">
-                                    <h2 class="title"><a href="services-details.html"><?= $item->nama_file ?></a></h2>
+                                <div class="services__content-three">
+                                    <p><?= $item->deskripsi_file ?></p>
+                                    <a href="<?= base_url('uploads/file/' . $item->file) ?>" class="btn btn-two">Unduh File</a>
                                 </div>
-                            </div>
-                            <div class="services__content-three">
-                                <p><?= $item->deskripsi_file ?></p>
-                                <a href="<?= base_url('uploads/file/' . $item->file) ?>" class="btn btn-two">Unduh File</a>
                             </div>
                         </div>
-                    </div>
+                    <?php
+                    }
+                } else {
+                    ?>
+                    <h2 style="color:#fff; text-align:center;">File Not Found</h2>
                 <?php
                 }
                 ?>

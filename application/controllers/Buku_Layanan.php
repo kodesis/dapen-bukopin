@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Formulir extends CI_Controller
+class Buku_Layanan extends CI_Controller
 {
 
     /**
@@ -24,23 +24,15 @@ class Formulir extends CI_Controller
     {
         // require_once APPPATH . 'third_party/PhpSpreadsheet/src/Bootstrap.php';
         parent::__construct();
-        $this->load->model('Formulir_m', 'formulir');
+        $this->load->model('Buku_Layanan_m', 'buku_layanan');
         // if (!$this->session->userdata('user_logged_in')) {
         // 	redirect('auth'); // Redirect to the 'autentic' page
         // }
     }
-    public function Formulir_Permohonan()
+    public function index()
     {
-        $data['formulir'] = $this->formulir->get_formulir_permohonan(); // Ensure data is assigned to 'formulir'
-        $data['content']  = 'webview/formulir_permohonan/formulir_view';
-        // $data['content_js'] = 'webview/user/index/index_js';
-
-        $this->load->view('_parts/User/Wrapper', $data);
-    }
-    public function Formulir_Iuran()
-    {
-        $data['formulir'] = $this->formulir->get_formulir_iuran(); // Ensure data is assigned to 'formulir'
-        $data['content']  = 'webview/formulir_iuran/formulir_view';
+        $data['peraturan'] = $this->buku_layanan->get_buku_layanan(); // Ensure data is assigned to 'formulir'
+        $data['content']  = 'webview/buku_layanan/buku_layanan_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);
