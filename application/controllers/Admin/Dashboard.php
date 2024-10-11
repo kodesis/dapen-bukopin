@@ -36,11 +36,19 @@ class Dashboard extends CI_Controller
 			redirect('auth');
 		}
 
+		$data['triwulan'] = $this->dashboard->get_triwulan(); // Ensure data is assigned to 'formulir'
+		$data['tahunan'] = $this->dashboard->get_tahunan(); // Ensure data is assigned to 'formulir'
+
 		if ($this->session->userdata('role_id') == 2) {
-			redirect('SaldoUser');
+
+			$data['content']  = 'webview/user/dashboard/dashboard_view';
+			$data['content_js'] = 'webview/user/dashboard/dashboard_js';
+		} else {
+
+			$data['content']  = 'webview/admin/dashboard/dashboard_view';
+			$data['content_js'] = 'webview/admin/dashboard/dashboard_js';
 		}
-		$data['content']  = 'webview/admin/dashboard/dashboard_view';
-		$data['content_js'] = 'webview/admin/dashboard/dashboard_js';
+
 		$this->load->view('_parts/Admin/Wrapper', $data);
 	}
 
@@ -60,5 +68,61 @@ class Dashboard extends CI_Controller
 	{
 		$total_saldo = $this->dashboard->total_saldo(); // Call the model method
 		echo json_encode(array('total_saldo' => $total_saldo)); // Return the count as JSON
+	}
+
+	public function saldo_per_6_bulan()
+	{
+		$result = $this->dashboard->saldo_per_6_bulan(); // Call the model method
+		$salesData = [];
+		$categories = [];
+
+		foreach ($result as $row) {
+			$salesData[] = (int)$row->total_count;
+			$categories[] = $row->month_year;
+		}
+
+		// Set JSON header
+		header('Content-Type: application/json');
+		echo json_encode([
+			'sales' => $salesData,
+			'categories' => $categories,
+		]);
+	}
+
+	public function total_saldo_per_6_bulan()
+	{
+		$result = $this->dashboard->total_saldo_per_6_bulan(); // Call the model method
+		$salesData = [];
+		$categories = [];
+
+		foreach ($result as $row) {
+			$salesData[] = (int)$row->total_count;
+			$categories[] = $row->month_year;
+		}
+
+		// Set JSON header
+		header('Content-Type: application/json');
+		echo json_encode([
+			'sales' => $salesData,
+			'categories' => $categories,
+		]);
+	}
+	public function saldo_per_6_bulan_user()
+	{
+		$result = $this->dashboard->saldo_per_6_bulan_user(); // Call the model method
+		$salesData = [];
+		$categories = [];
+
+		foreach ($result as $row) {
+			$salesData[] = (int)$row->total_count;
+			$categories[] = $row->month_year;
+		}
+
+		// Set JSON header
+		header('Content-Type: application/json');
+		echo json_encode([
+			'sales' => $salesData,
+			'categories' => $categories,
+		]);
 	}
 }

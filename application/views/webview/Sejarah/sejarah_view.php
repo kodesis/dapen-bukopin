@@ -35,8 +35,11 @@
                         <div class="section-title mb-30">
                             <h2 class="title">Sejarah <br> <span>dari</span> Dana Pensiun <span>Bank Bukopin</span></h2>
                         </div>
-                        <div class="about__img-wrap-five">
-                            <img src="<?= base_url() ?>/assets/user/img/images/inner02_about_img.jpg" alt="">
+                        <div class="about__img-wrap-five text-center">
+                            <div style="background-color: #f9c92b;">
+                                <img class="img-fluid" src="<?= base_url() ?>/assets/user/img/images/sejarah.jpg"
+                                    style="max-height: 600px;" alt="">
+                            </div>
                             <div class="experience-year">
                                 <div class="icon">
                                     <i class="flaticon-trophy"></i>

@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>Management User</h3>
-                        <p class="text-subtitle text-muted">Powerful interactive tables with datatables (jQuery required).</p>
+                        <!-- <p class="text-subtitle text-muted">Powerful interactive tables with datatables (jQuery required).</p> -->
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -27,15 +27,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <h5 class="card-title">
                                     Table Management User
                                 </h5>
                             </div>
-                            <div class="col-md-4 d-flex justify-content-end">
+                            <div class="col-md-6 d-flex justify-content-end">
+                                <a class="btn btn-light" href="<?= base_url('assets\cms\format\Contoh_Format_user.xlsx') ?>" style="margin-right:10px ;" download>
+                                    Download Format
+                                </a>
                                 <button type="button" class="btn btn-light" data-bs-toggle="modal"
                                     data-bs-target="#upload_modal" style="margin-right:10px ;">
-                                    Upload Excel
+                                    Upload User
                                 </button>
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#add_modal">
@@ -47,7 +50,8 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" id="table1">
+                            <table class="table" id="table1" style="overflow-x:auto; display:block; max-height:400px; width: 100%;">
+                                <!-- <table class="table" id="table1"> -->
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -238,7 +242,7 @@
                                 </select>
                             </fieldset>
 
-                            <label for="email">Perbarui Password? </label>
+                            <!-- <label for="email">Perbarui Password? </label>
                             <div class="form-group">
                                 <input type="checkbox" id="update_password" class="form-check-input" onchange="edit_password()" value="True">
                                 <label for="checkbox1">YES!</label>
@@ -254,7 +258,7 @@
                             <div class="form-group">
                                 <input id="password2_edit" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
                                     class="form-control" readonly>
-                            </div>
+                            </div> -->
                             <label for="nik">NIK </label>
                             <div class="form-group">
                                 <input id="nik_edit" name="nik" type="number" placeholder="Masukan NIK"
@@ -306,13 +310,56 @@
             </div>
         </div>
 
+        <!--scrolling content Modal Update -->
+        <div class="modal fade" id="edit_password_modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Password User</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit_password_user">
+                            <input type="hidden" id="id_edit" name="id_edit">
+                            <label for="password">Password </label>
+                            <div class="form-group">
+                                <input id="password1_edit" name="password1" type="password" placeholder="Masukan Password"
+                                    class="form-control">
+                            </div>
+
+                            <label for="password">Konfirmasi Password </label>
+                            <div class="form-group">
+                                <input id="password2_edit" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
+                                    class="form-control">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary"
+                            data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button onclick="update_password_user()" type="button" class="btn btn-primary ms-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Accept</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--scrolling content Modal Upload Excel -->
         <div class="modal fade" id="upload_modal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalScrollableTitle">Upload Saldo User</h5>
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Upload User</h5>
                         <button type="button" class="close" data-bs-dismiss="modal"
                             aria-label="Close">
                             <i data-feather="x"></i>
@@ -320,11 +367,11 @@
                     </div>
                     <div class="modal-body">
                         <form id="upload_user">
-                            <label for="name">Tanggal Data</label>
+                            <!-- <label for="name">Tanggal Data</label>
                             <div class="form-group">
                                 <input id="tanggal_upload" name="tanggal" type="date" placeholder="Masukan Tanggal"
                                     class="form-control">
-                            </div>
+                            </div> -->
                             <label for="name">Upload File Excel </label>
                             <div class="form-group">
                                 <input id="file" name="file" type="file" placeholder="Masukan File"

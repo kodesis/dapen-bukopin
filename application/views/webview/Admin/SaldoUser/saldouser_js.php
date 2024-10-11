@@ -37,7 +37,7 @@
             data: function(data) {}
         },
         columnDefs: [{
-            targets: 9, // The 8th column (0-indexed)
+            targets: 14, // The 8th column (0-indexed)
             orderable: false // Disable sorting
         }]
     })
@@ -51,10 +51,10 @@
     var year = today.getFullYear();
 
     // Set the input field's value to the current date
-    document.getElementById('tgl_lahir').value = year + '-' + month + '-' + day;
-    document.getElementById('pegawai').value = year + '-' + month + '-' + day;
-    document.getElementById('peserta').value = year + '-' + month + '-' + day;
-
+    document.getElementById('tgl_lahir_add').value = year + '-' + month + '-' + day;
+    document.getElementById('pegawai_add').value = year + '-' + month + '-' + day;
+    document.getElementById('peserta_add').value = year + '-' + month + '-' + day;
+    document.getElementById('tanggal_upload').value = year + '-' + month + '-' + day;
 
 
     function add_user() {
@@ -239,10 +239,19 @@
     }
 
     function upload_user() {
+        const ttltanggalValue = $('#tanggal_upload').val();
         const ttlnamaValue = $('#file').val();
 
 
-        if (!ttlnamaValue) {
+        if (!ttltanggalValue) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Tanggal Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (!ttlnamaValue) {
             swal.fire({
                 customClass: 'slow-animation',
                 icon: 'error',

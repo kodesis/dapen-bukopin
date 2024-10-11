@@ -39,7 +39,7 @@
             data: function(data) {}
         },
         columnDefs: [{
-            targets: 9, // The 8th column (0-indexed)
+            targets: 10, // The 8th column (0-indexed)
             orderable: false // Disable sorting
         }]
     })
@@ -255,15 +255,7 @@
         const ttlnamaValue = $('#file').val();
 
 
-        if (!ttltanggalValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Tanggal Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlnamaValue) {
+        if (!ttlnamaValue) {
             swal.fire({
                 customClass: 'slow-animation',
                 icon: 'error',
@@ -318,33 +310,14 @@
                             /* if(!data.status)alert("ho"); */
                             if (!data.status) swal.fire('Gagal menyimpan data', 'error');
                             else {
-                                if (data.status === "Missing") {
-                                    swal.fire({
-                                        customClass: 'slow-animation',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        // title: data.missing.count + " data not inserted due to missing users: " + data.missing.users.join(', '),
-                                        title: data.missing.count + " data not inserted due to missing users",
-                                        timer: 3000 // Adjust timer for visibility
-                                    });
-                                } else if (data.status === "Duplicates") {
-                                    swal.fire({
-                                        customClass: 'slow-animation',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        // title: data.duplicates.count + " duplicate entries found for kd_peserta: " + data.duplicates.users.join(', '),
-                                        title: data.duplicates.count + " duplicate entries found for kd_peserta",
-                                        timer: 3000 // Adjust timer for visibility
-                                    });
-                                } else {
-                                    swal.fire({
-                                        customClass: 'slow-animation',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        title: 'Berhasil Menambahkan Data User',
-                                        timer: 3000 // Adjust timer for visibility
-                                    });
-                                }
+                                swal.fire({
+                                    customClass: 'slow-animation',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    title: 'Berhasil Menambahkan Data User',
+                                    timer: 3000 // Adjust timer for visibility
+                                });
+
                                 document.getElementById('upload_user').reset(); // Reset the form
                                 $('#upload_modal').modal('hide'); // Hide the modal
                                 $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
@@ -443,6 +416,130 @@
         //     }
         // });
     }
+
+    function onEditPassword(id) {
+        $('#edit_user')[0].reset(); // reset form on modals
+        // $('.form-group').removeClass('has-error'); // clear error class
+        // $('.help-block').empty(); // clear error string
+        // $('.modal-title').text('Edit Poster');
+        console.log('bisa 1')
+
+        $('#edit_password_modal').modal('show'); // show bootstrap modal when complete loaded
+        console.log('bisa 2')
+
+
+        console.log('bisa 3')
+    }
+
+    function update_password_user() {
+        const ttlpassword1Value = $('#password1_edit').val();
+        const ttlpassword2Value = $('#password2_edit').val();
+
+        if (!ttlpassword1Value) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Password Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (!ttlpassword2Value) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Konfirmasi Password Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (ttlpassword1Value !== ttlpassword2Value) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Password dan Konfirmasi Password Tidak Cocok',
+                timer: 1500
+            });
+        } else {
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    InputEvent: 'form-control',
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Ingin Mengubah Data User?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Ubah',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    var url;
+                    var formData;
+                    url = "<?php echo site_url('Admin/usermanagement/update_password') ?>";
+
+                    // window.location = url_base;
+                    var formData = new FormData($("#edit_password_user")[0]);
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        dataType: "JSON",
+                        beforeSend: function() {
+                            swal.fire({
+                                icon: 'info',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                title: 'Loading...'
+
+                            });
+                        },
+                        success: function(data) {
+                            /* if(!data.status)alert("ho"); */
+                            if (!data.status) swal.fire('Gagal menyimpan data', 'error');
+                            else {
+                                // document.getElementById('rumahadat').reset();
+                                // $('#add_modal').modal('hide');
+                                (JSON.stringify(data));
+                                // alert(data)
+                                swal.fire({
+                                    customClass: 'slow-animation',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    title: 'Berhasil Mengubah Password User',
+                                    timer: 1500
+                                });
+                                document.getElementById('edit_password_user').reset(); // Reset the form
+                                $('#edit_password_modal').modal('hide'); // Hide the modal
+                                $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                                // location.reload();
+
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            swal.fire('Operation Failed!', errorThrown, 'error');
+                        },
+                        complete: function() {
+                            console.log('Editing job done');
+                        }
+                    });
+
+
+                }
+
+            })
+        }
+    }
+
 
     function edit_password() {
         var checkbox = document.getElementById('update_password');

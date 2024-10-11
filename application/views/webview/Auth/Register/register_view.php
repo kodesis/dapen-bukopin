@@ -27,8 +27,18 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <div class="auth-logo">
-                        <a href="index.html"><img src="<?= base_url() ?>assets/cms/compiled/svg/logo.svg" alt="Logo"></a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="auth-logo">
+                                <a href="index.html"><img src="<?= base_url() ?>/assets/cms/logo/dapenbukopin_lg1.png" alt="Logo"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="auth-logo d-flex justify-content-end">
+                                <a class="font-bold" href="<?= base_url('') ?>" style="font-size:20px"><i class="bi bi-arrow-left"></i>
+                                    Back</a>
+                            </div>
+                        </div>
                     </div>
                     <h1 class="auth-title">Sign Up</h1>
                     <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
@@ -79,8 +89,8 @@
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">
-                <div id="auth-right">
-
+                <div id="auth-right" style="background: #fffeff; height: 100%; display: flex; justify-content: center; align-items: center;">
+                    <img src="<?= base_url('assets/cms/Logo/Logo Dapen KB Bukopin PNG1.png') ?>" alt="" width="70%">
                 </div>
             </div>
         </div>

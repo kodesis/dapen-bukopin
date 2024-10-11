@@ -79,7 +79,8 @@ class UserManagement extends CI_Controller
                                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                                     </svg></a>
-                                                <a title="Delete User" onclick="onDelete(' . $cat->uid . ')" class="btn btn-danger"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                <a title="Delete User" onclick="onEditPassword(' . $cat->uid . ')" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17l0 80c0 13.3 10.7 24 24 24l80 0c13.3 0 24-10.7 24-24l0-40 40 0c13.3 0 24-10.7 24-24l0-40 40 0c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/></svg></a>
+													<a title="Delete User" onclick="onDelete(' . $cat->uid . ')" class="btn btn-danger"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
                                                         <polyline points="3 6 5 6 21 6"></polyline>
                                                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                                         <line x1="10" y1="11" x2="10" y2="17"></line>
@@ -186,7 +187,20 @@ class UserManagement extends CI_Controller
 		$this->usermanagement->update_user($data_update, array('uid' => $this->input->post('id_edit')));
 		echo json_encode(array("status" => TRUE));
 	}
+	public function update_password()
+	{
+		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 
+		$password1 = $this->input->post('password1');
+		$data_update = [
+			'updated'           => $date->format('Y-m-d H:i:s'),
+			'password'             => password_hash($password1, PASSWORD_BCRYPT),
+
+		];
+
+		$this->usermanagement->update_user($data_update, array('uid' => $this->input->post('id_edit')));
+		echo json_encode(array("status" => TRUE));
+	}
 	public function delete()
 	{
 
@@ -238,6 +252,58 @@ class UserManagement extends CI_Controller
 				$rowCounter = 1; // Start at 1 since the first row (0) is the header
 
 				// INPUT DATA USER
+				foreach ($worksheet->getRowIterator() as $row) {
+					// Increment the row counter
+					$rowCounter++;
+
+					// Skip the first row (header)
+					if ($rowCounter === 2 || $rowCounter === 3) {
+						continue; // Skip processing for the header row
+					}
+
+					$cellIterator = $row->getCellIterator();
+					$cellIterator->setIterateOnlyExistingCells(false); // This loops through all cells, even empty ones
+
+					$data = []; // Create an array to hold row data
+					foreach ($cellIterator as $cell) {
+						$data[] = $cell->getValue(); // Get cell value
+					}
+
+					// Assuming columns are: 'Nama' in column A, 'kd_peserta' in column B, etc.
+					$nama = isset($data[0]) ? $data[0] : null; // Column A
+					$kd_peserta = isset($data[1]) ? $data[1] : null; // Column B
+					$email = isset($data[2]) ? $data[2] : null; // Column C
+					$password = isset($data[3]) ? $data[3] : null; // Column D
+					$nik = isset($data[4]) ? $data[4] : null; // Column E
+					$alamat = isset($data[5]) ? $data[5] : null; // Column F
+					$tgl_lahir = isset($data[6]) ? $data[6] : null; // Column C
+					$pegawai = isset($data[7]) ? $data[7] : null; // Column C
+					$peserta = isset($data[8]) ? $data[8] : null; // Column C
+
+					// Insert into the database
+					if ($nama && $kd_peserta) {
+						$this->db->insert('user', [
+							'nama' => $nama,
+							'kd_peserta' => $kd_peserta,
+							'email' => $email,
+							'password'  => password_hash($password, PASSWORD_BCRYPT), // Hashing the password
+							'nik' => $nik,
+							'alamat' => $alamat,
+							'tgl_lahir' => $tgl_lahir,
+							'pegawai' => $pegawai,
+							'peserta' => $peserta,
+							'role_id' => 2, // Set role_id to 1 as required
+							'active' => 1, // Default value for 'active'
+						]);
+					}
+				}
+				echo json_encode(array("status" => True));
+				return;
+				// $rowCounter = 1; // Start at 1 since the first row (0) is the header
+				// $missingUsers = []; // Array to hold kd_peserta of missing users
+				// $duplicates = []; // Array to hold duplicate kd_peserta
+
+				// // INPUT SALDO USER
 				// foreach ($worksheet->getRowIterator() as $row) {
 				// 	// Increment the row counter
 				// 	$rowCounter++;
@@ -255,122 +321,77 @@ class UserManagement extends CI_Controller
 				// 		$data[] = $cell->getValue(); // Get cell value
 				// 	}
 
-				// 	// Assuming columns are: 'Nama' in column A, 'kd_peserta' in column B, etc.
-				// 	$nama = isset($data[0]) ? $data[0] : null; // Column A
 				// 	$kd_peserta = isset($data[1]) ? $data[1] : null; // Column B
-				// 	$alamat = isset($data[2]) ? $data[2] : null; // Column C
-				// 	$tgl_lahir = isset($data[3]) ? $data[3] : null; // Column D
-				// 	$pegawai = isset($data[4]) ? $data[4] : null; // Column E
-				// 	$peserta = isset($data[5]) ? $data[5] : null; // Column F
+				// 	$ips_awal = isset($data[6]) ? floatval($this->clean_input($data[6])) : null; // Column G
+				// 	// ... (same for other variables)
 
-				// 	// Insert into the database
-				// 	if ($nama && $kd_peserta) {
-				// 		$this->db->insert('user', [
-				// 			'nama' => $nama,
-				// 			'kd_peserta' => $kd_peserta,
-				// 			'alamat' => $alamat,
-				// 			'tgl_lahir' => $tgl_lahir,
-				// 			'pegawai' => $pegawai,
-				// 			'peserta' => $peserta,
-				// 			'role_id' => 2, // Set role_id to 1 as required
-				// 			'active' => 1, // Default value for 'active'
+				// 	// Check for duplicates based on kd_peserta and input month-year
+				// 	$inputDate = $this->input->post('tanggal'); // Assuming this is in Y-m-d format
+				// 	$monthYear = date('Y-m', strtotime($inputDate));
+
+				// 	$this->db->select('uid'); // Select the uid column
+				// 	$this->db->from('user'); // Your table name
+				// 	$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
+				// 	$query = $this->db->get(); // Execute the query
+
+				// 	if ($query->num_rows() > 0) {
+				// 		$result = $query->row(); // Get the first result row
+				// 		$this->db->select('*');
+				// 		$this->db->from('saldo');
+				// 		$this->db->where('uid_user', $result->uid); // Filter by uid_user
+				// 		$this->db->where("DATE_FORMAT(tanggal_data, '%Y-%m') =", date('Y-m', strtotime($inputDate))); // Check duplicates
+				// 		$duplicateCheck = $this->db->get();
+
+				// 		// If duplicate exists, add to duplicates array
+				// 		if ($duplicateCheck->num_rows() > 0) {
+				// 			$duplicates[] = $kd_peserta;
+				// 			continue; // Skip to the next row
+				// 		}
+
+				// 		// Check if a result was found
+				// 		$uid = $result->uid; // Access the uid
+				// 		$this->db->insert('saldo', [
+				// 			'uid_user' => $uid,
+				// 			'ips_awal' => $ips_awal,
+				// 			'ipk_awal' => $ipk_awal,
+				// 			'total_awal' => $total_awal,
+				// 			'ips_iuran' => $ips_iuran,
+				// 			'ipk_iuran' => $ipk_iuran,
+				// 			'ips_p' => $ips_p,
+				// 			'ipk_p' => $ipk_p,
+				// 			'ips_akhir' => $ips_akhir,
+				// 			'ipk_akhir' => $ipk_akhir,
+				// 			'total_akhir' => $total_akhir,
+				// 			'tanggal_data' => $this->input->post('tanggal'),
+				// 			'active' => 1,
 				// 		]);
+				// 	} else {
+				// 		$missingUsers[] = $kd_peserta; // Store the kd_peserta of the missing user
 				// 	}
 				// }
 
-				$rowCounter = 1; // Start at 1 since the first row (0) is the header
-				$missingUsers = []; // Array to hold kd_peserta of missing users
-				$duplicates = []; // Array to hold duplicate kd_peserta
+				// // Prepare the response data
+				// $data = [];
+				// if (!empty($missingUsers)) {
+				// 	$data['status'] = "Missing";
+				// 	$data['missing'] = [
+				// 		"count" => count($missingUsers),
+				// 		"users" => $missingUsers,
+				// 	];
+				// 	// Call export function for missing users
+				// 	// $this->exportToExcel($missingUsers); // Call the export function here
+				// }
 
-				// INPUT SALDO USER
-				foreach ($worksheet->getRowIterator() as $row) {
-					// Increment the row counter
-					$rowCounter++;
-
-					// Skip the first row (header)
-					if ($rowCounter === 2) {
-						continue; // Skip processing for the header row
-					}
-
-					$cellIterator = $row->getCellIterator();
-					$cellIterator->setIterateOnlyExistingCells(false); // This loops through all cells, even empty ones
-
-					$data = []; // Create an array to hold row data
-					foreach ($cellIterator as $cell) {
-						$data[] = $cell->getValue(); // Get cell value
-					}
-
-					$kd_peserta = isset($data[1]) ? $data[1] : null; // Column B
-					$ips_awal = isset($data[6]) ? floatval($this->clean_input($data[6])) : null; // Column G
-					// ... (same for other variables)
-
-					// Check for duplicates based on kd_peserta and input month-year
-					$inputDate = $this->input->post('tanggal'); // Assuming this is in Y-m-d format
-					$monthYear = date('Y-m', strtotime($inputDate));
-
-					$this->db->select('uid'); // Select the uid column
-					$this->db->from('user'); // Your table name
-					$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
-					$query = $this->db->get(); // Execute the query
-
-					if ($query->num_rows() > 0) {
-						$result = $query->row(); // Get the first result row
-						$this->db->select('*');
-						$this->db->from('saldo');
-						$this->db->where('uid_user', $result->uid); // Filter by uid_user
-						$this->db->where("DATE_FORMAT(tanggal_data, '%Y-%m') =", date('Y-m', strtotime($inputDate))); // Check duplicates
-						$duplicateCheck = $this->db->get();
-
-						// If duplicate exists, add to duplicates array
-						if ($duplicateCheck->num_rows() > 0) {
-							$duplicates[] = $kd_peserta;
-							continue; // Skip to the next row
-						}
-
-						// Check if a result was found
-						$uid = $result->uid; // Access the uid
-						$this->db->insert('saldo', [
-							'uid_user' => $uid,
-							'ips_awal' => $ips_awal,
-							'ipk_awal' => $ipk_awal,
-							'total_awal' => $total_awal,
-							'ips_iuran' => $ips_iuran,
-							'ipk_iuran' => $ipk_iuran,
-							'ips_p' => $ips_p,
-							'ipk_p' => $ipk_p,
-							'ips_akhir' => $ips_akhir,
-							'ipk_akhir' => $ipk_akhir,
-							'total_akhir' => $total_akhir,
-							'tanggal_data' => $this->input->post('tanggal'),
-							'active' => 1,
-						]);
-					} else {
-						$missingUsers[] = $kd_peserta; // Store the kd_peserta of the missing user
-					}
-				}
-
-				// Prepare the response data
-				$data = [];
-				if (!empty($missingUsers)) {
-					$data['status'] = "Missing";
-					$data['missing'] = [
-						"count" => count($missingUsers),
-						"users" => $missingUsers,
-					];
-					// Call export function for missing users
-					// $this->exportToExcel($missingUsers); // Call the export function here
-				}
-
-				if (!empty($duplicates)) {
-					$data['status'] = "Duplicates";
-					$data['duplicates'] = [
-						"count" => count($duplicates),
-						"users" => $duplicates,
-					];
-				}
+				// if (!empty($duplicates)) {
+				// 	$data['status'] = "Duplicates";
+				// 	$data['duplicates'] = [
+				// 		"count" => count($duplicates),
+				// 		"users" => $duplicates,
+				// 	];
+				// }
 
 				// Respond with JSON
-				echo json_encode($data);
+				// echo json_encode($data);
 			} catch (Exception $e) {
 				// echo 'Error loading file: ', $e->getMessage();
 				echo json_encode(array("status" => False));

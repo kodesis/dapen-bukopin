@@ -14135,7 +14135,7 @@ blockquote p {
     min-width: 100%;
   }
   .banner-two-col .banner-col-1, .banner-two-col .banner-col-2 {
-    width: 100%;
+    width: 65%;
   }
   .item-testimonial {
     padding-left: 0px;
@@ -14235,11 +14235,79 @@ blockquote p {
   transition-duration: 0.3s;
 }
 
-@media only screen and (max-width: 920px) {
+/* @media only screen and (max-width: 920px) {
   .banner-two-col .banner-col-2 {
     display: none;
   }
+} */
+
+@media only screen and (max-width: 920px) {
+  .banner-two-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner-two-col .banner-col-1,
+  .banner-two-col .banner-col-2 {
+    width: 100%;
+    /* Make sure both columns take up the full width */
+  }
+
+  .banner-two-col .banner-col-2 {
+    margin-top: 550px;
+    /* Adds space between the two sections */
+    z-index: 1;
+    /* Ensures the slider appears after the first column */
+  }
+
+  .banner-two-col .banner-col-1 {
+    z-index: 2;
+    /* Ensures this stays above any potential overlaps */
+  }
+  .ubah-slider{
+    height: 1250px;
+  }
 }
+
+
+/* @media only screen and (max-width: 610px) {
+  .banner-two-col .banner-col-2 {
+      margin-top: 550px;
+      /* Adds space between the two sections */
+      z-index: 1;
+      /* Ensures the slider appears after the first column */
+    }
+
+  .ubah-slider {
+    height: 1000px;
+  }
+}
+@media only screen and (max-width: 510px) {
+  .banner-two-col .banner-col-2 {
+    margin-top: 650px;
+    /* Adds space between the two sections */
+    z-index: 1;
+    /* Ensures the slider appears after the first column */
+  }
+
+  .ubah-slider {
+    height: 90px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .banner-two-col .banner-col-2 {
+    margin-top: 650px;
+    /* Adds space between the two sections */
+    z-index: 1;
+    /* Ensures the slider appears after the first column */
+  }
+
+  .ubah-slider {
+    height: 950px;
+  }
+} */
+
 .card-services-type-01 {
   padding: 30px;
   background-color: var(--tg-color-white-default);
@@ -14318,6 +14386,7 @@ blockquote p {
 .slider__area-home8 {
   position: relative;
   padding: 0px 170px;
+  max-height: 100%;
 }
 .slider__area-home8 .box-form-quote {
   position: absolute;

@@ -6,7 +6,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="<?= base_url('dashboard') ?>"><img src="<?= base_url() ?>assets/cms/compiled/svg/logo.svg" alt="Logo" srcset=""></a>
+                            <a href="<?= base_url('dashboard') ?>"><img src="<?= base_url() ?>assets/cms/logo/dapenbukopin_lg1.png" alt="Logo" srcset=""></a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -46,25 +46,20 @@
 
                         <?php
                         $url = $this->uri->segment(1);
-                        if ($this->session->userdata('role_id') == 1) {
                         ?>
 
-                            <li class="sidebar-title">Main Menu</li>
+                        <li class="sidebar-title">Main Menu</li>
 
-                            <li
-                                class="sidebar-item <?php if ($url == "dashboard") {
-                                                        echo "active";
-                                                    } ?> ">
-                                <a href="<?= base_url('dashboard') ?>" class='sidebar-link'>
-                                    <i class="bi bi-grid-fill"></i>
-                                    <span>Dashboard</span>
-                                </a>
+                        <li
+                            class="sidebar-item <?php if ($url == "dashboard") {
+                                                    echo "active";
+                                                } ?> ">
+                            <a href="<?= base_url('dashboard') ?>" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
 
-                            </li>
-
-                        <?php
-                        }
-                        ?>
+                        </li>
 
                         <li class="sidebar-title">Menu</li>
 
@@ -115,6 +110,15 @@
                                 <a href="<?= base_url() ?>FileManagement" class='sidebar-link'>
                                     <i class="bi bi-grid-fill"></i>
                                     <span>File Management</span>
+                                </a>
+                            </li>
+                            <li
+                                class="sidebar-item <?php if ($url == "RunningText") {
+                                                        echo "active";
+                                                    } ?>">
+                                <a href="<?= base_url() ?>RunningText" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Running Text</span>
                                 </a>
                             </li>
                         <?php

@@ -3,7 +3,7 @@
     <div id="preloader">
         <div id="loader" class="loader">
             <div class="loader-container">
-                <div class="loader-icon"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg.png" alt="Preloader"></div>
+                <div class="loader-icon"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg1.png" alt="Preloader"></div>
             </div>
         </div>
     </div>
@@ -18,9 +18,24 @@
         <div class="tg-header__top">
             <div class="container custom-container">
                 <div class="running-text">
-                    <marquee behavior="scroll" style="color:#fff" direction="left">
-                        Batas waktu maksimal permohonan pencairan yaitu H-7 di hari kerja sebelum tanggal 15 setiap bulan || Peraturan Dana Pensiun terbaru dapat dilihat pada halaman saldo peserta || Formulir permohonan pencairan & pernyataan dapat di download pada bagian Formulir Permohonan
-                    </marquee>
+                    <?php
+
+                    $this->db->select('*');
+                    $this->db->from('running_text');
+                    $this->db->where('active', 1);
+                    $running_text =  $this->db->get()->result();
+                    if (isset($running_text) || !(empty($running_text))) {
+                    ?>
+                        <marquee behavior="scroll" style="color:#fff" direction="left">
+                            <?php
+                            foreach ($running_text as $rt) {
+                                echo $rt->text . ' || ';
+                            }
+                            ?>
+                        </marquee>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -31,7 +46,7 @@
                         <div class="tgmenu__wrap">
                             <nav class="tgmenu__nav">
                                 <div class="logo">
-                                    <a href="<?= base_url() ?>"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg.png" alt="Logo"></a>
+                                    <a href="<?= base_url() ?>"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo"></a>
                                 </div>
                                 <?php
                                 $url = $this->uri->segment(1)

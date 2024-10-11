@@ -25,8 +25,18 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <div class="auth-logo">
-                        <a href="index.html"><img src="<?= base_url() ?>/assets/cms/compiled/svg/logo.svg" alt="Logo"></a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="auth-logo">
+                                <a href="index.html"><img src="<?= base_url() ?>/assets/cms/logo/dapenbukopin_lg1.png" alt="Logo"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="auth-logo d-flex justify-content-end">
+                                <a class="font-bold" href="<?= base_url('') ?>" style="font-size:20px"><i class="bi bi-arrow-left"></i>
+                                    Back</a>
+                            </div>
+                        </div>
                     </div>
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
@@ -55,13 +65,13 @@
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">Don't have an account? <a href="<?= base_url('auth/register') ?>" class="font-bold">Sign
                                 up</a>.</p>
-                        <!-- <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p> -->
+                        <p><a class="font-bold" href="<?= base_url('auth/check_email') ?>">Forgot password?</a>.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right" style="background: #fffeff; height: 100%; display: flex; justify-content: center; align-items: center;">
-                    <img src="<?= base_url('assets/cms/Logo/Logo Dapen KB Bukopin PNG.png') ?>" alt="" height="500px">
+                    <img src="<?= base_url('assets/cms/Logo/Logo Dapen KB Bukopin PNG1.png') ?>" alt="" width="70%">
                 </div>
             </div>
         </div>

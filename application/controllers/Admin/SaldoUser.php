@@ -256,7 +256,9 @@ class SaldoUser extends CI_Controller
 					$rowCounter++;
 
 					// Skip the first row (header)
-					if ($rowCounter === 2) {
+					if (
+						$rowCounter === 2 || $rowCounter === 3
+					) {
 						continue; // Skip processing for the header row
 					}
 
@@ -269,92 +271,49 @@ class SaldoUser extends CI_Controller
 					}
 
 					// Assuming columns are: 'Nama' in column A, 'kd_peserta' in column B, etc.
-					$nama = isset($data[0]) ? $data[0] : null; // Column A
-					$kd_peserta = isset($data[1]) ? $data[1] : null; // Column B
-					$alamat = isset($data[2]) ? $data[2] : null; // Column C
-					$tgl_lahir = isset($data[3]) ? $data[3] : null; // Column D
-					$pegawai = isset($data[4]) ? $data[4] : null; // Column E
-					$peserta = isset($data[5]) ? $data[5] : null; // Column F
+					$kd_peserta = isset($data[1]) ? $data[1] : null; // Column 
+					$ips_awal = isset($data[6]) ? $data[6] : null; // Column 
+					$ipk_awal = isset($data[7]) ? $data[7] : null; // Column 
+					$total_awal = isset($data[8]) ? $data[8] : null; // Column 
+					$ips_iuran = isset($data[9]) ? $data[9] : null; // Column 
+					$ipk_iuran = isset($data[10]) ? $data[10] : null; // Column 
+					$ips_p = isset($data[11]) ? $data[11] : null; // Column 
+					$ipk_p = isset($data[12]) ? $data[12] : null; // Column 
+					$ips_akhir = isset($data[13]) ? $data[13] : null; // Column 
+					$ipk_akhir = isset($data[14]) ? $data[14] : null; // Column 
+					$total_akhir = isset($data[15]) ? $data[15] : null; // Column 
 
 					// Insert into the database
-					if ($nama && $kd_peserta) {
-						$this->db->insert('user', [
-							'nama' => $nama,
-							'kd_peserta' => $kd_peserta,
-							'alamat' => $alamat,
-							'tgl_lahir' => $tgl_lahir,
-							'pegawai' => $pegawai,
-							'peserta' => $peserta,
-							'role_id' => 2, // Set role_id to 1 as required
-							'active' => 1, // Default value for 'active'
-						]);
-					}
-				}
-
-				$rowCounter = 1; // Start at 1 since the first row (0) is the header
-				// INPUT SALDO USER
-				foreach ($worksheet->getRowIterator() as $row) {
-					// Increment the row counter
-					$rowCounter++;
-
-					// Skip the first row (header)
-					if ($rowCounter === 2) {
-						continue; // Skip processing for the header row
-					}
-
-					$cellIterator = $row->getCellIterator();
-					$cellIterator->setIterateOnlyExistingCells(false); // This loops through all cells, even empty ones
-
-					$data = []; // Create an array to hold row data
-					foreach ($cellIterator as $cell) {
-						$data[] = $cell->getValue(); // Get cell value
-					}
-
-					$kd_peserta = isset($data[1]) ? $data[1] : null; // Column B
-					$ips_awal = isset($data[6]) ? floatval($this->clean_input($data[6])) : null; // Column G
-					$ipk_awal = isset($data[7]) ? floatval($this->clean_input($data[7])) : null; // Column H
-					$total_awal = isset($data[8]) ? floatval($this->clean_input($data[8])) : null; // Column I
-					$ips_iuran = isset($data[9]) ? floatval($this->clean_input($data[9])) : null; // Column J
-					$ipk_iuran = isset($data[10]) ? floatval($this->clean_input($data[10])) : null; // Column K
-					$ips_p = isset($data[11]) ? floatval($this->clean_input($data[11])) : null; // Column L
-					$ipk_p = isset($data[12]) ? floatval($this->clean_input($data[12])) : null; // Column M
-					$ips_akhir = isset($data[13]) ? floatval($this->clean_input($data[13])) : null; // Column N
-					$ipk_akhir = isset($data[14]) ? floatval($this->clean_input($data[14])) : null; // Column O
-					$total_akhir = isset($data[15]) ? floatval($this->clean_input($data[15])) : null; // Column P
-
-
 					$this->db->select('uid'); // Select the uid column
 					$this->db->from('user'); // Your table name
 					$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
-					$query = $this->db->get(); // Execute the query
+					$result = $this->db->get()->row(); // Execute the query
 
 					// Check if a result was found
-					if ($query->num_rows() > 0) {
-						$result = $query->row(); // Get the first result row
-						$uid = $result->uid; // Access the uid
-						$this->db->insert('saldo', [
-							'uid_user' => $uid,
-							'ips_awal' => $ips_awal,
-							'ipk_awal' => $ipk_awal,
-							'total_awal' => $total_awal,
-							'ips_iuran' => $ips_iuran,
-							'ipk_iuran' => $ipk_iuran,
-							'ips_p' => $ips_p,
-							'ipk_p' => $ipk_p,
-							'ips_akhir' => $ips_akhir,
-							'ipk_akhir' => $ipk_akhir,
-							'total_akhir' => $total_akhir,
-						]);
-					}
+					$uid = $result->uid; // Access the uid
+					$this->db->insert('saldo', [
+						'uid_user' => $uid,
+						'ips_awal' => (int) str_replace(['.', ','], '', $ips_awal), // Remove dots and commas
+						'ipk_awal' => (int) str_replace(['.', ','], '', $ipk_awal),
+						'total_awal' => (int) str_replace(['.', ','], '', $total_awal),
+						'ips_iuran' => (int) str_replace(['.', ','], '', $ips_iuran),
+						'ipk_iuran' => (int) str_replace(['.', ','], '', $ipk_iuran),
+						'ips_p' => (int) str_replace(['.', ','], '', $ips_p),
+						'ipk_p' => (int) str_replace(['.', ','], '', $ipk_p),
+						'ips_akhir' => (int) str_replace(['.', ','], '', $ips_akhir),
+						'ipk_akhir' => (int) str_replace(['.', ','], '', $ipk_akhir),
+						'total_akhir' => (int) str_replace(['.', ','], '', $total_akhir),
+						'tanggal_data' => $this->input->post('tanggal'),
+						'active' => 1,
+					]);
 				}
-
-				echo "Data imported successfully!";
-				echo json_encode(array("status" => TRUE));
+				echo json_encode(array("status" => True));
+				return;
 			} catch (Exception $e) {
-				echo 'Error loading file: ', $e->getMessage();
+				// echo 'Error loading file: ', $e->getMessage();
 				echo json_encode(array("status" => False));
 			}
 		}
-		echo json_encode(array("status" => TRUE));
+		// echo json_encode(array("status" => TRUE));
 	}
 }

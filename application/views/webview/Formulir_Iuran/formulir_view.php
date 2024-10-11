@@ -49,7 +49,7 @@
                                     <i class="flaticon-profit"></i>
                                 </div>
                                 <div class="services__item-top-title">
-                                    <h2 class="title"><a href="services-details.html"><?= $item->nama_file ?></a></h2>
+                                    <h2 class="title"><a href=""><?= $item->nama_file ?></a></h2>
                                 </div>
                             </div>
                             <div class="services__content-three">

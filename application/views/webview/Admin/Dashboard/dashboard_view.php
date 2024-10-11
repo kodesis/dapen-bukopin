@@ -12,7 +12,7 @@
     <section class="row">
         <div class="col-12 col-lg-9">
             <div class="row">
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-lg-3 col-md-6">
+                <!-- <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
@@ -45,8 +45,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
+                </div> -->
+                <div class="col-6 col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-lg-3 col-md-6">
+                <!-- <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
@@ -79,13 +79,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Profile Visit</h4>
+                            <h4>Data Saldo Perbulan</h4>
                         </div>
                         <div class="card-body">
                             <div id="chart-profile-visit"></div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12 col-xl-4">
                     <div class="card">
                         <div class="card-header">
@@ -249,67 +249,80 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="col-12 col-lg-3">
             <div class="card">
                 <div class="card-body py-4 px-4">
                     <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl">
-                            <img src="<?= base_url() ?>/assets/compiled/jpg/1.jpg" alt="Face 1">
-                        </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold"><?= $this->session->userdata('name') ?></h5>
-                            <h6 class="text-muted mb-0">@<?= $this->session->userdata('name') ?></h6>
+                            <h6 class="text-muted mb-2">PDP Bank KB Bukopin</h6>
+                            <a href="<?= base_url('assets/cms/file_pdp/PDP Bank KB Bukopin.pdf') ?>" class="btn btn-success">
+                                Download File
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4>Recent Messages</h4>
+                    <h4>Ringkasan Laporan Keuangan</h4>
                 </div>
                 <div class="card-content pb-4">
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
+                    <?php
+                    if (isset($triwulan) || !empty($triwulan)) {
+                    ?>
+                        <div class="recent-message d-flex px-4 py-3">
+                            <!-- <div class="avatar avatar-lg">
                             <img src="<?= base_url() ?>/assets/compiled/jpg/4.jpg">
                         </div>
                         <div class="name ms-4">
                             <h5 class="mb-1">Hank Schrader</h5>
                             <h6 class="text-muted mb-0">@johnducky</h6>
+                        </div> -->
+                            <div class="name">
+                                <h6 class="text-muted mb-2" id="nama_file"><?= $triwulan->nama_file ?></h6>
+                                <a href="<?= base_url('uploads/file/' . $triwulan->file) ?>" class="btn btn-success">
+                                    Download File
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="<?= base_url() ?>/assets/compiled/jpg/5.jpg">
+                    <?php
+                    }
+
+                    if (isset($tahunan) || !empty($tahunan)) {
+
+                    ?>
+                        <div class="recent-message d-flex px-4 py-3">
+                            <div class="name">
+                                <h6 class="text-muted mb-2" id="nama_file"><?= $tahunan->nama_file ?></h6>
+                                <a href="<?= base_url('uploads/file/' . $tahunan->file) ?>" class="btn btn-success">
+                                    Download File
+                                </a>
+                            </div>
                         </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">@imdean</h6>
+                    <?php
+                    }
+
+                    ?>
+                    <!-- <div class="recent-message d-flex px-4 py-3">
+                        <div class="name">
+                            <h6 class="text-muted mb-2" id="nama_file">PDP Bank KB Bukopin</h6>
+                            <a href="<?= base_url('assets/cms/file_pdp/PDP Bank KB Bukopin.pdf') ?>" class="btn btn-success">
+                                Download File
+                            </a>
                         </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="<?= base_url() ?>/assets/compiled/jpg/1.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="px-4">
-                        <button class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>Start Conversation</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header">
                     <h4>Visitors Profile</h4>
                 </div>
                 <div class="card-body">
                     <div id="chart-visitors-profile"></div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </div>

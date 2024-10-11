@@ -24,14 +24,13 @@ class Index extends CI_Controller
     {
         // require_once APPPATH . 'third_party/PhpSpreadsheet/src/Bootstrap.php';
         parent::__construct();
-        $this->load->model('SaldoUser_m', 'saldouser');
+        $this->load->model('Index_m', 'index');
         // if (!$this->session->userdata('user_logged_in')) {
         // 	redirect('auth'); // Redirect to the 'autentic' page
         // }
     }
     public function index()
     {
-
         $data['content']  = 'webview/index/index_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 

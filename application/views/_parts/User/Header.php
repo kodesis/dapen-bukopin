@@ -19,5 +19,5 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/user/css/swiper-bundle.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/user/css/aos.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/user/css/default.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/assets/user/css/main.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/user/css/main_2.css">
 </head>

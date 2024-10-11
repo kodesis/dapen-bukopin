@@ -35,8 +35,11 @@
                         <div class="section-title mb-30">
                             <h2 class="title">Pengertian <br> <span>dari</span> Program Pensiun <span>Bank Bukopin</span></h2>
                         </div>
-                        <div class="about__img-wrap-five">
-                            <img src="<?= base_url() ?>/assets/user/img/images/inner02_about_img.jpg" alt="">
+                        <div class="about__img-wrap-five text-center">
+                            <div style="background-color: #f5c42c;">
+                                <img class="img-fluid" src="<?= base_url() ?>/assets/user/img/images/PPIP.jpg"
+                                    style="max-height: 600px;" alt="">
+                            </div>
                             <div class="experience-year">
                                 <div class="icon">
                                     <i class="flaticon-trophy"></i>

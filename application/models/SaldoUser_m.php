@@ -3,8 +3,8 @@
 class SaldoUser_m extends CI_Model
 {
     var $table = 'saldo';
-    var $column_order = array('saldo.uid', 'kd_peserta', 'ips_awal', 'ipk_awal', 'total_awal', 'ips_iuran', 'ipk_iuran', 'ips_p', 'ipk_p', 'ips_akhir', 'ipk_akhir', 'total_akhir', 'tanggal_data'); //set column field database for datatable orderable
-    var $column_search = array('saldo.uid', 'kd_peserta', 'ips_awal', 'ipk_awal', 'total_awal', 'ips_iuran', 'ipk_iuran', 'ips_p', 'ipk_p', 'ips_akhir', 'ipk_akhir', 'total_akhir', 'tanggal_data'); //set column field database for datatable searchable 
+    var $column_order = array('saldo.uid', 'user.nama', 'kd_peserta', 'ips_awal', 'ipk_awal', 'total_awal', 'ips_iuran', 'ipk_iuran', 'ips_p', 'ipk_p', 'ips_akhir', 'ipk_akhir', 'total_akhir', 'tanggal_data'); //set column field database for datatable orderable
+    var $column_search = array('saldo.uid', 'user.nama', 'kd_peserta', 'ips_awal', 'ipk_awal', 'total_awal', 'ips_iuran', 'ipk_iuran', 'ips_p', 'ipk_p', 'ips_akhir', 'ipk_akhir', 'total_akhir', 'tanggal_data'); //set column field database for datatable searchable 
     var $order = array('saldo.uid' => 'asc'); // default order 
 
     function get_category()
@@ -117,5 +117,22 @@ class SaldoUser_m extends CI_Model
     public function delete($data, $where)
     {
         $this->db->update($this->table, $data, $where);
+    }
+
+    public function get_last_saldo()
+    {
+        $this->db->select('saldo.*');
+        $this->db->from($this->table);
+        $this->db->where('saldo.uid_user', $this->session->userdata('user_user_id'));
+
+        // Order by tanggal_data in descending order to get the latest record
+        $this->db->order_by('tanggal_data', 'DESC');
+
+        // Limit to 1 to get only the latest data
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+
+        return $query->row();
     }
 }

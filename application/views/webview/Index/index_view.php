@@ -1,9 +1,18 @@
+<style>
+    :root {
+        --icon-size: 40px;
+    }
+
+    .flaticon-profit {
+        font-size: var(--icon-size);
+    }
+</style>
 <!-- main-area -->
 <main class="fix">
     <!-- slider-area -->
-    <section class="slider__area" style="height: 450px;">
+    <section class="slider__area">
         <div class="banner-two-col">
-            <div class="container">
+            <div class="container ubah-slider">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="banner-col-1">
@@ -24,33 +33,35 @@
                     </div>
                 </div>
             </div>
-            <div class="banner-col-2">
-                <div class="swiper-container slider_baner__active slider_baner_home6">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide slide__home7">
-                            <img src="<?= base_url() ?>/assets/user/img/slider/slider adpi 2023.png" />
-                            <!-- <div class="box-info-contact" style="padding-left: 52px; padding-right: 52px; padding-top:30px; padding-bottom:30px;">
+            <div class="mobile-wrapper">
+                <div class="banner-col-2">
+                    <div class="swiper-container slider_baner__active slider_baner_home6">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide slide__home7">
+                                <img src="<?= base_url() ?>/assets/user/img/slider/slider adpi 20231.jpg" />
+                                <!-- <div class="box-info-contact" style="padding-left: 52px; padding-right: 52px; padding-top:30px; padding-bottom:30px;">
                                 <p class="text-need-help">
                                     Need help? Call us
                                 </p>
                                 <p class="text-42-bold text-phone">1-800-222-8888</p>
                             </div> -->
-                        </div>
-                        <div class="swiper-slide slide__home7">
-                            <img src="<?= base_url() ?>/assets/user/img/slider/slider adpi 2022.png" />
-                            <!-- <div class="box-info-contact" style="padding-left: 52px; padding-right: 52px; padding-top:30px; padding-bottom:30px;">
+                            </div>
+                            <div class="swiper-slide slide__home7">
+                                <img src="<?= base_url() ?>/assets/user/img/slider/slider adpi 20221.jpg" />
+                                <!-- <div class="box-info-contact" style="padding-left: 52px; padding-right: 52px; padding-top:30px; padding-bottom:30px;">
                                 <p class="text-need-help">
                                     Need help? Call us
                                 </p>
                                 <p class="text-42-bold text-phone">1-800-222-8888</p>
                             </div> -->
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="box-button-slider-bottom" style="bottom: 15px;">
-                    <div class="testimonial__nav-four">
-                        <div class="testimonial-two-button-prev button-swiper-prev"><i class="flaticon-right-arrow"></i></div>
-                        <div class="testimonial-two-button-next button-swiper-next"><i class="flaticon-right-arrow"></i></div>
+                    <div class="box-button-slider-bottom" style="bottom: 15px;">
+                        <div class="testimonial__nav-four">
+                            <div class="testimonial-two-button-prev button-swiper-prev"><i class="flaticon-right-arrow"></i></div>
+                            <div class="testimonial-two-button-next button-swiper-next"><i class="flaticon-right-arrow"></i></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,17 +75,17 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="brand-item">
-                            <img src="<?= base_url() ?>/assets/user/img/brand/dapenbukopin_lg.png" alt="">
+                            <img src="<?= base_url() ?>/assets/user/img/brand/LOGO-KB-BUKOPIN-SYARIAH.png" alt="">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brand-item">
-                            <img src="<?= base_url() ?>/assets/user/img/brand/ojk2.png" alt="">
+                            <img src="<?= base_url() ?>/assets/user/img/brand/ojk2.png" alt="" style="max-width: 80%;">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brand-item">
-                            <img src="<?= base_url() ?>/assets/user/img/brand/adpi.png" alt="" style="max-width: 50%;">
+                            <img src="<?= base_url() ?>/assets/user/img/brand/adpi_panjang.png" alt="">
                         </div>
                     </div>
                     <div class="swiper-slide">
@@ -114,8 +125,8 @@
                 <div class="col-lg-7 col-md-9">
                     <div class="choose__img-wrap-home7">
                         <div class="main-img-why">
-                            <img src="<?= base_url() ?>/assets/user/img/home7/img-1.png" alt="Apexa">
-                            <a href="#" class="play-btn"><i class="fas fa-play"></i></a>
+                            <img src="<?= base_url() ?>/assets/user/img/home7/HUT web.jpg" alt="Apexa">
+                            <!-- <a href="#" class="play-btn"><i class="fas fa-play"></i></a> -->
                         </div>
                         <!-- <img src="<?= base_url() ?>/assets/user/img/images/h3_choose_img02.jpg" alt="" data-parallax='{"y" : 80 }'>
                             <div class="shape">
@@ -274,7 +285,7 @@
                     <div class="card-step">
                         <div class="card-icon">
                             <div class="icon">
-                                <i class="flaticon-profit" style="color: #F7A400; font-size: 30 px;"></i>
+                                <i class="flaticon-profit" style="color: #F7A400;"></i>
                             </div>
                         </div>
                         <div class=" card-info">

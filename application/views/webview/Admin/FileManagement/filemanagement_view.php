@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>File Management</h3>
-                        <p class="text-subtitle text-muted">Powerful interactive tables with datatables (jQuery required).</p>
+                        <!-- <p class="text-subtitle text-muted">Powerful interactive tables with datatables (jQuery required).</p> -->
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -43,7 +43,8 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" id="table1">
+                            <table class="table" id="table1" style="overflow-x:auto; display:block; max-height:400px; width: 100%;">
+                                <!-- <table class="table" id="table1"> -->
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -134,8 +135,13 @@
                             <fieldset class="form-group">
                                 <select class="form-select" id="jenis_dokumen_add" name="jenis_dokumen">
                                     <option selected disabled>Pilih Jenis Dokumen</option>
-                                    <option value="Formulir">Formulir</option>
                                     <option value="Peraturan">Peraturan</option>
+                                    <option value="Formulir">Formulir Iuran Sukarela</option>
+                                    <option value="Formulir">Formulir Permohonan</option>
+                                    <option value="Buku Layanan Kepesertaan">Buku Layanan Kepesertaan</option>
+                                    <option value="Laporan Triwulan">Laporan Triwulan</option>
+                                    <option value="Laporan Tahunan">Laporan Tahunan</option>
+                                    <!-- <option value="Laporan Tahunan">Laporan Tahunan</option> -->
                                 </select>
                             </fieldset>
                             <!-- <label for="email">Halaman Page </label>
@@ -213,6 +219,8 @@
                                     <option value="Formulir">Formulir Iuran Sukarela</option>
                                     <option value="Formulir">Formulir Permohonan</option>
                                     <option value="Buku Layanan Kepesertaan">Buku Layanan Kepesertaan</option>
+                                    <option value="Laporan Triwulan">Laporan Triwulan</option>
+                                    <option value="Laporan Tahunan">Laporan Tahunan</option>
                                 </select>
                             </fieldset>
                             <!-- <label for="email">Halaman Page </label>

@@ -155,6 +155,13 @@ class SaldoUser extends CI_Controller
 
 		echo json_encode($data);
 	}
+
+	public function get_last_saldo()
+	{
+		$data = $this->saldouser->get_last_saldo();
+
+		echo json_encode($data);
+	}
 	public function cari($bulan, $tahun)
 	{
 		$data = $this->saldouser->get_cari($bulan, $tahun);

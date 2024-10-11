@@ -27,4 +27,8 @@ class Auth_m extends CI_Model
 
         return $this->db->insert('user', $data);
     }
+    public function update($data, $where)
+    {
+        $this->db->update('user', $data, $where);
+    }
 }

@@ -59,6 +59,7 @@ $route['dashboard'] = 'admin/dashboard'; // Maps website/file-management to the 
 $route['FileManagement'] = 'admin/FileManagement'; // Maps website/file-management to the admin/FileManagement controller
 $route['UserManagement'] = 'admin/UserManagement'; // Maps website/user-management to the admin/UserManagement controller
 $route['SaldoUsers'] = 'admin/SaldoUser';
+$route['RunningText'] = 'admin/RunningText';
 
 // Routing for User Controllers
 $route['SaldoUser'] = 'user/SaldoUser';

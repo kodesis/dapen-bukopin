@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>Saldo User</h3>
-                        <p class="text-subtitle text-muted">Powerful interactive tables with datatables (jQuery required).</p>
+                        <!-- <p class="text-subtitle text-muted">Powerful interactive tables with datatables (jQuery required).</p> -->
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -27,27 +27,31 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <h5 class="card-title">
                                     Table Saldo User
                                 </h5>
                             </div>
-                            <div class="col-md-4 d-flex justify-content-end">
-                                <!-- <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                        data-bs-target="#upload_modal" style="margin-right:10px ;">
-                                        Upload Excel
-                                    </button> -->
-                                <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#add_modal">
-                                        Add Saldo
-                                    </button> -->
+                            <div class="col-md-6 d-flex justify-content-end">
+                                <a class="btn btn-light" href="<?= base_url('assets/cms/format/Contoh_Format_Saldo.csv') ?>" style="margin-right:10px;" download>
+                                    Download Format
+                                </a>
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                    data-bs-target="#upload_modal" style="margin-right:10px ;">
+                                    Upload Saldo
+                                </button>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#add_modal">
+                                    Add User
+                                </button>
                                 <!-- <button class="btn btn-primary">Add User</button> -->
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" id="table1">
+                            <table class="table" id="table1" style="overflow-x:auto; display:block; max-height:400px; width: 100%;">
+                                <!-- <table class="table" id="table1"> -->
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -304,6 +308,11 @@
                     </div>
                     <div class="modal-body">
                         <form id="upload_user">
+                            <label for="name">Tanggal Data</label>
+                            <div class="form-group">
+                                <input id="tanggal_upload" name="tanggal" type="date" placeholder="Masukan Tanggal"
+                                    class="form-control">
+                            </div>
                             <label for="name">Upload File Excel </label>
                             <div class="form-group">
                                 <input id="file" name="file" type="file" placeholder="Masukan File"

@@ -4,11 +4,11 @@
         <div class="footer__newsletter-two">
             <div class="container">
                 <div class="footer__newsletter-inner">
-                    <h2 class="title">Subscribe Newsletter For Latest Updates</h2>
-                    <form action="#">
+                    <h2 class="title" style="width:30%">Mengamankan Masa Depan Anda dengan Iuran Pasti</h2>
+                    <!-- <form action="#">
                         <input type="text" placeholder="e-mail Type . . .">
                         <button type="submit" class="btn">Subscribe</button>
-                    </form>
+                    </form> -->
                     <div class="footer__social-two">
                         <ul class="list-wrap">
                             <li><a href="https://www.facebook.com/Dana-Pensiun-Bank-KB-Bukopin-103430788837798/"><i class="fab fa-facebook-f"></i></a></li>
@@ -109,22 +109,23 @@
                             </div>
                         </div>
                     </div> -->
-                    <!-- <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="footer-widget">
                             <h4 class="fw-title">Instagram Posts</h4>
                             <div class="footer-payments">
-                                <img src="<?= base_url() ?>/assets/user/img/home7/visa.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/mastercard.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/stripe.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/paypal.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/payoneer.svg" />
+                                <img src="<?= base_url() ?>/assets/user/img/brand/dapenbukopin_lg.png" alt="" style="max-width: 40%;">
+                                <img src="<?= base_url() ?>/assets/user/img/brand/ojk2.png" alt="" style="max-width: 30%;">
+                                <img src="<?= base_url() ?>/assets/user/img/brand/adpi_panjang.png" alt="" style="max-width: 40%;">
+                                <img src="<?= base_url() ?>/assets/user/img/brand/bufin.png" alt="" style="max-width: 40%;">
+                                <img src="<?= base_url() ?>/assets/user/img/brand/logokb2.png" alt="" style="max-width: 40%;">
+                                <!-- <img src="<?= base_url() ?>/assets/user/img/home7/payoneer.svg" />
                                 <img src="<?= base_url() ?>/assets/user/img/home7/skrill.svg" />
                                 <img src="<?= base_url() ?>/assets/user/img/home7/googlepay.svg" />
                                 <img src="<?= base_url() ?>/assets/user/img/home7/applepay.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/discover.svg" />
+                                <img src="<?= base_url() ?>/assets/user/img/home7/discover.svg" /> -->
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>

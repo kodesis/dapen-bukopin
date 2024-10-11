@@ -22,6 +22,8 @@
             }
         });
 
+        Latest_saldo(); // Call the function when the page loads
+
     });
     let jquery_datatable = $("#table1").DataTable({
         responsive: true,
@@ -595,5 +597,33 @@
 
 
 
+    }
+
+    function Latest_saldo() {
+        $('#cari_bulan_form')[0].reset(); // reset form on modals
+        // $('.form-group').removeClass('has-error'); // clear error class
+        // $('.help-block').empty(); // clear error string
+        // $('.modal-title').text('Edit Poster');
+        console.log('bisa 1')
+        $.ajax({
+            url: "<?php echo site_url('user/SaldoUser/get_last_saldo/') ?>",
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+
+                const tanggalData = new Date(data.tanggal_data); // Convert to Date object
+
+                const month = tanggalData.getMonth() + 1; // Get month (0-11, so add 1)
+                const year = tanggalData.getFullYear(); // Get full year
+
+                // Set the values in the input fields
+                $('#bulan_cari').val(month);
+                $('#tahun_cari').val(year);
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        });
     }
 </script>
