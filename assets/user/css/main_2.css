@@ -14268,6 +14268,15 @@ blockquote p {
     /* Ensures no overlap with the first section */
   }
 }
+
+@media only screen and (max-width: 400px) {
+  
+  /* Adjust the font size of the h2 element with class 'text-60-bold' */
+  .banner-two-col .section-title .title.text-60-bold {
+    font-size: 50px !important;
+    /* Use !important to ensure it's applied */
+  }
+}
 .card-services-type-01 {
   padding: 30px;
   background-color: var(--tg-color-white-default);

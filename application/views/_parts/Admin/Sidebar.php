@@ -60,7 +60,21 @@
                             </a>
 
                         </li>
-
+                        <?php
+                        if ($this->session->userdata('role_id') == 1) {
+                        ?>
+                            <li
+                                class="sidebar-item <?php if ($url == "Banner") {
+                                                        echo "active";
+                                                    } ?> ">
+                                <a href="<?= base_url('Banner') ?>" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Banner Management</span>
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                         <li class="sidebar-title">Menu</li>
 
                         <!-- KALO ADMIN SHOW USER MANAGEMENT -->

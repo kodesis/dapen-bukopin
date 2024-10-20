@@ -6,6 +6,10 @@
     .flaticon-profit {
         font-size: var(--icon-size);
     }
+
+    .text-justify {
+        text-align: justify;
+    }
 </style>
 <!-- main-area -->
 <main class="fix">
@@ -34,27 +38,29 @@
                 </div>
             </div>
             <div class="mobile-wrapper">
-                <div class="banner-col-2">
+                <div class="banner-col-2" style="margin-top: 5%;">
                     <div class="swiper-container slider_baner__active slider_baner_home6">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide slide__home7">
-                                <img src="<?= base_url() ?>/assets/user/img/slider/slider adpi 20231.jpg" />
-                                <!-- <div class="box-info-contact" style="padding-left: 52px; padding-right: 52px; padding-top:30px; padding-bottom:30px;">
-                                <p class="text-need-help">
-                                    Need help? Call us
-                                </p>
-                                <p class="text-42-bold text-phone">1-800-222-8888</p>
-                            </div> -->
-                            </div>
-                            <div class="swiper-slide slide__home7">
-                                <img src="<?= base_url() ?>/assets/user/img/slider/slider adpi 20221.jpg" />
-                                <!-- <div class="box-info-contact" style="padding-left: 52px; padding-right: 52px; padding-top:30px; padding-bottom:30px;">
-                                <p class="text-need-help">
-                                    Need help? Call us
-                                </p>
-                                <p class="text-42-bold text-phone">1-800-222-8888</p>
-                            </div> -->
-                            </div>
+                            <?php
+                            if (!empty($banner) || isset($banner)) {
+                                foreach ($banner as $b) {
+                            ?>
+                                    <div class="swiper-slide slide__home7" style="height: 503px;">
+                                        <img style="width: 670px;" src="<?= base_url() ?>/uploads/banner/<?= $b->file_banner ?>" />
+                                    </div>
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <div class="swiper-slide slide__home7">
+                                    <img src="<?= base_url() ?>/assets/user/img/slider/slider adpi 20231.jpg" />
+                                </div>
+                                <div class="swiper-slide slide__home7">
+                                    <img src="<?= base_url() ?>/assets/user/img/slider/slider adpi 20221.jpg" />
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="box-button-slider-bottom" style="bottom: 15px;">
@@ -140,7 +146,7 @@
                             <span class="sub-title">Why We Are The Best</span>
                             <h2 class="title tg-element-title">Kami Memastikan Manajemen Pensiun yang Aman dan Berkelanjutan</h2>
                         </div>
-                        <p>Dana Pensiun Bank Bukopin berkomitmen untuk menjaga keamanan dan kesinambungan penghasilan para peserta di masa pensiun melalui pengelolaan dana yang profesional dan transparan. Kami unggul karena</p>
+                        <p class="text-justify">Dana Pensiun Bank Bukopin berkomitmen untuk menjaga keamanan dan kesinambungan penghasilan para peserta di masa pensiun melalui pengelolaan dana yang profesional dan transparan. Kami unggul karena</p>
                         <div class="choose__list">
                             <ul class="list-wrap">
                                 <li>
@@ -150,7 +156,7 @@
                                         </div>
                                         <div class="choose__list-content">
                                             <h4 class="title">Pembayaran Manfaat yang Berkelanjutan</h4>
-                                            <p>Kami memastikan manfaat pensiun sebagai sumber penghasilan yang berkesinambungan bagi peserta setelah mereka pensiun.
+                                            <p class="text-justify">Kami memastikan manfaat pensiun sebagai sumber penghasilan yang berkesinambungan bagi peserta setelah mereka pensiun.
                                         </div>
                                     </div>
                                 </li>
@@ -161,7 +167,7 @@
                                         </div>
                                         <div class="choose__list-content">
                                             <h4 class="title">Pengelolaan Dana yang Optimal dan Aman</h4>
-                                            <p>Dana pensiun dikelola dengan kebijakan investasi yang aman dan sesuai arahan untuk hasil maksimal.</p>
+                                            <p class="text-justify">Dana pensiun dikelola dengan kebijakan investasi yang aman dan sesuai arahan untuk hasil maksimal.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -179,7 +185,7 @@
     </section>
     <!-- choose-area-end -->
     <!-- services-area -->
-    <section class="services__area-seven services__area-home7 services__bg-seven">
+    <!-- <section class="services__area-seven services__area-home7 services__bg-seven">
         <div class="icon-line"><img src="<?= base_url() ?>/assets/user/img/home7/icon-line.svg" /></div>
         <div class="icon-snow"><img src="<?= base_url() ?>/assets/user/img/home7/icon-snow.svg" /></div>
         <div class="icon-star"><img src="<?= base_url() ?>/assets/user/img/home7/icon-star.svg" /></div>
@@ -187,7 +193,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="section-title text-center mb-50">
-                        <!-- <span class="sub-title">Our SOlutions</span> -->
                         <h2 class="title">PROGRAM PENSIUN
                             <br class="d-none d-lg-block" />
                             DANA PENSIUN BANK BUKOPIN
@@ -215,6 +220,119 @@
                 </p>
             </div>
         </div>
+    </section> -->
+    <!-- services-area-end -->
+    <!-- services-area -->
+    <section class="services__area-seven services__area-home7 services__bg-seven">
+        <div class="icon-line"><img src="<?= base_url() ?>assets/user/img/home7/icon-line.svg" /></div>
+        <div class="icon-snow"><img src="<?= base_url() ?>assets/user/img/home7/icon-snow.svg" /></div>
+        <div class="icon-star"><img src="<?= base_url() ?>assets/user/img/home7/icon-star.svg" /></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="section-title text-center mb-50">
+                        <h2 class="title">PROGRAM PENSIUN
+                            <br class="d-none d-lg-block" />
+                            DANA PENSIUN BANK BUKOPIN
+                            <br class="d-none d-lg-block" />
+                            IURAN PASTI
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center gutter-24 services__item-style-2">
+                <div class="col-xl-12 col-lg-4 col-md-6">
+                    <div class="services__item-five">
+                        <div class="services__icon-five">
+                            <div class="icon">
+                                <i class="flaticon-profit"></i>
+                            </div>
+                            <div class="services__icon-shape">
+                                <div class="shape one">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="89" viewBox="0 0 100 89" fill="none">
+                                        <path d="M89.3997 20.1665C90.5806 21.4322 91.2497 23.0786 91.2607 24.7458C91.2717 26.4129 90.6237 27.965 89.4585 29.0627L82.7168 35.3787C83.8857 34.2836 85.4772 33.7354 87.141 33.8548C88.8049 33.9742 90.4049 34.7514 91.589 36.0153C92.7732 37.2792 93.4445 38.9265 93.4553 40.5946C93.4661 42.2627 92.8154 43.815 91.6465 44.9101L89.4391 46.9782C90.7021 46.1158 92.2814 45.7931 93.8594 46.075C95.4374 46.3569 96.897 47.2225 97.9445 48.4977C98.9919 49.7729 99.5496 51.363 99.5051 52.948C99.4607 54.5331 98.8175 55.9955 97.705 57.041L66.4218 86.3494C65.306 87.3914 63.8048 87.938 62.2202 87.8791C60.6357 87.8202 59.0853 87.1602 57.881 86.0319C56.6767 84.9037 55.908 83.3908 55.7294 81.7978C55.5509 80.2048 55.9757 78.6498 56.9185 77.4457L46.2874 87.4056C45.1185 88.5008 43.5271 89.0489 41.8632 88.9295C40.1994 88.8101 38.5994 88.033 37.4152 86.769C36.2311 85.5051 35.5598 83.8579 35.549 82.1898C35.5382 80.5217 36.1888 78.9693 37.3578 77.8742L42.5545 73.0055C41.5403 73.9509 40.2052 74.4903 38.7733 74.5334C37.3414 74.5764 35.8998 74.1205 34.6905 73.242C33.4812 72.3636 32.5777 71.1161 32.1318 69.7089C31.6858 68.3017 31.7245 66.8205 32.2413 65.5139L22.1964 74.9247C21.0275 76.0198 19.4361 76.5679 17.7722 76.4485C16.1084 76.3291 14.5084 75.552 13.3242 74.2881C12.1401 73.0241 11.4688 71.3769 11.458 69.7088C11.4472 68.0407 12.0978 66.4883 13.2667 65.3932L25.0674 54.3375C23.8985 55.4326 22.3071 55.9808 20.6432 55.8614C18.9794 55.742 17.3794 54.9649 16.1952 53.7009C15.0111 52.437 14.3398 50.7898 14.329 49.1217C14.3182 47.4536 14.9688 45.9012 16.1377 44.8061L11.4359 49.2111C10.267 50.3062 8.67555 50.8544 7.01169 50.735C5.34784 50.6156 3.74784 49.8384 2.56369 48.5745C1.37954 47.3106 0.708235 45.6633 0.697453 43.9952C0.686672 42.3271 1.3373 40.7748 2.5062 39.6797L35.5613 8.71135C36.7302 7.61624 38.3217 7.06808 39.9855 7.18747C41.6494 7.30686 43.2494 8.08401 44.4335 9.34795C45.6177 10.6119 46.289 12.2591 46.2998 13.9272C46.3105 15.5953 45.6599 17.1477 44.491 18.2428L61.4956 2.31173C62.6645 1.21663 64.2559 0.668477 65.9198 0.787863C67.5836 0.90725 69.1836 1.6844 70.3678 2.94834C71.5519 4.21229 72.2232 5.8595 72.234 7.5276C72.2448 9.19571 71.5942 10.7481 70.4253 11.8432L65.2285 16.7119C66.242 15.7657 67.5766 15.2252 69.0084 15.181C70.4403 15.1369 71.8821 15.5918 73.092 16.4694C74.3019 17.3471 75.2063 18.594 75.6532 20.001C76.1001 21.4079 76.0625 22.8893 75.5466 24.1964L80.5275 19.5299C81.699 18.4397 83.2895 17.8948 84.9518 18.014C86.6141 18.1333 88.2131 18.9071 89.3997 20.1665Z" fill="currentcolor" />
+                                    </svg>
+                                </div>
+                                <div class="shape two">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                        <path d="M7.36755 4.37738C7.36755 6.02099 6.03514 7.3534 4.39153 7.3534C2.74792 7.3534 1.41552 6.02099 1.41552 4.37738C1.41552 2.73376 2.74792 1.40136 4.39153 1.40136C6.03514 1.40136 7.36755 2.73376 7.36755 4.37738Z" stroke="currentcolor" stroke-width="1.19041" />
+                                    </svg>
+                                </div>
+                                <div class="shape three rotateme">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                                        <path d="M1.70898 1.73877L7.06581 7.0956M1.70898 7.0956L7.06581 1.73877" stroke="currentcolor" stroke-width="1.92846" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="services__content-five">
+                            <h2 class="title">Apa itu Program Dana Pensiun?</a></h2>
+                            <p class="text-justify"> Program Pensiun Iuran Pasti (PPIP) adalah program pensiun yang iurannya ditetapkan dalam peraturan Dana Pensiun dan seluruh iuran serta hasil pengembangannya dibukukan pada rekening masing-masing peserta sebagai manfaat pensiun (Pasal 1 Angka 8 UU Nomor 11 Tahun 1992 Tentang Dana Pensiun).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-4 col-md-6">
+                    <div class="services__item-five">
+                        <div class="services__icon-five">
+                            <div class="icon">
+                                <i class="flaticon-light-bulb"></i>
+                            </div>
+                            <div class="services__icon-shape">
+                                <div class="shape one">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="89" viewBox="0 0 100 89" fill="none">
+                                        <path d="M89.3997 20.1665C90.5806 21.4322 91.2497 23.0786 91.2607 24.7458C91.2717 26.4129 90.6237 27.965 89.4585 29.0627L82.7168 35.3787C83.8857 34.2836 85.4772 33.7354 87.141 33.8548C88.8049 33.9742 90.4049 34.7514 91.589 36.0153C92.7732 37.2792 93.4445 38.9265 93.4553 40.5946C93.4661 42.2627 92.8154 43.815 91.6465 44.9101L89.4391 46.9782C90.7021 46.1158 92.2814 45.7931 93.8594 46.075C95.4374 46.3569 96.897 47.2225 97.9445 48.4977C98.9919 49.7729 99.5496 51.363 99.5051 52.948C99.4607 54.5331 98.8175 55.9955 97.705 57.041L66.4218 86.3494C65.306 87.3914 63.8048 87.938 62.2202 87.8791C60.6357 87.8202 59.0853 87.1602 57.881 86.0319C56.6767 84.9037 55.908 83.3908 55.7294 81.7978C55.5509 80.2048 55.9757 78.6498 56.9185 77.4457L46.2874 87.4056C45.1185 88.5008 43.5271 89.0489 41.8632 88.9295C40.1994 88.8101 38.5994 88.033 37.4152 86.769C36.2311 85.5051 35.5598 83.8579 35.549 82.1898C35.5382 80.5217 36.1888 78.9693 37.3578 77.8742L42.5545 73.0055C41.5403 73.9509 40.2052 74.4903 38.7733 74.5334C37.3414 74.5764 35.8998 74.1205 34.6905 73.242C33.4812 72.3636 32.5777 71.1161 32.1318 69.7089C31.6858 68.3017 31.7245 66.8205 32.2413 65.5139L22.1964 74.9247C21.0275 76.0198 19.4361 76.5679 17.7722 76.4485C16.1084 76.3291 14.5084 75.552 13.3242 74.2881C12.1401 73.0241 11.4688 71.3769 11.458 69.7088C11.4472 68.0407 12.0978 66.4883 13.2667 65.3932L25.0674 54.3375C23.8985 55.4326 22.3071 55.9808 20.6432 55.8614C18.9794 55.742 17.3794 54.9649 16.1952 53.7009C15.0111 52.437 14.3398 50.7898 14.329 49.1217C14.3182 47.4536 14.9688 45.9012 16.1377 44.8061L11.4359 49.2111C10.267 50.3062 8.67555 50.8544 7.01169 50.735C5.34784 50.6156 3.74784 49.8384 2.56369 48.5745C1.37954 47.3106 0.708235 45.6633 0.697453 43.9952C0.686672 42.3271 1.3373 40.7748 2.5062 39.6797L35.5613 8.71135C36.7302 7.61624 38.3217 7.06808 39.9855 7.18747C41.6494 7.30686 43.2494 8.08401 44.4335 9.34795C45.6177 10.6119 46.289 12.2591 46.2998 13.9272C46.3105 15.5953 45.6599 17.1477 44.491 18.2428L61.4956 2.31173C62.6645 1.21663 64.2559 0.668477 65.9198 0.787863C67.5836 0.90725 69.1836 1.6844 70.3678 2.94834C71.5519 4.21229 72.2232 5.8595 72.234 7.5276C72.2448 9.19571 71.5942 10.7481 70.4253 11.8432L65.2285 16.7119C66.242 15.7657 67.5766 15.2252 69.0084 15.181C70.4403 15.1369 71.8821 15.5918 73.092 16.4694C74.3019 17.3471 75.2063 18.594 75.6532 20.001C76.1001 21.4079 76.0625 22.8893 75.5466 24.1964L80.5275 19.5299C81.699 18.4397 83.2895 17.8948 84.9518 18.014C86.6141 18.1333 88.2131 18.9071 89.3997 20.1665Z" fill="currentcolor" />
+                                    </svg>
+                                </div>
+                                <div class="shape two">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                        <path d="M7.36755 4.37738C7.36755 6.02099 6.03514 7.3534 4.39153 7.3534C2.74792 7.3534 1.41552 6.02099 1.41552 4.37738C1.41552 2.73376 2.74792 1.40136 4.39153 1.40136C6.03514 1.40136 7.36755 2.73376 7.36755 4.37738Z" stroke="currentcolor" stroke-width="1.19041" />
+                                    </svg>
+                                </div>
+                                <div class="shape three rotateme">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                                        <path d="M1.70898 1.73877L7.06581 7.0956M1.70898 7.0956L7.06581 1.73877" stroke="currentcolor" stroke-width="1.92846" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="services__content-five">
+                            <h2 class="title">Apa Esensi dari Program Dana Pensiun?</h2>
+                            <p class="text-justify">Dari perencanaan suatu program pensiun, adalah mengalokasikan sebagian penghasilan sekarang dalam bentuk Iuran untuk diakumulasi berikut hasil pengembangannya sebagai manfaat pensiun sehingga diharapkan tercapai suatu kesinambungan penghasilan bagi pesertanya setelah karyawan yang bersangkutan menjalani masa pensiun.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-4 col-md-6">
+                    <div class="services__item-five">
+                        <div class="services__icon-five">
+                            <div class="icon">
+                                <i class="flaticon-startup"></i>
+                            </div>
+                            <div class="services__icon-shape">
+                                <div class="shape one">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="89" viewBox="0 0 100 89" fill="none">
+                                        <path d="M89.3997 20.1665C90.5806 21.4322 91.2497 23.0786 91.2607 24.7458C91.2717 26.4129 90.6237 27.965 89.4585 29.0627L82.7168 35.3787C83.8857 34.2836 85.4772 33.7354 87.141 33.8548C88.8049 33.9742 90.4049 34.7514 91.589 36.0153C92.7732 37.2792 93.4445 38.9265 93.4553 40.5946C93.4661 42.2627 92.8154 43.815 91.6465 44.9101L89.4391 46.9782C90.7021 46.1158 92.2814 45.7931 93.8594 46.075C95.4374 46.3569 96.897 47.2225 97.9445 48.4977C98.9919 49.7729 99.5496 51.363 99.5051 52.948C99.4607 54.5331 98.8175 55.9955 97.705 57.041L66.4218 86.3494C65.306 87.3914 63.8048 87.938 62.2202 87.8791C60.6357 87.8202 59.0853 87.1602 57.881 86.0319C56.6767 84.9037 55.908 83.3908 55.7294 81.7978C55.5509 80.2048 55.9757 78.6498 56.9185 77.4457L46.2874 87.4056C45.1185 88.5008 43.5271 89.0489 41.8632 88.9295C40.1994 88.8101 38.5994 88.033 37.4152 86.769C36.2311 85.5051 35.5598 83.8579 35.549 82.1898C35.5382 80.5217 36.1888 78.9693 37.3578 77.8742L42.5545 73.0055C41.5403 73.9509 40.2052 74.4903 38.7733 74.5334C37.3414 74.5764 35.8998 74.1205 34.6905 73.242C33.4812 72.3636 32.5777 71.1161 32.1318 69.7089C31.6858 68.3017 31.7245 66.8205 32.2413 65.5139L22.1964 74.9247C21.0275 76.0198 19.4361 76.5679 17.7722 76.4485C16.1084 76.3291 14.5084 75.552 13.3242 74.2881C12.1401 73.0241 11.4688 71.3769 11.458 69.7088C11.4472 68.0407 12.0978 66.4883 13.2667 65.3932L25.0674 54.3375C23.8985 55.4326 22.3071 55.9808 20.6432 55.8614C18.9794 55.742 17.3794 54.9649 16.1952 53.7009C15.0111 52.437 14.3398 50.7898 14.329 49.1217C14.3182 47.4536 14.9688 45.9012 16.1377 44.8061L11.4359 49.2111C10.267 50.3062 8.67555 50.8544 7.01169 50.735C5.34784 50.6156 3.74784 49.8384 2.56369 48.5745C1.37954 47.3106 0.708235 45.6633 0.697453 43.9952C0.686672 42.3271 1.3373 40.7748 2.5062 39.6797L35.5613 8.71135C36.7302 7.61624 38.3217 7.06808 39.9855 7.18747C41.6494 7.30686 43.2494 8.08401 44.4335 9.34795C45.6177 10.6119 46.289 12.2591 46.2998 13.9272C46.3105 15.5953 45.6599 17.1477 44.491 18.2428L61.4956 2.31173C62.6645 1.21663 64.2559 0.668477 65.9198 0.787863C67.5836 0.90725 69.1836 1.6844 70.3678 2.94834C71.5519 4.21229 72.2232 5.8595 72.234 7.5276C72.2448 9.19571 71.5942 10.7481 70.4253 11.8432L65.2285 16.7119C66.242 15.7657 67.5766 15.2252 69.0084 15.181C70.4403 15.1369 71.8821 15.5918 73.092 16.4694C74.3019 17.3471 75.2063 18.594 75.6532 20.001C76.1001 21.4079 76.0625 22.8893 75.5466 24.1964L80.5275 19.5299C81.699 18.4397 83.2895 17.8948 84.9518 18.014C86.6141 18.1333 88.2131 18.9071 89.3997 20.1665Z" fill="currentcolor" />
+                                    </svg>
+                                </div>
+                                <div class="shape two">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                        <path d="M7.36755 4.37738C7.36755 6.02099 6.03514 7.3534 4.39153 7.3534C2.74792 7.3534 1.41552 6.02099 1.41552 4.37738C1.41552 2.73376 2.74792 1.40136 4.39153 1.40136C6.03514 1.40136 7.36755 2.73376 7.36755 4.37738Z" stroke="currentcolor" stroke-width="1.19041" />
+                                    </svg>
+                                </div>
+                                <div class="shape three rotateme">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                                        <path d="M1.70898 1.73877L7.06581 7.0956M1.70898 7.0956L7.06581 1.73877" stroke="currentcolor" stroke-width="1.92846" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="services__content-five">
+                            <h2 class="title">Apa Saja Perencanaan Program?</h2>
+                            <p class="text-justify">Perencanaan suatu Program Pensiun Iuran Pasti mempunyai dua komitmen dasar bagi pemberi kerja yaitu adanya komitmen pemberi kerja untuk menjaga kesinambungan penghasilan pekerja dalam bentuk pemberian uang pensiun bagi pekerjanya pada masa purna bakti dan komitmen pemberi kerja untuk melakukan pengiuran atas nama pekerja selama pekerja berada pada masa bakti. Dua komitmen ini sangat relevan satu sama lain karena tanpa pengiuran yang rasional tidak akan mungkin dicapai objektif "menjaga kesinambungan penghasilan".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- services-area-end -->
     <!-- Step area -->
@@ -226,7 +344,7 @@
                         <div class="section-title text-center mb-40 tg-heading-subheading animation-style3">
                             <span class="sub-title">Visi Dan Misi</span>
                             <h2 class="title tg-element-title">DANA PENSIUN<br class="d-none d-lg-block"> BANK BUKOPIN</h2>
-                            <p class="mb-25">Visi dan Misi Dana Pensiun ditetapkan sebagai sasaran yang ingin dituju dan rincian pelaksanaannya, sebagai penjabaran dari maksud dan tujuan pendirian Dana Pensiun sebagaimana ditetapkan dalam Peraturan Dana Pensiun. Selanjutnya, sebagai sebuah lembaga yang telah lama berdiri dan melakukan kegiatan, Dana Pensiun memiliki pengalaman yang membentuk butir-butir kebiasaan serta tradisi positif, berupa Nilai-nilai Dasar atau Core Values Dana Pensiun. Visi dan Misi sebagai acuan pencapaian maksud dan tujuan serta Nilai-nilai Dasar (Core Values) Dana Pensiun yang menjadi dasar pertimbangan penyusunan serta penetapan Good Pension Fund Governance adalah sebagai berikut : </p>
+                            <p class="mb-25 text-justify">Visi dan Misi Dana Pensiun ditetapkan sebagai sasaran yang ingin dituju dan rincian pelaksanaannya, sebagai penjabaran dari maksud dan tujuan pendirian Dana Pensiun sebagaimana ditetapkan dalam Peraturan Dana Pensiun. Selanjutnya, sebagai sebuah lembaga yang telah lama berdiri dan melakukan kegiatan, Dana Pensiun memiliki pengalaman yang membentuk butir-butir kebiasaan serta tradisi positif, berupa Nilai-nilai Dasar atau Core Values Dana Pensiun. Visi dan Misi sebagai acuan pencapaian maksud dan tujuan serta Nilai-nilai Dasar (Core Values) Dana Pensiun yang menjadi dasar pertimbangan penyusunan serta penetapan Good Pension Fund Governance adalah sebagai berikut : </p>
                         </div>
                     </div>
                 </div>
@@ -236,7 +354,7 @@
                     <h3 class="text-capitalize mw-460">Vision and Mission</h3>
                 </div>
                 <div class="col-lg-6 mb-30">
-                    <p>Menjadi Dana Pensiun yang sehat dan mampu menunjang kepentingan Peserta dan Pendiri dalam menjaga terpeliharanya kesinambungan penghasilan hari tua bagi para pesertanya.</p>
+                    <p class="text-justify">Menjadi Dana Pensiun yang sehat dan mampu menunjang kepentingan Peserta dan Pendiri dalam menjaga terpeliharanya kesinambungan penghasilan hari tua bagi para pesertanya.</p>
                 </div>
             </div>
             <div class="row mt-30">
@@ -249,7 +367,7 @@
                         </div>
                         <div class="card-info">
                             <h5>Visi 1: Menyelenggarakan kepesertaan pensiun secara akurat dan tertib.</h5>
-                            <p>Menyelenggarakan Sistim Kepesertaan Program Pensiun secara rapi, tertib, dan akurat.</p>
+                            <p class="text-justify">Menyelenggarakan Sistim Kepesertaan Program Pensiun secara rapi, tertib, dan akurat.</p>
                         </div>
                     </div>
                 </div>
@@ -262,7 +380,7 @@
                         </div>
                         <div class="card-info">
                             <h5>Visi 2: Mengelola dan administrasi iuran pensiun secara bertanggung jawab.</h5>
-                            <p>Menyelenggarakan Sistim Penerimaan dan Administrasi Iuran Pensiun secara tertib dan bertanggung jawab.</p>
+                            <p class="text-justify">Menyelenggarakan Sistim Penerimaan dan Administrasi Iuran Pensiun secara tertib dan bertanggung jawab.</p>
                         </div>
                     </div>
                 </div>
@@ -276,7 +394,7 @@
                         </div>
                         <div class="card-info">
                             <h5>Visi 3: Mengelola dana pensiun secara optimal dan aman sesuai kebijakan investasi.</h5>
-                            <p>Mengelola kekayaan Dana Pensiun secara optimal dan aman melalui kebijakan investasi sesuai dengan Arahan Investasi oleh Pendiri bersama Dewan Pengawas.</p>
+                            <p class="text-justify">Mengelola kekayaan Dana Pensiun secara optimal dan aman melalui kebijakan investasi sesuai dengan Arahan Investasi oleh Pendiri bersama Dewan Pengawas.</p>
 
                         </div>
                     </div>
@@ -290,7 +408,7 @@
                         </div>
                         <div class=" card-info">
                             <h5>Visi 4: Membayar manfaat pensiun sebagai penghasilan berkelanjutan.</h5>
-                            <p>Membayarkan manfaat pensiun sebagai sumber penghasilan yang berkesinambungan bagi peserta atau pihak yang berhak setelah peserta tidak bekerja lagi</p>
+                            <p class="text-justify">Membayarkan manfaat pensiun sebagai sumber penghasilan yang berkesinambungan bagi peserta atau pihak yang berhak setelah peserta tidak bekerja lagi</p>
 
                         </div>
                     </div>

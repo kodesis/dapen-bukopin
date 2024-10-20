@@ -36,20 +36,9 @@
                         <div class="team-item">
                             <div class="team-thumb">
                                 <img src="<?= base_url() ?>/assets/user/img/team/pengurus/Dewi.png" alt="">
-                                <div class="team-social">
-                                    <div class="social-toggle-icon">
-                                        <i class="fas fa-share-alt"></i>
-                                    </div>
-                                    <ul class="list-wrap">
-                                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-pinterest-p"></i></a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="team-content">
-                                <h4 class="title"><a href="team-details.html">Dewi Andari</a></h4>
+                                <h4 class="title"><a href="#">Dewi Andari</a></h4>
                                 <span>Direktur Utama</span>
                             </div>
                         </div>
@@ -58,20 +47,9 @@
                         <div class="team-item">
                             <div class="team-thumb">
                                 <img src="<?= base_url() ?>/assets/user/img/team/pengurus/Iman Hurustyadi.png" alt="">
-                                <div class="team-social">
-                                    <div class="social-toggle-icon">
-                                        <i class="fas fa-share-alt"></i>
-                                    </div>
-                                    <ul class="list-wrap">
-                                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-pinterest-p"></i></a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="team-content">
-                                <h4 class="title"><a href="team-details.html">Iman Hurustyadi</a></h4>
+                                <h4 class="title"><a href="#">Iman Hurustyadi</a></h4>
                                 <span>Direktur Investasi</span>
                             </div>
                         </div>
@@ -80,20 +58,9 @@
                         <div class="team-item">
                             <div class="team-thumb">
                                 <img src="<?= base_url() ?>/assets/user/img/team/pengurus/Foto Pak Rifnaldi-1.png" alt="">
-                                <div class="team-social">
-                                    <div class="social-toggle-icon">
-                                        <i class="fas fa-share-alt"></i>
-                                    </div>
-                                    <ul class="list-wrap">
-                                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-pinterest-p"></i></a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="team-content">
-                                <h4 class="title"><a href="team-details.html">Rifnaldi</a></h4>
+                                <h4 class="title"><a href="#">Rifnaldi</a></h4>
                                 <span>Direktur Kepesertaan</span>
                             </div>
                         </div>
@@ -109,20 +76,9 @@
                         <div class="team-item">
                             <div class="team-thumb">
                                 <img src="<?= base_url() ?>/assets/user/img/team/pengawas/Iwan.png" alt="">
-                                <div class="team-social">
-                                    <div class="social-toggle-icon">
-                                        <i class="fas fa-share-alt"></i>
-                                    </div>
-                                    <ul class="list-wrap">
-                                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-pinterest-p"></i></a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="team-content">
-                                <h4 class="title"><a href="team-details.html">Agustinus Iwan Christanto</a></h4>
+                                <h4 class="title"><a href="#">Agustinus Iwan Christanto</a></h4>
                                 <span>Ketua Dewan Pengawas (Mewakili Pemberi Kerja)</span>
                             </div>
                         </div>
@@ -131,20 +87,9 @@
                         <div class="team-item">
                             <div class="team-thumb">
                                 <img src="<?= base_url() ?>/assets/user/img/team/pengawas/Gamar_crop.jpg" alt="">
-                                <div class="team-social">
-                                    <div class="social-toggle-icon">
-                                        <i class="fas fa-share-alt"></i>
-                                    </div>
-                                    <ul class="list-wrap">
-                                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-pinterest-p"></i></a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="team-content">
-                                <h4 class="title"><a href="team-details.html">Gamaridha Akhirul Amru Ryad</a></h4>
+                                <h4 class="title"><a href="#">Gamaridha Akhirul Amru Ryad</a></h4>
                                 <span>Wakil Ketua Dewan Pengawas (Mewakili Pemberi Kerja)</span>
                             </div>
                         </div>
@@ -153,20 +98,9 @@
                         <div class="team-item">
                             <div class="team-thumb">
                                 <img src="<?= base_url() ?>/assets/user/img/team/pengawas/Putu.jpg" alt="">
-                                <div class="team-social">
-                                    <div class="social-toggle-icon">
-                                        <i class="fas fa-share-alt"></i>
-                                    </div>
-                                    <ul class="list-wrap">
-                                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fab fa-pinterest-p"></i></a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="team-content">
-                                <h4 class="title"><a href="team-details.html">I Putu Adi Saputra</a></h4>
+                                <h4 class="title"><a href="#">I Putu Adi Saputra</a></h4>
                                 <span>Anggota Dewan Pengawas</span>
                             </div>
                         </div>

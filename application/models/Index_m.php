@@ -9,4 +9,11 @@ class Index_m extends CI_Model
         $this->db->where('active', 1);
         return $this->db->get()->result();
     }
+    public function get_banner()
+    {
+        $this->db->select('*');
+        $this->db->from('banner');
+        $this->db->where('active', 1);
+        return $this->db->get()->result();
+    }
 }

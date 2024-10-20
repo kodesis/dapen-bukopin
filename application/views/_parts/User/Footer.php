@@ -26,7 +26,7 @@
                         <div class="footer-widget">
                             <div class="footer__content-two">
                                 <div class="fw-logo mb-25">
-                                    <a href="index.html"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg.png" alt=""></a>
+                                    <a href="index.html"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg1.png" alt=""></a>
                                 </div>
                                 <p>Terdaftar dan diawasi oleh Otoritas Jasa Keuangan <br>Anggota perkumpulan ADPI</p>
                                 <div class="footer-info-list footer-info-two">
@@ -113,7 +113,7 @@
                         <div class="footer-widget">
                             <h4 class="fw-title">Instagram Posts</h4>
                             <div class="footer-payments">
-                                <img src="<?= base_url() ?>/assets/user/img/brand/dapenbukopin_lg.png" alt="" style="max-width: 40%;">
+                                <!-- <img src="<?= base_url() ?>/assets/user/img/brand/dapenbukopin_lg.png" alt="" style="max-width: 40%;"> -->
                                 <img src="<?= base_url() ?>/assets/user/img/brand/ojk2.png" alt="" style="max-width: 30%;">
                                 <img src="<?= base_url() ?>/assets/user/img/brand/adpi_panjang.png" alt="" style="max-width: 40%;">
                                 <img src="<?= base_url() ?>/assets/user/img/brand/bufin.png" alt="" style="max-width: 40%;">

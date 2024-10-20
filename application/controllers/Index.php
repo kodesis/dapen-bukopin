@@ -32,6 +32,7 @@ class Index extends CI_Controller
     public function index()
     {
         $data['content']  = 'webview/index/index_view';
+        $data['banner']  = $this->index->get_banner();
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);

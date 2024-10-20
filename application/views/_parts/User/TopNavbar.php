@@ -1,12 +1,12 @@
 <body>
     <!--Preloader-->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div id="loader" class="loader">
             <div class="loader-container">
                 <div class="loader-icon"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg1.png" alt="Preloader"></div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!--Preloader-end -->
     <!-- Scroll-top -->
     <button class="scroll__top scroll-to-target" data-target="html">
@@ -61,12 +61,11 @@
                                                                                 echo "active";
                                                                             } ?>"><a href="#">About</a>
                                             <ul class="sub-menu">
-                                                <li><a href="<?= base_url('AboutUs/Sejarah') ?>">About Us</a></li>
+                                                <li><a href="<?= base_url('AboutUs/Sejarah') ?>">Sejarah</a></li>
                                                 <li><a href="<?= base_url('AboutUs/ProgramPensiun') ?>">Program Pensiun</a></li>
                                                 <li><a href="<?= base_url('AboutUs/Team') ?>">Team</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="<?= base_url('SaldoUser') ?>">Saldo Peserta</a>
                                         </li>
                                         <li class="<?php if ($url == "Peraturan") {
                                                         echo "active";
@@ -81,14 +80,15 @@
                                         <li class="<?php if ($url == "Buku_Layanan") {
                                                         echo "active";
                                                     } ?>"><a href="<?= base_url('Buku_Layanan') ?>">Buku Layanan Kepesertaan</a></li>
+                                        <!-- <li><a class="btn">Saldo Peserta</a> -->
+                                        <!-- <li class="header-btn-two"><a href="<?= base_url('SaldoUser') ?>" class="btn border-btn">Saldo Peserta</a></li> -->
                                     </ul>
                                 </div>
-                                <!-- <div class="tgmenu__action tgmenu__action-five d-none d-md-block">
+                                <div class="tgmenu__action tgmenu__action-five d-none d-md-block">
                                     <ul class="list-wrap">
-                                        <li class="header-btn-two"><a href="contact.html" class="btn border-btn">log in</a></li>
-                                        <li class="header-btn"><a href="contact.html" class="btn">Free Trial</a></li>
+                                        <li class="header-btn"><a href="<?= base_url('SaldoUser') ?>" class="btn">Saldo Peserta</a></li>
                                     </ul>
-                                </div> -->
+                                </div>
                                 <div class="mobile-nav-toggler mobile-nav-toggler-two">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="none">
                                         <path d="M0 2C0 0.895431 0.895431 0 2 0C3.10457 0 4 0.895431 4 2C4 3.10457 3.10457 4 2 4C0.895431 4 0 3.10457 0 2Z" fill="currentcolor" />
@@ -109,7 +109,7 @@
                             <nav class="tgmobile__menu-box">
                                 <div class="close-btn"><i class="fas fa-times"></i></div>
                                 <div class="nav-logo">
-                                    <a href="index.html"><img src="<?= base_url() ?>/assets/user/img/logo/logo.png" alt="Logo"></a>
+                                    <a href="<?= base_url() ?>"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo"></a>
                                 </div>
                                 <div class="tgmobile__search">
                                     <form action="#">
@@ -123,17 +123,15 @@
                                 <div class="tgmobile__menu-bottom">
                                     <div class="contact-info">
                                         <ul class="list-wrap">
-                                            <li><a href="mailto:info@apexa.com">info@apexa.com</a></li>
-                                            <li><a href="tel:0123456789">+123 888 9999</a></li>
+                                            <!-- <li><a href="mailto:info@apexa.com">info@apexa.com</a></li>
+                                            <li><a href="tel:0123456789">+123 888 9999</a></li> -->
                                         </ul>
                                     </div>
                                     <div class="social-links">
                                         <ul class="list-wrap">
-                                            <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fab fa-youtube"></i></a></li>
+                                            <li><a href="https://www.facebook.com/Dana-Pensiun-Bank-KB-Bukopin-103430788837798/"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="https://www.instagram.com/dapen_kbbukopin/"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="https://api.whatsapp.com/message/EXLTRFFRPD6MD1"><i class="fab fa-whatsapp"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

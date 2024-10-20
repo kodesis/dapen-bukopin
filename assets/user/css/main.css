@@ -14271,7 +14271,7 @@ blockquote p {
 }
 
 
-/* @media only screen and (max-width: 610px) {
+ @media only screen and (max-width: 610px) {
   .banner-two-col .banner-col-2 {
       margin-top: 550px;
       /* Adds space between the two sections */
@@ -14295,6 +14295,7 @@ blockquote p {
     height: 90px;
   }
 }
+
 @media only screen and (max-width: 400px) {
   .banner-two-col .banner-col-2 {
     margin-top: 650px;
@@ -14303,10 +14304,16 @@ blockquote p {
     /* Ensures the slider appears after the first column */
   }
 
+  /* Adjust the font size of the h2 element with class 'text-60-bold' */
+    .banner-two-col .section-title .title.text-60-bold {
+      font-size: 50px !important;
+      /* Use !important to ensure it's applied */
+    }
+
   .ubah-slider {
     height: 950px;
   }
-} */
+}
 
 .card-services-type-01 {
   padding: 30px;
