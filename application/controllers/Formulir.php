@@ -45,4 +45,35 @@ class Formulir extends CI_Controller
 
         $this->load->view('_parts/User/Wrapper', $data);
     }
+    public function All_Formulir()
+    {
+        $data['formulir'] = $this->formulir->get_all_formulir(); // Ensure data is assigned to 'formulir'
+        $data['content']  = 'webview/formulir/formulir_view';
+        // $data['content_js'] = 'webview/user/index/index_js';
+
+        $this->load->view('_parts/User/Wrapper', $data);
+    }
+    // public function Detail_Formulir($file)
+    // {
+    //     $data['data_pdf'] = base_url('uploads/file/' . $file); // Ensure data is assigned to 'formulir'
+    //     $data['content']  = 'webview/detail_view';
+    //     // $data['content_js'] = 'webview/user/index/index_js';
+
+    //     $this->load->view('_parts/User/Wrapper', $data);
+    // }
+    public function Detail_Formulir($file)
+    {
+        $file_path = FCPATH . 'uploads/file/' . $file;
+
+        // Check if the file exists
+        if (file_exists($file_path)) {
+            // Set headers to serve the PDF
+            header('Content-type: application/pdf');
+            header('Content-Disposition: inline; filename="' . $file . '"');
+            header('Content-Length: ' . filesize($file_path));
+
+            // Read the file
+            readfile($file_path);
+        }
+    }
 }

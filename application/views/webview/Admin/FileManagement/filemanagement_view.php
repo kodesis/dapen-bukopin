@@ -136,8 +136,9 @@
                                 <select class="form-select" id="jenis_dokumen_add" name="jenis_dokumen">
                                     <option selected disabled>Pilih Jenis Dokumen</option>
                                     <option value="Peraturan">Peraturan</option>
-                                    <option value="Formulir">Formulir Iuran Sukarela</option>
-                                    <option value="Formulir">Formulir Permohonan</option>
+                                    <!-- <option value="Formulir Iuran Sukarela">Formulir Iuran Sukarela</option>
+                                    <option value="Formulir Permohonan">Formulir Permohonan</option> -->
+                                    <option value="Formulir">Formulir</option>
                                     <option value="Buku Layanan Kepesertaan">Buku Layanan Kepesertaan</option>
                                     <option value="Laporan Triwulan">Laporan Triwulan</option>
                                     <option value="Laporan Tahunan">Laporan Tahunan</option>
@@ -216,8 +217,9 @@
                                 <select class="form-select" id="jenis_dokumen_edit" name="jenis_dokumen">
                                     <option selected disabled>Pilih Jenis Dokumen</option>
                                     <option value="Peraturan">Peraturan</option>
-                                    <option value="Formulir">Formulir Iuran Sukarela</option>
-                                    <option value="Formulir">Formulir Permohonan</option>
+                                    <!-- <option value="Formulir Iuran Sukarela">Formulir Iuran Sukarela</option>
+                                    <option value="Formulir Permohonan">Formulir Permohonan</option> -->
+                                    <option value="Formulir">Formulir</option>
                                     <option value="Buku Layanan Kepesertaan">Buku Layanan Kepesertaan</option>
                                     <option value="Laporan Triwulan">Laporan Triwulan</option>
                                     <option value="Laporan Tahunan">Laporan Tahunan</option>

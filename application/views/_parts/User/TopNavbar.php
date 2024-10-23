@@ -8,6 +8,35 @@
         </div>
     </div> -->
     <!--Preloader-end -->
+    <!-- Floating Social Media Share Buttons -->
+    <div class="floating-share-buttons">
+        <button class="share-button" id="shareButton">
+            <i class="fas fa-share-alt"></i> <!-- Font Awesome share icon -->
+        </button>
+        <ul class="social-media-list" id="socialMediaList">
+            <li>
+                <a href="https://www.facebook.com/Dana-Pensiun-Bank-KB-Bukopin-103430788837798/" target="_blank" class="share-button facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/dapen_kbbukopin/" target="_blank" class="share-button instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </li>
+            <!-- <li>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=YOUR_URL" target="_blank" class="share-button linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </li> -->
+            <li>
+                <a href="https://api.whatsapp.com/message/EXLTRFFRPD6MD1" target="_blank" class="share-button whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Floating Social Media Share Buttons END -->
     <!-- Scroll-top -->
     <button class="scroll__top scroll-to-target" data-target="html">
         <i class="fas fa-angle-up"></i>
@@ -55,11 +84,11 @@
                                     <ul class="navigation">
                                         <li class="<?php if ($url == "") {
                                                         echo "active";
-                                                    } ?>"><a href="<?= base_url() ?>">Home</a>
+                                                    } ?>"><a href="<?= base_url() ?>">Beranda</a>
                                         </li>
                                         <li class="menu-item-has-children <?php if ($url == "AboutUs") {
                                                                                 echo "active";
-                                                                            } ?>"><a href="#">About</a>
+                                                                            } ?>"><a href="#">Tentang</a>
                                             <ul class="sub-menu">
                                                 <li><a href="<?= base_url('AboutUs/Sejarah') ?>">Sejarah</a></li>
                                                 <li><a href="<?= base_url('AboutUs/ProgramPensiun') ?>">Program Pensiun</a></li>
@@ -71,12 +100,15 @@
                                                         echo "active";
                                                     } ?>"><a href="<?= base_url('Peraturan') ?>">Peraturan</a>
                                         </li>
-                                        <li class="<?php if ($url == "Formulir_Permohonan") {
-                                                        echo "active";
-                                                    } ?>"><a href="<?= base_url('Formulir_Permohonan') ?>">Formulir Permohonan</a></li>
+                                        <!-- <li class="<?php if ($url == "Formulir_Permohonan") {
+                                                            echo "active";
+                                                        } ?>"><a href="<?= base_url('Formulir_Permohonan') ?>">Formulir Permohonan</a></li>
                                         <li class="<?php if ($url == "Formulir_Iuran") {
                                                         echo "active";
-                                                    } ?>"><a href="<?= base_url('Formulir_Iuran') ?>">Formulir Iuran</a></li>
+                                                    } ?>"><a href="<?= base_url('Formulir_Iuran') ?>">Formulir Iuran</a></li> -->
+                                        <li class="<?php if ($url == "Formulir") {
+                                                        echo "active";
+                                                    } ?>"><a href="<?= base_url('Formulir') ?>">Formulir</a></li>
                                         <li class="<?php if ($url == "Buku_Layanan") {
                                                         echo "active";
                                                     } ?>"><a href="<?= base_url('Buku_Layanan') ?>">Buku Layanan Kepesertaan</a></li>
@@ -86,7 +118,9 @@
                                 </div>
                                 <div class="tgmenu__action tgmenu__action-five d-none d-md-block">
                                     <ul class="list-wrap">
-                                        <li class="header-btn"><a href="<?= base_url('SaldoUser') ?>" class="btn">Saldo Peserta</a></li>
+                                        <li class="header-btn"><a href="<?= base_url('dashboard') ?>" class="btn">Login</a></li>
+                                        <!-- <li class="header-btn"><a href="<?= base_url('dashboard') ?>" class="btn">Saldo Peserta</a></li> -->
+                                        <!-- <li class="header-btn"><a href="<?= base_url('SaldoUser') ?>" class="btn">Saldo Peserta</a></li> -->
                                     </ul>
                                 </div>
                                 <div class="mobile-nav-toggler mobile-nav-toggler-two">
@@ -112,10 +146,11 @@
                                     <a href="<?= base_url() ?>"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo"></a>
                                 </div>
                                 <div class="tgmobile__search">
-                                    <form action="#">
+                                    <!-- <form action="#">
                                         <input type="text" placeholder="Search here...">
                                         <button><i class="fas fa-search"></i></button>
-                                    </form>
+                                    </form> -->
+                                    <a href="<?= base_url('dashboard') ?>" class="btn">Login</a>
                                 </div>
                                 <div class="tgmobile__menu-outer">
                                     <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
@@ -144,4 +179,14 @@
             </div>
         </div>
     </header>
+    <script>
+        document.getElementById("shareButton").addEventListener("click", function() {
+            const socialMediaList = document.getElementById("socialMediaList");
+            if (socialMediaList.style.display === "none" || socialMediaList.style.display === "") {
+                socialMediaList.style.display = "block"; // Show social media buttons
+            } else {
+                socialMediaList.style.display = "none"; // Hide social media buttons
+            }
+        });
+    </script>
     <!-- header-area-end -->

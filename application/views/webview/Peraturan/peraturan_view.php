@@ -9,7 +9,7 @@
                         <h2 class="title">Peraturan</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
+                                <li class="breadcrumb-item"><a href="<?= base_url() ?>">Beranda</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Peraturan</li>
                             </ol>
                         </nav>
@@ -56,6 +56,16 @@
                                 <div class="services__content-three">
                                     <p><?= $item->deskripsi_file ?></p>
                                     <a href="<?= base_url('uploads/file/' . $item->file) ?>" class="btn btn-two">Unduh File</a>
+                                    <?php
+                                    if ($item->jenis_file == "pdf") {
+                                    ?>
+                                        <a href="<?= base_url('Detail/' . $item->file) ?>" class="btn btn-two" target="_blank">Lihat</a>
+                                        <!-- <a href="<?= base_url('Detail_Formulir/' . $item->file) ?>" class="btn btn-two">Lihat</a> -->
+                                        <!-- <a href="<?= base_url('formulir/view_pdf/' . $item->file) ?>" class="btn btn-two">Lihat</a> -->
+
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>

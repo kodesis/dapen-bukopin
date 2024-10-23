@@ -18,4 +18,20 @@ class Formulir_m extends CI_Model
         $this->db->where('tipe', 'Formulir Iuran Sukarela');
         return $this->db->get()->result();
     }
+    public function get_all_formulir()
+    {
+        $this->db->select('*');
+        $this->db->from('file');
+        $this->db->where('active', 1);
+        $this->db->where('tipe', 'Formulir');
+        return $this->db->get()->result();
+    }
+    public function get_formulir($uid)
+    {
+        $this->db->select('*');
+        $this->db->from('file');
+        $this->db->where('active', 1);
+        $this->db->where('uid', $uid);
+        return $this->db->get()->row();
+    }
 }

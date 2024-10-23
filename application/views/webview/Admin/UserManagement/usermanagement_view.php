@@ -64,6 +64,7 @@
                                         <th>Pegawai</th>
                                         <th>Peserta</th>
                                         <th>Role</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -392,4 +393,53 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- approval modal -->
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" id="approval_modal_req" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-sm  modal-dialog-centered">
+                <div class=" modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-title">Status</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="status_request">
+                            <input type="hidden" value="" id="id_edit_status" name="id_edit_status" />
+                            <div class="box-body col-lg-12">
+
+
+                                <div class="form-group">
+
+                                    <label class="form-label">Pilih Status:</label>
+
+                                    <select class="form-control js-example-responsive select" data-select="Unit Kerja" id="status_user" name="status_user">
+                                        <option selected>Pilih Status</option>
+                                        <option value="0">Non Active</option>
+                                        <option value="1">Active</option>
+
+                                    </select>
+
+
+                                    <!-- <input type=" date" name="unit_add" id="unit_add" class="form-control"> -->
+                                </div>
+
+
+
+
+                            </div>
+                            <!-- /.box-body -->
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-danger text-start" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" onclick="status_req()" class="btn btn-primary text-start pull-right" data-bs-dismiss="modal">Ya</button>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>

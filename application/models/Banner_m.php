@@ -3,8 +3,8 @@
 class Banner_m extends CI_Model
 {
     var $table = 'banner';
-    var $column_order = array('file.uid', 'judul_banner', 'file_banner'); //set column field database for datatable orderable
-    var $column_search = array('file.uid', 'judul_banner', 'file_banner'); //set column field database for datatable searchable 
+    var $column_order = array('file.uid', 'judul_banner', 'deskripsi', 'file_banner'); //set column field database for datatable orderable
+    var $column_search = array('file.uid', 'judul_banner', 'deskripsi', 'file_banner'); //set column field database for datatable searchable 
     var $order = array('banner.uid' => 'asc'); // default order 
 
     function _get_datatables_query()
@@ -90,8 +90,8 @@ class Banner_m extends CI_Model
         $this->db->update('banner', $data, $where);
     }
 
-    public function delete($data, $where)
+    public function delete($where)
     {
-        $this->db->update($this->table, $data, $where);
+        $this->db->delete($this->table, $where);
     }
 }

@@ -120,7 +120,7 @@
                                         icon: 'warning',
                                         showConfirmButton: false,
                                         title: 'Size Banner Salah',
-                                        text: 'File yang diunggah harus berukuran 670x503 piksel.',
+                                        text: 'File yang diunggah harus berukuran 1536x670 piksel.',
                                         timer: 5000
                                     });
                                 } else {
@@ -265,6 +265,7 @@
 
                 $('#id_edit').val(data.uid);
                 $('#nama_edit').val(data.judul_banner);
+                $('#deskripsi_edit').val(data.deskripsi);
                 // $('#halaman_page_edit').val(data.halaman_page);
 
                 $('.dropdown-toggle').dropdown();
@@ -383,7 +384,7 @@
                                         icon: 'warning',
                                         showConfirmButton: false,
                                         title: 'Size Banner Salah',
-                                        text: 'File yang diunggah harus berukuran 670x503 piksel.',
+                                        text: 'File yang diunggah harus berukuran 1536x670 piksel.',
                                         timer: 5000
                                     });
                                 } else {

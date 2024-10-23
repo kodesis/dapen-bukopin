@@ -48,7 +48,7 @@
                         $url = $this->uri->segment(1);
                         ?>
 
-                        <li class="sidebar-title">Main Menu</li>
+                        <li class="sidebar-title">Menu Utama</li>
 
                         <li
                             class="sidebar-item <?php if ($url == "dashboard") {
@@ -58,23 +58,36 @@
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
-
                         </li>
-                        <?php
-                        if ($this->session->userdata('role_id') == 1) {
-                        ?>
-                            <li
-                                class="sidebar-item <?php if ($url == "Banner") {
-                                                        echo "active";
-                                                    } ?> ">
-                                <a href="<?= base_url('Banner') ?>" class='sidebar-link'>
-                                    <i class="bi bi-grid-fill"></i>
-                                    <span>Banner Management</span>
-                                </a>
-                            </li>
-                        <?php
-                        }
-                        ?>
+                        <li
+                            class="sidebar-item <?php if ($url == "PDP") {
+                                                    echo "active";
+                                                } ?> ">
+                            <a href="<?= base_url('PDP') ?>" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>PDP Bank KB Bukopin</span>
+                            </a>
+                        </li>
+
+                        <li
+                            class="sidebar-item <?php if ($url == "Triwulan") {
+                                                    echo "active";
+                                                } ?> ">
+                            <a href="<?= base_url('Laporan_Triwulan') ?>" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Laporan Triwulan</span>
+                            </a>
+                        </li>
+
+                        <li
+                            class="sidebar-item <?php if ($url == "Tahunan") {
+                                                    echo "active";
+                                                } ?> ">
+                            <a href="<?= base_url('Laporan_Tahunan') ?>" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Laporan Tahunan</span>
+                            </a>
+                        </li>
                         <li class="sidebar-title">Menu</li>
 
                         <!-- KALO ADMIN SHOW USER MANAGEMENT -->
@@ -106,7 +119,7 @@
                                                                 echo "SaldoUser";
                                                             } ?>" class='sidebar-link'>
                                     <i class="bi bi-grid-fill"></i>
-                                    <span>Saldo User</span>
+                                    <span>Saldo Peserta</span>
                                 </a>
                             </li>
                         <?php
@@ -124,6 +137,24 @@
                                 <a href="<?= base_url() ?>FileManagement" class='sidebar-link'>
                                     <i class="bi bi-grid-fill"></i>
                                     <span>File Management</span>
+                                </a>
+                            </li>
+                            <li
+                                class="sidebar-item <?php if ($url == "Banner") {
+                                                        echo "active";
+                                                    } ?> ">
+                                <a href="<?= base_url('Banner') ?>" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Banner Management</span>
+                                </a>
+                            </li>
+                            <li
+                                class="sidebar-item <?php if ($url == "Team") {
+                                                        echo "active";
+                                                    } ?> ">
+                                <a href="<?= base_url('Team') ?>" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Team Management</span>
                                 </a>
                             </li>
                             <li

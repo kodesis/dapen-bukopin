@@ -60,6 +60,7 @@ class Banner extends CI_Controller
             $row = array();
             $row[] = $no;
             $row[] = $cat->judul_banner;
+            $row[] = $cat->deskripsi;
             $row[] = '<img width="100px" src="' . $path . '">';
             // $row[] = $cat->halaman_page;
 
@@ -100,6 +101,7 @@ class Banner extends CI_Controller
     public function save()
     {
         $nama = $this->input->post('nama');
+        $deskripsi = $this->input->post('deskripsi');
         // $halaman_page = $this->input->post('halaman_page');
 
         $config['upload_path'] = FCPATH . 'uploads/banner/'; // Same as the config file
@@ -121,7 +123,7 @@ class Banner extends CI_Controller
 
             list($width, $height) = getimagesize($file_path); // Get dimensions of the uploaded image
 
-            if ($width == 670 && $height == 503) {
+            if ($width == 1536 && $height == 670) {
                 $file = $image_data['file_name'];
                 $this->banner->save_file(
                     array(
@@ -129,7 +131,7 @@ class Banner extends CI_Controller
                         // 'created'           => $date->format('Y-m-d H:i:s'),
                         'judul_banner'             => $nama,
                         'file_banner' => $file,
-                        // 'halaman_page'              => $halaman_page,
+                        'deskripsi'              => $deskripsi,
                         'active'           => 1,
                     )
                 );
@@ -158,14 +160,12 @@ class Banner extends CI_Controller
         $id_edit = $this->input->post('id');
         $nama = $this->input->post('nama');
         $deskripsi = $this->input->post('deskripsi');
-        $jenis_file = $this->input->post('jenis_file');
-        $jenis_dokumen = $this->input->post('jenis_dokumen');
         // $halaman_page = $this->input->post('halaman_page');
 
         $data_update = [
             // 'updated'           => $date->format('Y-m-d H:i:s'),
             'judul_banner'             => $nama,
-            // 'halaman_page'              => $halaman_page,
+            'deskripsi'              => $deskripsi,
         ];
 
         $config['upload_path'] =  FCPATH . 'uploads/banner/'; // Same as the config file
@@ -185,7 +185,7 @@ class Banner extends CI_Controller
 
             list($width, $height) = getimagesize($file_path); // Get dimensions of the uploaded image
 
-            if ($width == 670 && $height == 503) {
+            if ($width == 1536 && $height == 670) {
                 // Correct dimensions, proceed with update
                 $data_update['file_banner'] = $file;
             } else {
@@ -206,16 +206,16 @@ class Banner extends CI_Controller
 
     public function delete()
     {
-
-        $date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-        $this->banner->delete(
-            array(
-
-                // 'deleted'           => $date->format('Y-m-d H:i:s'),
-                'active'      => 0,
-            ),
-            array('uid' => $this->input->post('id_delete'))
-        );
+        $id = $this->input->post('id_delete');
+        $this->db->select('*');
+        $this->db->from('banner');
+        $this->db->where('uid', $id);
+        $query = $this->db->get()->row();
+        $filePath = './uploads/banner/' . $query->file_banner;
+        $this->banner->delete(array('uid' => $id));
+        if (file_exists($filePath)) {
+            unlink($filePath); // Delete the file from the uploads folder
+        }
         echo json_encode(array("status" => TRUE));
     }
 }

@@ -28,15 +28,11 @@
                                 <div class="fw-logo mb-25">
                                     <a href="index.html"><img src="<?= base_url() ?>/assets/user/img/logo/dapenbukopin_lg1.png" alt=""></a>
                                 </div>
-                                <p>Terdaftar dan diawasi oleh Otoritas Jasa Keuangan <br>Anggota perkumpulan ADPI</p>
                                 <div class="footer-info-list footer-info-two">
                                     <ul class="list-wrap">
                                         <li>
-                                            <div class="icon">
-                                                <i class="flaticon-envelope"></i>
-                                            </div>
                                             <div class="content">
-                                                <a href="mailto:dapenbukopin@gmail.com">dapenbukopin@gmail.com</a>
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.0037365430267!2d106.84564942057936!3d-6.2307265046943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3bfb5c02dd3%3A0x4787563815d55ef4!2sDana%20Pensiun%20Bank%20KB%20Bukopin!5e0!3m2!1sid!2sid!4v1729497113619!5m2!1sid!2sid" width="350" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                             </div>
                                         </li>
                                         <li>
@@ -45,9 +41,11 @@
                                             </div>
                                             <div class="content">
                                                 <p>
-                                                    Jl. Prof. Dr. Soepomo, SH No. 176 D
-                                                    <br>
-                                                    Jakarta 12870
+                                                    <a href="https://maps.app.goo.gl/WAf3Js6rWYonVnhP6">
+                                                        Jl. Prof. Dr. Soepomo, SH No. 176 D
+                                                        <br>
+                                                        Jakarta 12870
+                                                    </a>
                                                 </p>
                                             </div>
                                         </li>
@@ -65,7 +63,14 @@
                                 <p>Hubungi Kami</p>
                                 <div class="footer-info-list footer-info-two">
                                     <ul class="list-wrap">
-
+                                        <li>
+                                            <div class="icon">
+                                                <i class="flaticon-envelope"></i>
+                                            </div>
+                                            <div class="content">
+                                                <a href="mailto:dapenbukopin@gmail.com">dapenbukopin@gmail.com</a>
+                                            </div>
+                                        </li>
                                         <li>
                                             <div class="icon">
                                                 <i class="fab fa-whatsapp"></i>
@@ -110,20 +115,8 @@
                         </div>
                     </div> -->
                     <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="footer-widget">
-                            <h4 class="fw-title">Instagram Posts</h4>
-                            <div class="footer-payments">
-                                <!-- <img src="<?= base_url() ?>/assets/user/img/brand/dapenbukopin_lg.png" alt="" style="max-width: 40%;"> -->
-                                <img src="<?= base_url() ?>/assets/user/img/brand/ojk2.png" alt="" style="max-width: 30%;">
-                                <img src="<?= base_url() ?>/assets/user/img/brand/adpi_panjang.png" alt="" style="max-width: 40%;">
-                                <img src="<?= base_url() ?>/assets/user/img/brand/bufin.png" alt="" style="max-width: 40%;">
-                                <img src="<?= base_url() ?>/assets/user/img/brand/logokb2.png" alt="" style="max-width: 40%;">
-                                <!-- <img src="<?= base_url() ?>/assets/user/img/home7/payoneer.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/skrill.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/googlepay.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/applepay.svg" />
-                                <img src="<?= base_url() ?>/assets/user/img/home7/discover.svg" /> -->
-                            </div>
+                        <div class="footer-widget mt-3">
+                            <p><b>Terdaftar dan diawasi oleh Otoritas Jasa Keuangan <br> <br> Anggota perkumpulan ADPI</b></p>
                         </div>
                     </div>
                 </div>

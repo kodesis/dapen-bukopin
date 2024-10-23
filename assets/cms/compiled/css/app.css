@@ -192,12 +192,14 @@
     --bs-tertiary-color-rgb: 96, 112, 128;
     --bs-tertiary-bg: #f8f9fa;
     --bs-tertiary-bg-rgb: 248, 249, 250;
-    --bs-heading-color: #25396f;
+    --bs-heading-color: #696b6d;
     --bs-link-color: #435ebe;
-    --bs-link-color-rgb: 67, 94, 190;
+    /* --bs-link-color-rgb: 67, 94, 190; */
+    --bs-link-color-rgb: 247, 164, 0;
     --bs-link-decoration: underline;
     --bs-link-hover-color: #364b98;
-    --bs-link-hover-color-rgb: 54, 75, 152;
+    /* --bs-link-hover-color-rgb: 54, 75, 152; */
+    --bs-link-hover-color-rgb: 204, 135, 0;
     --bs-code-color: #d63384;
     --bs-highlight-color: #607080;
     --bs-highlight-bg: #fcf8e3;
@@ -265,11 +267,12 @@
     --bs-danger-border-subtle: #842029;
     --bs-light-border-subtle: #495057;
     --bs-dark-border-subtle: #343a40;
-    --bs-heading-color: inherit;
+    --bs-heading-color: #F7A400;
     --bs-link-color: #8e9ed8;
     --bs-link-hover-color: #a5b1e0;
-    --bs-link-color-rgb: 142, 158, 216;
-    --bs-link-hover-color-rgb: 165, 177, 224;
+    /* --bs-link-color-rgb: 142, 158, 216; */
+    --bs-link-color-rgb: 247, 164, 0;
+    --bs-link-hover-color-rgb: 204, 135, 0;
     --bs-code-color: #e685b5;
     --bs-highlight-color: #dee2e6;
     --bs-highlight-bg: #664d03;
@@ -3531,18 +3534,18 @@ fieldset:disabled .btn {
 
 .btn-primary {
     --bs-btn-color: #fff;
-    --bs-btn-bg: #435ebe;
-    --bs-btn-border-color: #435ebe;
+    --bs-btn-bg: #F7A400;
+    --bs-btn-border-color: #F7A400;
     --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #3950a2;
-    --bs-btn-hover-border-color: #364b98;
+    --bs-btn-hover-bg: #ca8803;
+    --bs-btn-hover-border-color: #b37803;
     --bs-btn-focus-shadow-rgb: 95, 118, 200;
     --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #364b98;
-    --bs-btn-active-border-color: #32478f;
+    --bs-btn-active-bg: #b37803;
+    --bs-btn-active-border-color: #a77001;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
     --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: #435ebe;
+    --bs-btn-disabled-bg: #997c40;
     --bs-btn-disabled-border-color: #435ebe
 }
 
@@ -5023,7 +5026,7 @@ fieldset:disabled .btn {
     --bs-card-cap-bg: white;
     --bs-card-cap-color: ;
     --bs-card-height: ;
-    --bs-card-color: ;
+    --bs-card-color: #000;
     --bs-card-bg: #fff;
     --bs-card-img-overlay-padding: 1rem;
     --bs-card-group-margin: .75rem;
@@ -23152,7 +23155,7 @@ body .bi:before,
 }
 
 .sidebar-wrapper .menu .sidebar-item.active>.sidebar-link {
-    background-color: #435ebe
+    background-color: #F7A400
 }
 
 .sidebar-wrapper .menu .sidebar-item.active>.sidebar-link span {
@@ -23756,7 +23759,7 @@ body .bi:before,
 
 .table:not(.table-borderless) thead th,
 .dataTable-table:not(.table-borderless) thead th {
-    border-bottom: 1px solid #dedede !important
+    border-bottom: 5px solid #dedede !important
 }
 
 .table.table-sm tr td,

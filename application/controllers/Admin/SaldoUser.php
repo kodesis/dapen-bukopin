@@ -119,34 +119,85 @@ class SaldoUser extends CI_Controller
 	public function save()
 	{
 		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-		$nama = $this->input->post('nama');
-		$email = $this->input->post('email');
-		$role = $this->input->post('role');
-		$password1 = $this->input->post('password1');
-		$nik = $this->input->post('nik');
-		$alamat = $this->input->post('alamat');
-		$tgl_lahir = $this->input->post('tgl_lahir');
-		$pegawai = $this->input->post('pegawai');
-		$peserta = $this->input->post('peserta');
+		$kd_peserta = $this->input->post('kd_peserta');
+		$ips_awal = $this->input->post('ips_awal');
+		$ipk_awal = $this->input->post('ipk_awal');
+		$total_awal = $this->input->post('total_awal');
+		$ips_iuran = $this->input->post('ips_iuran');
+		$ipk_iuran = $this->input->post('ipk_iuran');
+		$ips_p = $this->input->post('ips_p');
+		$ipk_p = $this->input->post('ipk_p');
+		$ips_akhir = $this->input->post('ips_akhir');
+		$ipk_akhir = $this->input->post('ipk_akhir');
+		$total_akhir = $this->input->post('total_akhir');
 
-		$this->saldouser->save_user(
-			array(
+		// Get KD Peserta
+		$this->db->select('uid'); // Select the uid column
+		$this->db->from('user'); // Your table name
+		$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
+		$result = $this->db->get()->row(); // Execute the query
 
-				'created'           => $date->format('Y-m-d H:i:s'),
-				'nama'             => $nama,
-				'email'            => $email,
-				'role_id'             => $role,
-				'password'         => password_hash($password1, PASSWORD_BCRYPT), // Hashing the password
-				'nik'              => $nik,
-				'alamat'           => $alamat,
-				'tgl_lahir'        => $tgl_lahir,
-				'pegawai'          => $pegawai,
-				'peserta'          => $peserta,
-				'active'           => 1,
-			),
-		);
+		// Check if a result was found
+		// Access the uid
+		if (empty($result)) {
+			echo json_encode(array("status" => "Peserta Tidak ada", "peserta" => $kd_peserta));
+			return;
+		}
+		$uid = $result->uid;
+		// Cek Data di database
+		$tanggal = $this->input->post('tanggal');
 
-		echo json_encode(array("status" => TRUE));
+		$month = date('m', strtotime($tanggal)); // Get the month
+		$year = date('Y', strtotime($tanggal));  // Get the year
+		// Build the query
+		$this->db->from('saldo'); // Your table name
+		$this->db->where(
+			'MONTH(tanggal_data)',
+			$month
+		); // Filter by month
+		$this->db->where('YEAR(tanggal_data)', $year);   // Filter by year
+		$this->db->where('uid_user', $uid);              // Filter by UID_User
+		$this->db->where('active', 1);              // Filter by UID_User
+		$cek_data = $this->db->get()->row(); // Execute the query
+
+		// if ($cek_data != null) {
+		if (!empty($cek_data)) {
+			$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+			$data_update = [
+				'updated'           => $date->format('Y-m-d H:i:s'),
+				'ips_awal' => $ips_awal, // Remove dots and commas
+				'ipk_awal' => $ipk_awal,
+				'total_awal' => $total_awal,
+				'ips_iuran' => $ips_iuran,
+				'ipk_iuran' => $ipk_iuran,
+				'ips_p' => $ips_p,
+				'ipk_p' => $ipk_p,
+				'ips_akhir' => $ips_akhir,
+				'ipk_akhir' => $ipk_akhir,
+				'total_akhir' => $total_akhir,
+				'tanggal_data' => $this->input->post('tanggal'),
+			];
+
+			$this->saldouser->update_user($data_update, array('uid' => $cek_data->uid));
+			echo json_encode(array("status" => 'Menimpa', "uid" => $uid, "Cek Data" => $cek_data));
+		} else {
+			$this->db->insert('saldo', [
+				'uid_user' => $uid,
+				'ips_awal' => $ips_awal, // Remove dots and commas
+				'ipk_awal' => $ipk_awal,
+				'total_awal' => $total_awal,
+				'ips_iuran' => $ips_iuran,
+				'ipk_iuran' => $ipk_iuran,
+				'ips_p' => $ips_p,
+				'ipk_p' => $ipk_p,
+				'ips_akhir' => $ips_akhir,
+				'ipk_akhir' => $ipk_akhir,
+				'total_akhir' => $total_akhir,
+				'tanggal_data' => $this->input->post('tanggal'),
+				'active' => 1,
+			]);
+			echo json_encode(array("status" => TRUE));
+		}
 	}
 
 	public function ajax_edit($id)
@@ -283,29 +334,74 @@ class SaldoUser extends CI_Controller
 					$ipk_akhir = isset($data[14]) ? $data[14] : null; // Column 
 					$total_akhir = isset($data[15]) ? $data[15] : null; // Column 
 
-					// Insert into the database
+					// Get KD Peserta
 					$this->db->select('uid'); // Select the uid column
 					$this->db->from('user'); // Your table name
 					$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
 					$result = $this->db->get()->row(); // Execute the query
 
 					// Check if a result was found
-					$uid = $result->uid; // Access the uid
-					$this->db->insert('saldo', [
-						'uid_user' => $uid,
-						'ips_awal' => (int) str_replace(['.', ','], '', $ips_awal), // Remove dots and commas
-						'ipk_awal' => (int) str_replace(['.', ','], '', $ipk_awal),
-						'total_awal' => (int) str_replace(['.', ','], '', $total_awal),
-						'ips_iuran' => (int) str_replace(['.', ','], '', $ips_iuran),
-						'ipk_iuran' => (int) str_replace(['.', ','], '', $ipk_iuran),
-						'ips_p' => (int) str_replace(['.', ','], '', $ips_p),
-						'ipk_p' => (int) str_replace(['.', ','], '', $ipk_p),
-						'ips_akhir' => (int) str_replace(['.', ','], '', $ips_akhir),
-						'ipk_akhir' => (int) str_replace(['.', ','], '', $ipk_akhir),
-						'total_akhir' => (int) str_replace(['.', ','], '', $total_akhir),
-						'tanggal_data' => $this->input->post('tanggal'),
-						'active' => 1,
-					]);
+					// Access the uid
+					if (empty($result)) {
+						echo json_encode(array("status" => "Peserta Tidak ada", "peserta" => $kd_peserta));
+						return;
+					}
+
+					$uid = $result->uid;
+					// Cek Data di database
+					$tanggal = $this->input->post('tanggal');
+					// Extract the month and year from the input date
+					$month = date('m', strtotime($tanggal)); // Get the month
+					$year = date('Y', strtotime($tanggal));  // Get the year
+					// Build the query
+					$this->db->from('saldo'); // Your table name
+					$this->db->where(
+						'MONTH(tanggal_data)',
+						$month
+					); // Filter by month
+					$this->db->where('YEAR(tanggal_data)', $year);   // Filter by year
+					$this->db->where('uid_user', $uid);              // Filter by UID_User
+					$this->db->where('active', 1);              // Filter by UID_User
+					$cek_data = $this->db->get()->row(); // Execute the query
+
+					// if ($cek_data != null) {
+					if (!empty($cek_data)) {
+						$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+						$data_update = [
+							'updated'           => $date->format('Y-m-d H:i:s'),
+							'ips_awal' => (int) str_replace(['.', ','], '', $ips_awal), // Remove dots and commas
+							'ipk_awal' => (int) str_replace(['.', ','], '', $ipk_awal),
+							'total_awal' => (int) str_replace(['.', ','], '', $total_awal),
+							'ips_iuran' => (int) str_replace(['.', ','], '', $ips_iuran),
+							'ipk_iuran' => (int) str_replace(['.', ','], '', $ipk_iuran),
+							'ips_p' => (int) str_replace(['.', ','], '', $ips_p),
+							'ipk_p' => (int) str_replace(['.', ','], '', $ipk_p),
+							'ips_akhir' => (int) str_replace(['.', ','], '', $ips_akhir),
+							'ipk_akhir' => (int) str_replace(['.', ','], '', $ipk_akhir),
+							'total_akhir' => (int) str_replace(['.', ','], '', $total_akhir),
+							'tanggal_data' => $this->input->post('tanggal'),
+						];
+
+						$this->saldouser->update_user($data_update, array('uid' => $cek_data->uid));
+						// echo json_encode(array("status" => 'Menimpa', "uid" => $uid, "Cek Data" => $cek_data));
+					} else {
+						$this->db->insert('saldo', [
+							'uid_user' => $uid,
+							'ips_awal' => (int) str_replace(['.', ','], '', $ips_awal), // Remove dots and commas
+							'ipk_awal' => (int) str_replace(['.', ','], '', $ipk_awal),
+							'total_awal' => (int) str_replace(['.', ','], '', $total_awal),
+							'ips_iuran' => (int) str_replace(['.', ','], '', $ips_iuran),
+							'ipk_iuran' => (int) str_replace(['.', ','], '', $ipk_iuran),
+							'ips_p' => (int) str_replace(['.', ','], '', $ips_p),
+							'ipk_p' => (int) str_replace(['.', ','], '', $ipk_p),
+							'ips_akhir' => (int) str_replace(['.', ','], '', $ips_akhir),
+							'ipk_akhir' => (int) str_replace(['.', ','], '', $ipk_akhir),
+							'total_akhir' => (int) str_replace(['.', ','], '', $total_akhir),
+							'tanggal_data' => $this->input->post('tanggal'),
+							'active' => 1,
+						]);
+						// echo json_encode(array("status" => True));
+					}
 				}
 				echo json_encode(array("status" => True));
 				return;

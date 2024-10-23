@@ -1,4 +1,4 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?= base_url() ?>assets/cms/extensions/jquery/jquery.min.js"></script>
 <script>
     function fetchChartData() {
         $.ajax({

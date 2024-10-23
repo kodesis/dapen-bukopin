@@ -25,13 +25,25 @@ class Index extends CI_Controller
         // require_once APPPATH . 'third_party/PhpSpreadsheet/src/Bootstrap.php';
         parent::__construct();
         $this->load->model('Index_m', 'index');
+        $this->load->model('team_m', 'team');
         // if (!$this->session->userdata('user_logged_in')) {
         // 	redirect('auth'); // Redirect to the 'autentic' page
         // }
     }
     public function index()
     {
+
         $data['content']  = 'webview/index/index_view';
+        $data['banner']  = $this->index->get_banner();
+        $data['pengawas'] = $this->team->get_all_team_pengawas();
+        $data['pengurus'] = $this->team->get_all_team_pengurus();
+        // $data['content_js'] = 'webview/user/index/index_js';
+
+        $this->load->view('_parts/User/Wrapper', $data);
+    }
+    public function index2()
+    {
+        $data['content']  = 'webview/index_old/index_view';
         $data['banner']  = $this->index->get_banner();
         // $data['content_js'] = 'webview/user/index/index_js';
 

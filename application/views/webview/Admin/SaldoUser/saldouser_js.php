@@ -205,20 +205,48 @@
                             /* if(!data.status)alert("ho"); */
                             if (!data.status) swal.fire('Gagal menyimpan data', 'error');
                             else {
-                                // document.getElementById('rumahadat').reset();
-                                // $('#add_modal').modal('hide');
-                                (JSON.stringify(data));
-                                // alert(data)
-                                swal.fire({
-                                    customClass: 'slow-animation',
-                                    icon: 'success',
-                                    showConfirmButton: false,
-                                    title: 'Berhasil Menambahkan Data Saldo',
-                                    timer: 1500
-                                });
-                                document.getElementById('add_user').reset(); // Reset the form
+                                if (data.status == "Peserta Tidak ada") {
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        title: 'Peserta Tidak ada',
+                                        text: 'Kode Peserta : ' + data.peserta,
+                                        timer: 1500
+                                    });
+                                } else if (data.status == "Menimpa") {
+                                    // document.getElementById('rumahadat').reset();
+                                    // $('#add_modal').modal('hide');
+                                    (JSON.stringify(data));
+                                    // alert(data)
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        title: 'Berhasil Menimpa Data Saldo',
+                                        text: 'UID : ' + data.uid,
+                                        timer: 1500
+                                    });
+                                    // document.getElementById('add_user').reset(); // Reset the form
+                                    $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                                } else {
+                                    {
+                                        // document.getElementById('rumahadat').reset();
+                                        // $('#add_modal').modal('hide');
+                                        (JSON.stringify(data));
+                                        // alert(data)
+                                        swal.fire({
+                                            customClass: 'slow-animation',
+                                            icon: 'success',
+                                            showConfirmButton: false,
+                                            title: 'Berhasil Menambahkan Data Saldo',
+                                            timer: 1500
+                                        });
+                                        document.getElementById('add_user').reset(); // Reset the form
+                                        $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                                    }
+                                }
                                 $('#add_modal').modal('hide'); // Hide the modal
-                                $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
                                 // location.reload();
 
                             }
@@ -306,20 +334,31 @@
                             /* if(!data.status)alert("ho"); */
                             if (!data.status) swal.fire('Gagal menyimpan data', 'error');
                             else {
-                                // document.getElementById('rumahadat').reset();
-                                // $('#add_modal').modal('hide');
-                                (JSON.stringify(data));
-                                // alert(data)
-                                swal.fire({
-                                    customClass: 'slow-animation',
-                                    icon: 'success',
-                                    showConfirmButton: false,
-                                    title: 'Berhasil Menambahkan Data Saldo',
-                                    timer: 1500
-                                });
-                                document.getElementById('upload_user').reset(); // Reset the form
+                                if (data.status == "Peserta Tidak ada") {
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        title: 'Peserta Tidak ada',
+                                        text: 'Kode Peserta : ' + data.peserta,
+                                        timer: 1500
+                                    });
+                                } else {
+                                    // document.getElementById('rumahadat').reset();
+                                    // $('#add_modal').modal('hide');
+                                    (JSON.stringify(data));
+                                    // alert(data)
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        title: 'Berhasil Menambahkan Data Saldo',
+                                        timer: 1500
+                                    });
+                                    document.getElementById('upload_user').reset(); // Reset the form
+                                    $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                                }
                                 $('#upload_modal').modal('hide'); // Hide the modal
-                                $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
                                 // location.reload();
 
                             }

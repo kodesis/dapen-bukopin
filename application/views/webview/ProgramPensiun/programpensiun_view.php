@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="breadcrumb__content">
-                        <h2 class="title">About Us</h2>
+                        <h2 class="title">Tentang Kami</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">About</li>
+                                <li class="breadcrumb-item"><a href="<?= base_url() ?>">Beranda</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Tentang Kami</li>
                             </ol>
                         </nav>
                     </div>
@@ -33,7 +33,7 @@
                 <div class="col-lg-12">
                     <div class="about__content-five">
                         <div class="section-title mb-30">
-                            <h2 class="title">Pengertian <br> <span>dari</span> Program Pensiun <span>Bank Bukopin</span></h2>
+                            <h2 class="title">Pengertian <br> <span>dari</span> Program Pensiun <span>Bank KB Bukopin</span></h2>
                         </div>
                         <div class="about__img-wrap-five text-center">
                             <div style="background-color: #f5c42c;">
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="content">
                                     <!-- <h6 class="circle rotateme">Years Of - Experience 25 -</h6> -->
-                                    <h6 class="circle rotateme">Pensiun Dengan Bukopin -</h6>
+                                    <h6 class="circle rotateme">Pensiun With KBBukopin -</h6>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                             <br>
                         </p>
                         <p style="text-align: center;">
-                            (Pasal 1 Angka 8 UU Nomor 11 Tahun 1992 Tentang Dana Pensiun).
+                            (UU Nomor 4 Tahun 2023 Tentang Pengembangan dan Penguatan Sektor Keuangan).
                         </p>
                         <br>
                         <br>
@@ -73,7 +73,8 @@
                             Perencanaan Program
                         </h3>
                         <p style="text-align: center;">
-                            Peraturan Dana Pensiun Bank Bukopin yang terakhir telah diubah dengan Keputusan Direksi PT. Bank Bukopin Tbk Nomor : KEP.2284/DIR/XI/2017 dan telah disahkan oleh Otoritas Jasa Keuangan dengan Surat Keputusan Dewan Komisioner Otoritas Jasa Keuangan Nomor : KEP-14/NB.11/2018 tanggal 24 Januari 2018. </p>
+                            Perencanaan suatu Program Pensiun Iuran Pasti mempunyai dua komitmen dasar bagi pemberi kerja yaitu adanya komitmen pemberi kerja untuk menjaga kesinambungan penghasilan pekerja dalam bentuk pemberian uang pensiun bagi pekerjanya pada masa purna bakti dan komitmen pemberi kerja untuk melakukan pengiuran atas nama pekerja selama pekerja berada pada masa bakti. Dua komitmen ini sangat relevan satu sama lain karena tanpa pengiuran yang rasional tidak akan mungkin dicapai objektif "menjaga kesinambungan penghasilan".
+                        </p>
                     </div>
                 </div>
             </div>

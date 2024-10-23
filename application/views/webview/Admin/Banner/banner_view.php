@@ -48,7 +48,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nama Banner</th>
+                                        <th>Judul Banner</th>
+                                        <th>Deskripsi Banner</th>
                                         <th>Gambar Banner</th>
                                         <th>Action</th>
                                     </tr>
@@ -98,10 +99,16 @@
                     <div class="modal-body">
                         <form id="add_file">
 
-                            <label for="name">Nama </label>
+                            <label for="name">Judul </label>
                             <div class="form-group">
                                 <input id="nama_add" name="nama" type="text" placeholder="Masukan Nama File"
                                     class="form-control">
+                            </div>
+                            <label for="name">Deskripsi </label>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Masukan Deskripsi"
+                                    id="deskripsi_add" name="deskripsi"></textarea>
+                                <label for="floatingTextarea">Deskripsi</label>
                             </div>
                             <label for="password">File </label>
                             <div class="form-group">
@@ -140,10 +147,16 @@
                     <div class="modal-body">
                         <form id="edit_file">
                             <input type="hidden" id="id_edit" name="id_edit">
-                            <label for="name">Nama </label>
+                            <label for="name">Judul </label>
                             <div class="form-group">
                                 <input id="nama_edit" name="nama" type="text" placeholder="Masukan Nama"
                                     class="form-control">
+                            </div>
+                            <label for="name">Deskripsi </label>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Masukan Deskripsi"
+                                    id="deskripsi_edit" name="deskripsi"></textarea>
+                                <label for="floatingTextarea">Deskripsi</label>
                             </div>
                             <label for="password">File </label>
                             <div class="form-group">

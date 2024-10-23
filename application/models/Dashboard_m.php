@@ -62,6 +62,7 @@ class Dashboard_m extends CI_Model
         $this->db->select('COUNT(*) as total_count, DATE_FORMAT(tanggal_data, "%M %Y") as month_year');
         $this->db->from('saldo');
         $this->db->where('active', 1);
+        // $this->db->where('uid_user', $this->session->userdata('user_user_id'));
 
         // Get the last 6 months
         $this->db->where('tanggal_data >=', date('Y-m-d', strtotime('-6 months')));
@@ -84,6 +85,7 @@ class Dashboard_m extends CI_Model
         $this->db->select('SUM(total_akhir) as total_count, DATE_FORMAT(tanggal_data, "%M %Y") as month_year');
         $this->db->from('saldo');
         $this->db->where('active', 1);
+        // $this->db->where('uid_user', $this->session->userdata('user_user_id'));
 
         // Get the last 6 months
         $this->db->where('tanggal_data >=', date('Y-m-d', strtotime('-6 months')));
@@ -106,6 +108,7 @@ class Dashboard_m extends CI_Model
         $this->db->select('total_akhir as total_count, DATE_FORMAT(tanggal_data, "%M %Y") as month_year');
         $this->db->from('saldo');
         $this->db->where('active', 1);
+        $this->db->where('uid_user', $this->session->userdata('user_user_id'));
 
         // Get the last 6 months
         $this->db->where('tanggal_data >=', date('Y-m-d', strtotime('-6 months')));

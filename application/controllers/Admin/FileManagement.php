@@ -99,6 +99,12 @@ class FileManagement extends CI_Controller
 
 	}
 
+	function sanitize_filename($filename)
+	{
+		// Remove unwanted characters
+		return preg_replace('/[(){}[\];\'"\\\]/', '', $filename);
+	}
+
 	public function save()
 	{
 		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
@@ -107,10 +113,10 @@ class FileManagement extends CI_Controller
 		$jenis_file = $this->input->post('jenis_file');
 		$jenis_dokumen = $this->input->post('jenis_dokumen');
 		// $halaman_page = $this->input->post('halaman_page');
-
+		$nama_file = sanitize_filename($nama); // Sanitize the filename
 		$config['upload_path'] = FCPATH . 'uploads/file/'; // Same as the config file
 		$config['allowed_types'] = 'pdf|docx|doc';
-		$config['file_name'] = 'file_' . $nama;
+		$config['file_name'] = 'file_' . $nama_file;
 
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
@@ -166,9 +172,10 @@ class FileManagement extends CI_Controller
 			// 'halaman_page'              => $halaman_page,
 		];
 
+		$nama_file = sanitize_filename($nama); // Sanitize the filename
 		$config['upload_path'] =  FCPATH . 'uploads/file/'; // Same as the config file
 		$config['allowed_types'] = 'pdf|word';
-		$config['file_name'] = 'file_' . $nama;
+		$config['file_name'] = 'file_' . $nama_file;
 
 
 		$this->load->library('upload', $config);
@@ -187,16 +194,16 @@ class FileManagement extends CI_Controller
 
 	public function delete()
 	{
-
-		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-		$this->filemanagement->delete(
-			array(
-
-				'deleted'           => $date->format('Y-m-d H:i:s'),
-				'active'      => 0,
-			),
-			array('uid' => $this->input->post('id_delete'))
-		);
+		$id = $this->input->post('id_delete');
+		$this->db->select('*');
+		$this->db->from('file');
+		$this->db->where('uid', $id);
+		$query = $this->db->get()->row();
+		$filePath = './uploads/file/' . $query->file;
+		$this->filemanagement->delete(array('uid' => $id));
+		if (file_exists($filePath)) {
+			unlink($filePath); // Delete the file from the uploads folder
+		}
 		echo json_encode(array("status" => TRUE));
 	}
 }

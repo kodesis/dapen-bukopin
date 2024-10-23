@@ -73,7 +73,11 @@ class UserManagement extends CI_Controller
 			$row[] = $cat->pegawai;
 			$row[] = $cat->peserta;
 			$row[] = $cat->role_name;
-
+			if ($cat->active == 0) {
+				$row[] = '<center> <h6 title="Status" onclick="onApprove_req(' . $cat->uid . ')" data-toggle="tooltip" data-original-title="Not Publish"  class="btn btn-danger" id="btn-edit" >Non Active</button></center>';
+			} else if ($cat->active == 1) {
+				$row[] = '<center> <h6  title="Status" onclick="onApprove_req(' . $cat->uid . ')" data-toggle="tooltip" data-original-title="Publish"  class="btn btn-success" id="btn-edit" >Active</button></center>';
+			}
 			$row[] = '<center> <div class="list-icons d-inline-flex">
                 <a title="Update User" onclick="onEdit(' . $cat->uid . ')" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
                                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -204,15 +208,7 @@ class UserManagement extends CI_Controller
 	public function delete()
 	{
 
-		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-		$this->usermanagement->delete(
-			array(
-
-				'deleted'           => $date->format('Y-m-d H:i:s'),
-				'active'      => 0,
-			),
-			array('uid' => $this->input->post('id_delete'))
-		);
+		$this->usermanagement->delete(array('uid' => $this->input->post('id_delete')));
 		echo json_encode(array("status" => TRUE));
 	}
 
@@ -276,9 +272,9 @@ class UserManagement extends CI_Controller
 					$password = isset($data[3]) ? $data[3] : null; // Column D
 					$nik = isset($data[4]) ? $data[4] : null; // Column E
 					$alamat = isset($data[5]) ? $data[5] : null; // Column F
-					$tgl_lahir = isset($data[6]) ? $data[6] : null; // Column C
-					$pegawai = isset($data[7]) ? $data[7] : null; // Column C
-					$peserta = isset($data[8]) ? $data[8] : null; // Column C
+					$tgl_lahir = isset($data[6]) ? DateTime::createFromFormat('m/d/Y', $data[6])->format('Y-m-d') : null;
+					$pegawai = isset($data[7]) ? DateTime::createFromFormat('m/d/Y', $data[7])->format('Y-m-d') : null;
+					$peserta = isset($data[8]) ? DateTime::createFromFormat('m/d/Y', $data[8])->format('Y-m-d') : null;
 
 					// Insert into the database
 					if ($nama && $kd_peserta) {
@@ -433,5 +429,20 @@ class UserManagement extends CI_Controller
 		// Save the file to php://output
 		$writer->save('php://output');
 		exit();
+	}
+
+	public function status_req()
+	{
+		$status_user = $this->input->post('status_user');
+		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+		$this->usermanagement->update_user(
+			array(
+
+				'active'      => $status_user,
+			),
+			array('uid' => $this->input->post('id_edit_status'))
+		);
+
+		echo json_encode(array("status" => TRUE));
 	}
 }

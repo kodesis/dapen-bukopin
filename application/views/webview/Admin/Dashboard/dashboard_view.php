@@ -5,12 +5,14 @@
     </a>
 </header> -->
 
+
+
 <div class="page-heading">
     <h3>Profile Statistics</h3>
 </div>
 <div class="page-content">
     <section class="row">
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-lg-12">
             <div class="row">
                 <div class="col-6 col-lg-4 col-md-6">
                     <div class="card">
@@ -251,14 +253,17 @@
                 </div>
             </div> -->
         </div>
-        <div class="col-12 col-lg-3">
+        <!-- <div class="col-12 col-lg-3">
             <div class="card">
                 <div class="card-body py-4 px-4">
                     <div class="d-flex align-items-center">
                         <div class="ms-3 name">
                             <h6 class="text-muted mb-2">PDP Bank KB Bukopin</h6>
-                            <a href="<?= base_url('assets/cms/file_pdp/PDP Bank KB Bukopin.pdf') ?>" class="btn btn-success">
+                            <a href="<?= base_url('assets/cms/file_pdp/PDP_Bank_KB_Bukopin.pdf') ?>" class="btn btn-success">
                                 Download File
+                            </a>
+                            <a style="margin-top: 5px;" href="<?= base_url('Detail/PDP/PDP_Bank_KB_Bukopin.pdf') ?>" class="btn btn-success">
+                                Lihat File
                             </a>
                         </div>
                     </div>
@@ -273,17 +278,14 @@
                     if (isset($triwulan) || !empty($triwulan)) {
                     ?>
                         <div class="recent-message d-flex px-4 py-3">
-                            <!-- <div class="avatar avatar-lg">
-                            <img src="<?= base_url() ?>/assets/compiled/jpg/4.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
-                        </div> -->
+                            
                             <div class="name">
                                 <h6 class="text-muted mb-2" id="nama_file"><?= $triwulan->nama_file ?></h6>
                                 <a href="<?= base_url('uploads/file/' . $triwulan->file) ?>" class="btn btn-success">
                                     Download File
+                                </a>
+                                <a href="<?= base_url('Detail/' . $triwulan->file) ?>" class="btn btn-success">
+                                    Lihat File
                                 </a>
                             </div>
                         </div>
@@ -299,30 +301,18 @@
                                 <a href="<?= base_url('uploads/file/' . $tahunan->file) ?>" class="btn btn-success">
                                     Download File
                                 </a>
+                                <a href="<?= base_url('Detail/' . $tahunan->file) ?>" class="btn btn-success">
+                                    Lihat File
+                                </a>
                             </div>
                         </div>
                     <?php
                     }
 
                     ?>
-                    <!-- <div class="recent-message d-flex px-4 py-3">
-                        <div class="name">
-                            <h6 class="text-muted mb-2" id="nama_file">PDP Bank KB Bukopin</h6>
-                            <a href="<?= base_url('assets/cms/file_pdp/PDP Bank KB Bukopin.pdf') ?>" class="btn btn-success">
-                                Download File
-                            </a>
-                        </div>
-                    </div> -->
+                   
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-header">
-                    <h4>Visitors Profile</h4>
-                </div>
-                <div class="card-body">
-                    <div id="chart-visitors-profile"></div>
-                </div>
-            </div> -->
-        </div>
+        </div> -->
     </section>
 </div>

@@ -818,4 +818,87 @@
 
 
     }
+
+    function onApprove_req(id) {
+        // $('#edit_modal')[0].reset(); // reset form on modals
+        $('.form-group').removeClass('has-error'); // clear error class
+        $('.help-block').empty(); // clear error string
+        // $('.modal-title').text('Edit Poster');
+
+        $.ajax({
+            url: "<?php echo site_url('Admin/usermanagement/ajax_edit/') ?>/" + id,
+            type: "POST",
+            dataType: "JSON",
+            success: function(data) {
+
+                // JSON.stringify(data.id_employee);
+                // alert(JSON.stringify(data));
+                // alert(data);
+                $('#id_edit_status').val(data.uid);
+                $('#status_user').val(data.active);
+
+
+
+
+
+                $('#approval_modal_req').modal('show'); // show bootstrap modal when complete loaded
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        });
+    }
+
+    function status_req() {
+        id = $('#id_edit_status').val();
+        var url;
+        url = "<?php echo site_url('admin/usermanagement/status_req') ?>";
+
+        var formData = new FormData($("#status_request")[0]);
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: "JSON",
+            beforeSend: function() {
+                swal.fire("Saving data...");
+
+            },
+            success: function(data) {
+                /* if(!data.status)alert("ho"); */
+                if (!data.status) swal.fire('Gagal menyimpan data', 'error ');
+                else {
+                    // document.getElementById('PakaianAdat').reset();
+
+                    (JSON.stringify(data));
+                    swal.fire({
+                        customClass: 'slow-animation',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        title: 'Berhasil Mengedit Konten',
+                        timer: 1500
+
+                    });
+
+
+                    $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+
+                    $('#approval_modal_req').modal('hide');
+
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                swal.fire('Operation Failed!', errorThrown, 'error');
+            },
+            complete: function() {
+                console.log('Editing job done');
+
+            }
+
+        });
+    }
 </script>

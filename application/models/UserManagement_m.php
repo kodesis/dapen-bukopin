@@ -3,21 +3,22 @@
 class UserManagement_m extends CI_Model
 {
     var $table = 'user';
-    var $column_order = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id'); //set column field database for datatable orderable
-    var $column_search = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id'); //set column field database for datatable searchable 
+    var $column_order = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active_status.name'); //set column field database for datatable orderable
+    var $column_search = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active_status.name'); //set column field database for datatable searchable 
     var $order = array('user.uid' => 'asc'); // default order 
 
     function get_category()
     {
-        return $this->db->get('role')->result_array();
+        return $this->db->get('active_status')->result_array();
     }
     function _get_datatables_query()
     {
 
-        $this->db->select('user.*, role.role_name');
+        $this->db->select('user.*, role.role_name, active_status.name as status_name');
         $this->db->from('user');
         $this->db->join('role', 'role.id = user.role_id');
-        $this->db->where('user.active', 1);
+        $this->db->join('active_status', 'active_status.id = user.active');
+        // $this->db->where('user.active', 1);
         $i = 0;
 
         foreach ($this->column_search as $item) // loop column 
@@ -84,7 +85,7 @@ class UserManagement_m extends CI_Model
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('uid', $id);
-        $this->db->where('active', 1);
+        // $this->db->where('active', 1);
         $query = $this->db->get();
 
         return $query->row();
@@ -95,8 +96,8 @@ class UserManagement_m extends CI_Model
         $this->db->update('user', $data, $where);
     }
 
-    public function delete($data, $where)
+    public function delete($uid)
     {
-        $this->db->update($this->table, $data, $where);
+        $this->db->delete('user', $uid);
     }
 }

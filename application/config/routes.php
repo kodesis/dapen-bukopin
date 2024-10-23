@@ -61,8 +61,16 @@ $route['UserManagement'] = 'admin/UserManagement'; // Maps website/user-manageme
 $route['SaldoUsers'] = 'admin/SaldoUser';
 $route['RunningText'] = 'admin/RunningText';
 $route['Banner'] = 'admin/Banner'; // Maps website/file-management to the admin/FileManagement controller
+$route['Team'] = 'admin/Team'; // Maps website/file-management to the admin/FileManagement controller
 
 // Routing for User Controllers
 $route['SaldoUser'] = 'user/SaldoUser';
 $route['Formulir_Iuran'] = 'formulir/Formulir_Iuran';
 $route['Formulir_Permohonan'] = 'formulir/Formulir_Permohonan';
+$route['Formulir'] = 'formulir/All_Formulir';
+$route['Detail_Formulir/(:num)'] = 'formulir/Detail_Formulir/$1';
+$route['Detail/(:any)'] = 'Detail/index/$1';
+$route['Detail/PDP/(:any)'] = 'Detail/PDP/$1';
+$route['PDP'] = 'Admin/Laporan/PDP';
+$route['Laporan_Triwulan'] = 'Admin/Laporan/Triwulan';
+$route['Laporan_Tahunan'] = 'Admin/Laporan/Tahunan';

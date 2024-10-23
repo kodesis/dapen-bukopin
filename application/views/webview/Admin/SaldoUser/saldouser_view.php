@@ -42,7 +42,7 @@
                                 </button>
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#add_modal">
-                                    Add User
+                                    Add Saldo
                                 </button>
                                 <!-- <button class="btn btn-primary">Add User</button> -->
                             </div>
@@ -113,7 +113,7 @@
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalScrollableTitle">Add User</h5>
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Add Saldo User</h5>
                         <button type="button" class="close" data-bs-dismiss="modal"
                             aria-label="Close">
                             <i data-feather="x"></i>
@@ -121,69 +121,63 @@
                     </div>
                     <div class="modal-body">
                         <form id="add_user">
-
-                            <label for="name">Nama </label>
+                            <label for="kd_peserta_add">Kode Peserta</label>
                             <div class="form-group">
-                                <input id="nama_add" name="nama" type="text" placeholder="Masukan Nama"
-                                    class="form-control">
+                                <input id="kd_peserta_add" name="kd_peserta" type="number" placeholder="Masukan Kode Peserta" class="form-control">
                             </div>
-                            <label for="email">Email </label>
+                            <label for="ips_awal_add">IPS Awal</label>
                             <div class="form-group">
-                                <input id="email_add" name="email" type="email" placeholder="Masukan Email"
-                                    class="form-control">
-                            </div>
-                            <label for="email">Role </label>
-                            <fieldset class="form-group">
-                                <select class="form-select" id="role_add" name="role">
-                                    <option selected disabled>Pilih Role</option>
-                                    <!-- <option value="2">User</option>
-                                        <option value="1">Admin</option> -->
-                                </select>
-                            </fieldset>
-                            <label for="password">Password </label>
-                            <div class="form-group">
-                                <input id="password1_add" name="password1" type="password" placeholder="Masukan Password"
-                                    class="form-control">
+                                <input id="ips_awal_add" name="ips_awal" type="number" placeholder="Masukan IPS Awal" class="form-control">
                             </div>
 
-                            <label for="password">Konfirmasi Password </label>
+                            <label for="ipk_awal_add">IPK Awal</label>
                             <div class="form-group">
-                                <input id="password2_add" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
-                                    class="form-control">
+                                <input id="ipk_awal_add" name="ipk_awal" type="number" placeholder="Masukan IPK Awal" class="form-control">
                             </div>
-                            <label for="nik">NIK </label>
+
+                            <label for="total_awal_add">Total Awal</label>
                             <div class="form-group">
-                                <input id="nik_add" name="nik" type="number" placeholder="Masukan NIK"
-                                    class="form-control">
+                                <input id="total_awal_add" name="total_awal" type="number" placeholder="Masukan Total Awal" class="form-control">
                             </div>
-                            <label for="date">Alamat </label>
+
+                            <label for="ips_iuran_add">IPS Iuran</label>
                             <div class="form-group">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Masukan Alamat"
-                                        id="alamat_add" name="alamat"></textarea>
-                                    <label for="floatingTextarea">Alamat</label>
-                                </div>
+                                <input id="ips_iuran_add" name="ips_iuran" type="number" placeholder="Masukan IPS Iuran" class="form-control">
                             </div>
-                            <label for="date">Tanggal Lahir </label>
+
+                            <label for="ipk_iuran_add">IPK Iuran</label>
                             <div class="form-group">
-                                <input id="tgl_lahir_add" name="tgl_lahir" type="date" placeholder="Masukan Tanggal Lahir"
-                                    class="form-control">
+                                <input id="ipk_iuran_add" name="ipk_iuran" type="number" placeholder="Masukan IPK Iuran" class="form-control">
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="date">Pegawai </label>
-                                    <div class="form-group">
-                                        <input id="pegawai_add" name="pegawai" type="date" placeholder="Masukan Tanggal"
-                                            class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="date">Peserta </label>
-                                    <div class="form-group">
-                                        <input id="peserta_add" name="peserta" type="date" placeholder="Masukan Tanggal"
-                                            class="form-control">
-                                    </div>
-                                </div>
+
+                            <label for="ips_p_add">IPS P</label>
+                            <div class="form-group">
+                                <input id="ips_p_add" name="ips_p" type="number" placeholder="Masukan IPS P" class="form-control">
+                            </div>
+
+                            <label for="ipk_p_add">IPK P</label>
+                            <div class="form-group">
+                                <input id="ipk_p_add" name="ipk_p" type="number" placeholder="Masukan IPK P" class="form-control">
+                            </div>
+
+                            <label for="ips_akhir_add">IPS Akhir</label>
+                            <div class="form-group">
+                                <input id="ips_akhir_add" name="ips_akhir" type="number" placeholder="Masukan IPS Akhir" class="form-control">
+                            </div>
+
+                            <label for="ipk_akhir_add">IPK Akhir</label>
+                            <div class="form-group">
+                                <input id="ipk_akhir_add" name="ipk_akhir" type="number" placeholder="Masukan IPK Akhir" class="form-control">
+                            </div>
+
+                            <label for="total_akhir_add">Total Akhir</label>
+                            <div class="form-group">
+                                <input id="total_akhir_add" name="total_akhir" type="number" placeholder="Masukan Total Akhir" class="form-control">
+                            </div>
+
+                            <label for="tanggal_data_add">Tanggal Data</label>
+                            <div class="form-group">
+                                <input id="tanggal_data_add" name="tanggal" type="date" class="form-control">
                             </div>
                         </form>
                     </div>
@@ -208,7 +202,7 @@
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalScrollableTitle">Edit User</h5>
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Saldo User</h5>
                         <button type="button" class="close" data-bs-dismiss="modal"
                             aria-label="Close">
                             <i data-feather="x"></i>
@@ -300,7 +294,7 @@
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalScrollableTitle">Add User</h5>
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Add Saldo User</h5>
                         <button type="button" class="close" data-bs-dismiss="modal"
                             aria-label="Close">
                             <i data-feather="x"></i>
