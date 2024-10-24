@@ -21,7 +21,7 @@
 
         // Load data for the table's content from an Ajax source
         ajax: {
-            url: "<?php echo site_url('Admin/runningtext/ajax_list') ?> ",
+            url: "<?php echo site_url('Admin/RunningText/ajax_list') ?> ",
             type: "POST",
             data: function(data) {}
         },

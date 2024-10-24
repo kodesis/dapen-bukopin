@@ -18,7 +18,7 @@
 
         // Load data for the table's content from an Ajax source
         ajax: {
-            url: "<?php echo site_url('Admin/filemanagement/ajax_list') ?> ",
+            url: "<?php echo site_url('Admin/FileManagement/ajax_list') ?> ",
             type: "POST",
             data: function(data) {}
         },
