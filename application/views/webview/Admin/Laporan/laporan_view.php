@@ -39,7 +39,17 @@
             <section class="section">
                 <div class="card" style="height: 100vh;">
                     <!-- <div class="responsive-embed"> -->
-                    <embed type="application/pdf" src="<?= $data_file ?>" width="100%" height="100%">
+                    <?php
+                    if (!empty($data_file)) {
+                    ?>
+                        <embed type="application/pdf" src="<?= $data_file ?>" width="100%" height="100%">
+                    <?php
+                    } else {
+                    ?>
+                        <h2>FILE TIDAK ADA</h2>
+                    <?php
+                    }
+                    ?>
                     <!-- </div> -->
                 </div>
 
