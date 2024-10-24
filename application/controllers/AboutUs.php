@@ -40,7 +40,7 @@ class AboutUs extends CI_Controller
     public function ProgramPensiun()
     {
 
-        $data['content']  = 'webview/Programpensiun/programpensiun_view';
+        $data['content']  = 'webview/ProgramPensiun/programpensiun_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);
