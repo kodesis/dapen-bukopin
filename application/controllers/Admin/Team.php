@@ -50,9 +50,6 @@ class Team extends CI_Controller
         $crs = "";
         $no = $_POST['start'];
 
-
-
-
         foreach ($list as $cat) {
             $path = base_url() . 'uploads/team/' . $cat->file;
 
@@ -226,7 +223,7 @@ class Team extends CI_Controller
     {
         $id = $this->input->post('id_delete');
         $this->db->select('*');
-        $this->db->from($this->table);
+        $this->db->from('team');
         $this->db->where('uid', $id);
         $query = $this->db->get()->row();
         $filePath = './uploads/team/' . $query->file;
