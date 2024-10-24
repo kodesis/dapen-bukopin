@@ -28,7 +28,7 @@ class Auth extends CI_Controller
     }
     public function register()
     {
-        if ($this->session->userdata('user_logged_in') == 'true') {
+        if ($this->session->userdata('user_logged_in') == True) {
             redirect('dashboard');
         }
 

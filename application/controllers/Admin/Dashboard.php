@@ -32,7 +32,7 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		if ($this->session->userdata('user_logged_in') == null) {
+		if ($this->session->userdata('user_logged_in') == false) {
 			redirect('auth');
 		}
 
