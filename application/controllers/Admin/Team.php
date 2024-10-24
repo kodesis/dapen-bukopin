@@ -38,8 +38,8 @@ class Team extends CI_Controller
         } else if ($this->session->userdata('role_id') == 2) {
             redirect('error404');
         }
-        $data['content']  = 'webview/admin/team/team_view';
-        $data['content_js'] = 'webview/admin/team/team_js';
+        $data['content']  = 'webview/Admin/Team/team_view';
+        $data['content_js'] = 'webview/Admin/Team/team_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
     }
 

@@ -44,8 +44,8 @@ class UserManagement extends CI_Controller
 			redirect('error404');
 		}
 
-		$data['content']  = 'webview/admin/usermanagement/usermanagement_view';
-		$data['content_js'] = 'webview/admin/usermanagement/usermanagement_js';
+		$data['content']  = 'webview/Admin/Usermanagement/usermanagement_view';
+		$data['content_js'] = 'webview/Admin/Usermanagement/usermanagement_js';
 		$this->load->view('_parts/Admin/Wrapper', $data);
 	}
 

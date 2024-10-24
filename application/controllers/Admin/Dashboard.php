@@ -41,12 +41,12 @@ class Dashboard extends CI_Controller
 
 		if ($this->session->userdata('role_id') == 2) {
 
-			$data['content']  = 'webview/user/dashboard/dashboard_view';
-			$data['content_js'] = 'webview/user/dashboard/dashboard_js';
+			$data['content']  = 'webview/User/Dashboard/dashboard_view';
+			$data['content_js'] = 'webview/User/Dashboard/dashboard_js';
 		} else {
 
-			$data['content']  = 'webview/admin/dashboard/dashboard_view';
-			$data['content_js'] = 'webview/admin/dashboard/dashboard_js';
+			$data['content']  = 'webview/Admin/Dashboard/dashboard_view';
+			$data['content_js'] = 'webview/Admin/Dashboard/dashboard_js';
 		}
 
 		$this->load->view('_parts/Admin/Wrapper', $data);

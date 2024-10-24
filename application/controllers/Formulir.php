@@ -32,7 +32,7 @@ class Formulir extends CI_Controller
     public function Formulir_Permohonan()
     {
         $data['formulir'] = $this->formulir->get_formulir_permohonan(); // Ensure data is assigned to 'formulir'
-        $data['content']  = 'webview/formulir_permohonan/formulir_view';
+        $data['content']  = 'webview/Formulir_permohonan/formulir_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);
@@ -40,7 +40,7 @@ class Formulir extends CI_Controller
     public function Formulir_Iuran()
     {
         $data['formulir'] = $this->formulir->get_formulir_iuran(); // Ensure data is assigned to 'formulir'
-        $data['content']  = 'webview/formulir_iuran/formulir_view';
+        $data['content']  = 'webview/Formulir_iuran/formulir_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);
@@ -48,7 +48,7 @@ class Formulir extends CI_Controller
     public function All_Formulir()
     {
         $data['formulir'] = $this->formulir->get_all_formulir(); // Ensure data is assigned to 'formulir'
-        $data['content']  = 'webview/formulir/formulir_view';
+        $data['content']  = 'webview/Formulir/formulir_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);

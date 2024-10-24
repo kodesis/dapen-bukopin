@@ -32,7 +32,7 @@ class Buku_Layanan extends CI_Controller
     public function index()
     {
         $data['peraturan'] = $this->buku_layanan->get_buku_layanan(); // Ensure data is assigned to 'formulir'
-        $data['content']  = 'webview/buku_layanan/buku_layanan_view';
+        $data['content']  = 'webview/Buku_layanan/buku_layanan_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);

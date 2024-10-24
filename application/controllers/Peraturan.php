@@ -32,7 +32,7 @@ class Peraturan extends CI_Controller
     public function index()
     {
         $data['peraturan'] = $this->peraturan->get_peraturan(); // Ensure data is assigned to 'formulir'
-        $data['content']  = 'webview/peraturan/peraturan_view';
+        $data['content']  = 'webview/Peraturan/peraturan_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);

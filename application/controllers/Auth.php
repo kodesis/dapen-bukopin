@@ -22,8 +22,8 @@ class Auth extends CI_Controller
             redirect('dashboard');
         }
 
-        $data['content']  = 'webview/auth/login/login_view';
-        $data['content_js'] = 'webview/auth/login/login_js';
+        $data['content']  = 'webview/Auth/Login/login_view';
+        $data['content_js'] = 'webview/Auth/Login/login_js';
         $this->load->view('_parts/Wrapper_auth', $data);
     }
     public function register()
@@ -32,8 +32,8 @@ class Auth extends CI_Controller
             redirect('dashboard');
         }
 
-        $data['content']  = 'webview/auth/register/register_view';
-        $data['content_js'] = 'webview/auth/register/register_js';
+        $data['content']  = 'webview/Auth/Register/register_view';
+        $data['content_js'] = 'webview/Auth/Register/register_js';
         $this->load->view('_parts/Wrapper_auth', $data);
     }
 
@@ -142,8 +142,8 @@ class Auth extends CI_Controller
             redirect('dashboard');
         }
 
-        $data['content']  = 'webview/auth/check_email/check_email_view';
-        $data['content_js'] = 'webview/auth/check_email/check_email_js';
+        $data['content']  = 'webview/Auth/check_email/check_email_view';
+        $data['content_js'] = 'webview/Auth/check_email/check_email_js';
         $this->load->view('_parts/Wrapper_auth', $data);
     }
 
@@ -428,8 +428,8 @@ class Auth extends CI_Controller
             redirect(base_url('error404'));
         }
 
-        $data['content']  = 'webview/auth/reset_password/reset_password_view';
-        $data['content_js'] = 'webview/auth/reset_password/reset_password_js';
+        $data['content']  = 'webview/Auth/Reset_Password/reset_password_view';
+        $data['content_js'] = 'webview/Auth/Reset_Password/reset_password_js';
         $this->load->view('_parts/Wrapper_auth', $data);
     }
 

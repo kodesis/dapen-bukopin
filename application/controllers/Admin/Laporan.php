@@ -36,7 +36,7 @@ class Laporan extends CI_Controller
     {
         $file_path = FCPATH . 'uploads/PDP/PDP_Bank_KB_Bukopin.pdf';
         $data['data_file'] = $file_path;
-        $data['content']  = 'webview/admin/laporan/laporan_view';
+        $data['content']  = 'webview/Admin/Laporan/laporan_view';
         // $data['content_js'] = 'webview/user/laporan/laporan_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
     }
@@ -47,7 +47,7 @@ class Laporan extends CI_Controller
         $file_path = base_url('uploads/PDP/PDP_Bank_KB_Bukopin.pdf');
 
         $data['data_file'] = $file_path;
-        $data['content']  = 'webview/admin/laporan/laporan_view';
+        $data['content']  = 'webview/Admin/Laporan/laporan_view';
         // $data['content_js'] = 'webview/user/laporan/laporan_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
     }
@@ -68,7 +68,7 @@ class Laporan extends CI_Controller
         $file = $triwulan->file;
         $file_path = base_url('uploads/file/' . $file);
         $data['data_file'] = $file_path;
-        $data['content']  = 'webview/admin/laporan/laporan_view';
+        $data['content']  = 'webview/Admin/Laporan/laporan_view';
         // $data['content_js'] = 'webview/user/laporan/laporan_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
     }
@@ -90,7 +90,7 @@ class Laporan extends CI_Controller
         $file_path = base_url('uploads/file/' . $file);
 
         $data['data_file'] = $file_path;
-        $data['content']  = 'webview/admin/laporan/laporan_view';
+        $data['content']  = 'webview/Admin/Laporan/laporan_view';
         // $data['content_js'] = 'webview/user/laporan/laporan_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
     }

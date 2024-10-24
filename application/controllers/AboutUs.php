@@ -32,7 +32,7 @@ class AboutUs extends CI_Controller
     public function Sejarah()
     {
 
-        $data['content']  = 'webview/sejarah/sejarah_view';
+        $data['content']  = 'webview/Sejarah/sejarah_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);
@@ -40,7 +40,7 @@ class AboutUs extends CI_Controller
     public function ProgramPensiun()
     {
 
-        $data['content']  = 'webview/programpensiun/programpensiun_view';
+        $data['content']  = 'webview/Programpensiun/programpensiun_view';
         // $data['content_js'] = 'webview/user/index/index_js';
 
         $this->load->view('_parts/User/Wrapper', $data);
@@ -49,7 +49,7 @@ class AboutUs extends CI_Controller
     {
         $data['pengawas'] = $this->team->get_all_team_pengawas();
         $data['pengurus'] = $this->team->get_all_team_pengurus();
-        $data['content']  = 'webview/team/team_view';
+        $data['content']  = 'webview/Team/team_view';
 
         $this->load->view('_parts/User/Wrapper', $data);
     }

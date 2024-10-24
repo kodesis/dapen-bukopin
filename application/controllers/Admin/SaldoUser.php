@@ -44,11 +44,11 @@ class SaldoUser extends CI_Controller
 
 
 		if ($this->session->userdata('role_id') == 1) {
-			$data['content']  = 'webview/admin/saldouser/saldouser_view';
-			$data['content_js'] = 'webview/admin/saldouser/saldouser_js';
+			$data['content']  = 'webview/Admin/Saldouser/saldouser_view';
+			$data['content_js'] = 'webview/Admin/Saldouser/saldouser_js';
 		} else if ($this->session->userdata('role_id') == 2) {
-			$data['content']  = 'webview/admin/saldouser/user/saldouser_view';
-			$data['content_js'] = 'webview/admin/saldouser/user/saldouser_js';
+			$data['content']  = 'webview/Admin/Saldouser/User/saldouser_view';
+			$data['content_js'] = 'webview/Admin/Saldouser/User/saldouser_js';
 		}
 
 

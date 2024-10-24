@@ -44,8 +44,8 @@ class runningtext extends CI_Controller
 			redirect('error404');
 		}
 
-		$data['content']  = 'webview/admin/runningtext/runningtext_view';
-		$data['content_js'] = 'webview/admin/runningtext/runningtext_js';
+		$data['content']  = 'webview/Admin/Runningtext/runningtext_view';
+		$data['content_js'] = 'webview/Admin/Runningtext/runningtext_js';
 		$this->load->view('_parts/Admin/Wrapper', $data);
 	}
 
