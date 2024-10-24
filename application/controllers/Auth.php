@@ -26,16 +26,16 @@ class Auth extends CI_Controller
         $data['content_js'] = 'webview/Auth/Login/login_js';
         $this->load->view('_parts/Wrapper_auth', $data);
     }
-    public function register()
-    {
-        if ($this->session->userdata('user_logged_in') == True) {
-            redirect('dashboard');
-        }
+    // public function register()
+    // {
+    //     if ($this->session->userdata('user_logged_in') == True) {
+    //         redirect('dashboard');
+    //     }
 
-        $data['content']  = 'webview/Auth/Register/register_view';
-        $data['content_js'] = 'webview/Auth/Register/register_js';
-        $this->load->view('_parts/Wrapper_auth', $data);
-    }
+    //     $data['content']  = 'webview/Auth/Register/register_view';
+    //     $data['content_js'] = 'webview/Auth/Register/register_js';
+    //     $this->load->view('_parts/Wrapper_auth', $data);
+    // }
 
     public function login_process()
     {
