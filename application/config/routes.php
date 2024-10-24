@@ -55,20 +55,20 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Hide the User and Admin
 
-$route['dashboard'] = 'admin/dashboard'; // Maps website/file-management to the admin/FileManagement controller
-$route['FileManagement'] = 'admin/FileManagement'; // Maps website/file-management to the admin/FileManagement controller
-$route['UserManagement'] = 'admin/UserManagement'; // Maps website/user-management to the admin/UserManagement controller
-$route['SaldoUsers'] = 'admin/SaldoUser';
-$route['RunningText'] = 'admin/RunningText';
-$route['Banner'] = 'admin/Banner'; // Maps website/file-management to the admin/FileManagement controller
-$route['Team'] = 'admin/Team'; // Maps website/file-management to the admin/FileManagement controller
+$route['dashboard'] = 'Admin/dashboard'; // Maps website/file-management to the admin/FileManagement controller
+$route['FileManagement'] = 'Admin/FileManagement'; // Maps website/file-management to the admin/FileManagement controller
+$route['UserManagement'] = 'Admin/UserManagement'; // Maps website/user-management to the admin/UserManagement controller
+$route['SaldoUsers'] = 'Admin/SaldoUser';
+$route['RunningText'] = 'Admin/RunningText';
+$route['Banner'] = 'Admin/Banner'; // Maps website/file-management to the admin/FileManagement controller
+$route['Team'] = 'Admin/Team'; // Maps website/file-management to the admin/FileManagement controller
 
 // Routing for User Controllers
-$route['SaldoUser'] = 'user/SaldoUser';
-$route['Formulir_Iuran'] = 'formulir/Formulir_Iuran';
-$route['Formulir_Permohonan'] = 'formulir/Formulir_Permohonan';
-$route['Formulir'] = 'formulir/All_Formulir';
-$route['Detail_Formulir/(:num)'] = 'formulir/Detail_Formulir/$1';
+$route['SaldoUser'] = 'User/SaldoUser';
+$route['Formulir_Iuran'] = 'Formulir/Formulir_Iuran';
+$route['Formulir_Permohonan'] = 'Formulir/Formulir_Permohonan';
+$route['Formulir'] = 'Formulir/All_Formulir';
+$route['Detail_Formulir/(:num)'] = 'Formulir/Detail_Formulir/$1';
 $route['Detail/(:any)'] = 'Detail/index/$1';
 $route['Detail/PDP/(:any)'] = 'Detail/PDP/$1';
 $route['PDP'] = 'Admin/Laporan/PDP';
