@@ -123,27 +123,26 @@ class Banner extends CI_Controller
 
             list($width, $height) = getimagesize($file_path); // Get dimensions of the uploaded image
 
-            if ($width == 1536 && $height == 670) {
-                $file = $image_data['file_name'];
-                $this->banner->save_file(
-                    array(
+            // if ($width == 1536 && $height == 670) {
+            $file = $image_data['file_name'];
+            $this->banner->save_file(
+                array(
 
-                        // 'created'           => $date->format('Y-m-d H:i:s'),
-                        'judul_banner'             => $nama,
-                        'file_banner' => $file,
-                        'deskripsi'              => $deskripsi,
-                        'active'           => 1,
-                    )
-                );
-                echo json_encode(array("status" => TRUE));
-            } else {
-                // Dimensions are incorrect, delete the uploaded file and return error
-                unlink($file_path); // Delete the uploaded file
-                echo json_encode(array(
-                    "status" => "Size Salah",
-                    "message" => "Image dimensions must be exactly 670x503 pixels."
-                ));
-            }
+                    // 'created'           => $date->format('Y-m-d H:i:s'),
+                    'judul_banner'             => $nama,
+                    'file_banner' => $file,
+                    'deskripsi'              => $deskripsi,
+                    'active'           => 1,
+                )
+            );
+            echo json_encode(array("status" => TRUE));
+            // } else {
+            //     unlink($file_path); // Delete the uploaded file
+            //     echo json_encode(array(
+            //         "status" => "Size Salah",
+            //         "message" => "Image dimensions must be exactly 670x503 pixels."
+            //     ));
+            // }
         }
     }
 
@@ -185,18 +184,18 @@ class Banner extends CI_Controller
 
             list($width, $height) = getimagesize($file_path); // Get dimensions of the uploaded image
 
-            if ($width == 1536 && $height == 670) {
-                // Correct dimensions, proceed with update
-                $data_update['file_banner'] = $file;
-            } else {
-                // Dimensions are incorrect, delete the uploaded file and return error
-                unlink($file_path); // Delete the uploaded file
-                echo json_encode(array(
-                    "status" => "Size Salah",
-                    "message" => "Image dimensions must be exactly 670x503 pixels."
-                ));
-                return; // Stop execution here
-            }
+            // if ($width == 1536 && $height == 670) {
+            // Correct dimensions, proceed with update
+            $data_update['file_banner'] = $file;
+            // } else {
+            //     // Dimensions are incorrect, delete the uploaded file and return error
+            //     unlink($file_path); // Delete the uploaded file
+            //     echo json_encode(array(
+            //         "status" => "Size Salah",
+            //         "message" => "Image dimensions must be exactly 670x503 pixels."
+            //     ));
+            //     return; // Stop execution here
+            // }
         }
 
         // Continue only if dimensions were correct
