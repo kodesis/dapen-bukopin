@@ -138,8 +138,8 @@
                             <fieldset class="form-group">
                                 <select class="form-select" id="role_add" name="role">
                                     <option selected disabled>Pilih Role</option>
-                                    <!-- <option value="2">User</option>
-                                        <option value="1">Admin</option> -->
+                                    <option value="2">User</option>
+                                    <option value="1">Admin</option>
                                 </select>
                             </fieldset>
                             <label for="password">Password </label>

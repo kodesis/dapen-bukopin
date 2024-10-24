@@ -127,25 +127,45 @@ class UserManagement extends CI_Controller
 		$pegawai = $this->input->post('pegawai');
 		$peserta = $this->input->post('peserta');
 
-		$this->usermanagement->save_user(
-			array(
+		// Get KD Peserta
+		$this->db->select('uid'); // Select the uid column
+		$this->db->from('user'); // Your table name
+		$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
+		$result = $this->db->get()->row(); // Execute the query
 
-				'created'           => $date->format('Y-m-d H:i:s'),
-				'nama'             => $nama,
-				'kd_peserta'            => $kd_peserta,
-				'email'            => $email,
-				'role_id'             => $role,
-				'password'         => password_hash($password1, PASSWORD_BCRYPT), // Hashing the password
-				'nik'              => $nik,
-				'alamat'           => $alamat,
-				'tgl_lahir'        => $tgl_lahir,
-				'pegawai'          => $pegawai,
-				'peserta'          => $peserta,
-				'active'           => 1,
-			),
-		);
 
-		echo json_encode(array("status" => TRUE));
+		// Get KD Peserta
+		$this->db->select('uid'); // Select the uid column
+		$this->db->from('user'); // Your table name
+		$this->db->where('kd_peserta', $nik); // Filter by kd_peserta
+		$result2 = $this->db->get()->row(); // Execute the query
+
+		if (!empty($result)) {
+			echo json_encode(array("status" => "Kode Peserta Sudah di Pakai", "kd_peserta" => $kd_peserta));
+		} elseif (!empty($result2)) {
+			echo json_encode(array("status" => "NIK Sudah di Pakai", "nik" => $nik));
+		} else {
+
+			$this->usermanagement->save_user(
+				array(
+
+					'created'           => $date->format('Y-m-d H:i:s'),
+					'nama'             => $nama,
+					'kd_peserta'            => $kd_peserta,
+					'email'            => $email,
+					'role_id'             => $role,
+					'password'         => password_hash($password1, PASSWORD_BCRYPT), // Hashing the password
+					'nik'              => $nik,
+					'alamat'           => $alamat,
+					'tgl_lahir'        => $tgl_lahir,
+					'pegawai'          => $pegawai,
+					'peserta'          => $peserta,
+					'active'           => 1,
+				),
+			);
+
+			echo json_encode(array("status" => TRUE));
+		}
 	}
 
 	public function ajax_edit($id)

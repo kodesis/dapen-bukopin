@@ -334,7 +334,7 @@
                 </div>
                 <div class="col-lg-6 col-md-9 mb-35">
                     <div class="choose__img-wrap-five">
-                        <img src="<?= base_url() ?>/assets/user/img/home7/HUT web.jpg" alt="Apexa">
+                        <img src="<?= base_url() ?>/assets/user/img/home6/HUT web.jpg" alt="Apexa">
                         <!-- <img src="<?= base_url() ?>/assets/user/img/home6/card.png" class="shape-bottom-left" alt=""> -->
                         <!-- <img src="<?= base_url() ?>/assets/user/img/home6/icon.svg" class="shape-left" alt="" data-parallax='{"x" : 40}'> -->
                         <!-- <img src="<?= base_url() ?>/assets/user/img/home6/hassle.png" alt="" class="alltuchtopdown"> -->

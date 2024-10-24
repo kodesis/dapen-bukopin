@@ -20,11 +20,6 @@
         // Keep original sales data for the chart
         var salesData = data.sales;
 
-        // Format sales data with periods as thousands separators for display purposes
-        var formattedSalesData = salesData.map(function(count) {
-            return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        });
-
         var optionsProfileVisit = {
             annotations: {
                 position: "back",
@@ -32,8 +27,8 @@
             dataLabels: {
                 enabled: true, // Enable data labels for better visibility
                 formatter: function(value) {
-                    // Format the value for data labels without using the already formatted array
-                    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    // Format the value for data labels with commas as thousand separators
+                    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
             },
             chart: {
@@ -48,15 +43,23 @@
                 name: "sales",
                 data: salesData, // Use the original sales data for the chart
             }],
-            colors: "#435ebe",
+            colors: "#F7A400",
             xaxis: {
                 categories: data.categories, // Use the categories returned from the AJAX call
+            },
+            yaxis: {
+                labels: {
+                    formatter: function(value) {
+                        // Format the value for the vertical axis with commas as thousand separators
+                        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+                }
             },
             tooltip: {
                 y: {
                     formatter: function(value) {
                         // Format the value for the tooltip
-                        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
                 }
             }

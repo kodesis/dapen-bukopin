@@ -51,9 +51,6 @@
     var year = today.getFullYear();
 
     // Set the input field's value to the current date
-    document.getElementById('tgl_lahir_add').value = year + '-' + month + '-' + day;
-    document.getElementById('pegawai_add').value = year + '-' + month + '-' + day;
-    document.getElementById('peserta_add').value = year + '-' + month + '-' + day;
     document.getElementById('tanggal_upload').value = year + '-' + month + '-' + day;
 
 

@@ -10,18 +10,6 @@
 <script src="<?= base_url() ?>assets/cms/static/js/pages/datatables.js"></script>
 <script>
     $(document).ready(function() {
-        $.ajax({
-            url: '<?php echo site_url('Admin/usermanagement/cat_list'); ?>',
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                // Populate the select element with data from the server
-                $.each(data, function(index, item) {
-                    $('#role_add').append('<option value="' + item.id + '">' + item.role_name + '</option>');
-                });
-            }
-        });
-
 
 
     });
@@ -217,22 +205,41 @@
                             /* if(!data.status)alert("ho"); */
                             if (!data.status) swal.fire('Gagal menyimpan data', 'error');
                             else {
-                                // document.getElementById('rumahadat').reset();
-                                // $('#add_modal').modal('hide');
-                                (JSON.stringify(data));
-                                // alert(data)
-                                swal.fire({
-                                    customClass: 'slow-animation',
-                                    icon: 'success',
-                                    showConfirmButton: false,
-                                    title: 'Berhasil Menambahkan Data User',
-                                    timer: 1500
-                                });
-                                document.getElementById('add_user').reset(); // Reset the form
-                                $('#add_modal').modal('hide'); // Hide the modal
-                                $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
-                                // location.reload();
-
+                                if (data.status == 'Kode Peserta Sudah di Pakai') {
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        title: 'Kode Peserta Sudah Di gunakan',
+                                        text: 'Kode Peserta : ' + data.kd_peserta,
+                                        timer: 1500
+                                    });
+                                } else if (data.status == 'NIK Sudah di Pakai') {
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        title: 'NIK Sudah Di gunakan',
+                                        text: 'NIK : ' + data.nik,
+                                        timer: 1500
+                                    });
+                                } else {
+                                    // document.getElementById('rumahadat').reset();
+                                    // $('#add_modal').modal('hide');
+                                    (JSON.stringify(data));
+                                    // alert(data)
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        title: 'Berhasil Menambahkan Data User',
+                                        timer: 1500
+                                    });
+                                    document.getElementById('add_user').reset(); // Reset the form
+                                    $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                                    $('#add_modal').modal('hide'); // Hide the modal
+                                    // location.reload();
+                                }
                             }
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
@@ -364,30 +371,32 @@
                 $('#tgl_lahir_edit').val(data.tgl_lahir);
                 $('#pegawai_edit').val(data.pegawai);
                 $('#peserta_edit').val(data.peserta);
+                $('#role_edit').val(data.role_id);
+
 
                 $('.dropdown-toggle').dropdown();
 
                 $('#edit_modal').modal('show'); // show bootstrap modal when complete loaded
                 console.log('bisa 2')
 
-                $.ajax({
-                    url: '<?php echo site_url('Admin/usermanagement/cat_list'); ?>',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(categoryData) { // Use a different variable name (e.g., categoryData) to avoid confusion
-                        console.log('Data from server:', categoryData);
-                        $('#role_edit').empty();
+                // $.ajax({
+                //     url: '<?php echo site_url('Admin/usermanagement/cat_list'); ?>',
+                //     type: 'GET',
+                //     dataType: 'json',
+                //     success: function(categoryData) { // Use a different variable name (e.g., categoryData) to avoid confusion
+                //         console.log('Data from server:', categoryData);
+                //         $('#role_edit').empty();
 
-                        // Populate the select element with data from the server
-                        $.each(categoryData, function(index, item) {
-                            var option = $('<option value="' + item.id + '">' + item.role_name + '</option>');
-                            if (item.id === data.role_id) { // Compare with data.id_cat_announcement
-                                option.prop('selected', true); // Automatically select the desired option
-                            }
-                            $('#role_edit').append(option);
-                        });
-                    }
-                });
+                //         // Populate the select element with data from the server
+                //         $.each(categoryData, function(index, item) {
+                //             var option = $('<option value="' + item.id + '">' + item.role_name + '</option>');
+                //             if (item.id === data.role_id) { // Compare with data.id_cat_announcement
+                //                 option.prop('selected', true); // Automatically select the desired option
+                //             }
+                //             $('#role_edit').append(option);
+                //         });
+                //     }
+                // });
 
                 console.log('bisa 3')
 
