@@ -33,7 +33,7 @@ class Index extends CI_Controller
     public function index()
     {
 
-        $data['content']  = 'webview/index/index_view';
+        $data['content']  = 'webview/Index/index_view';
         $data['banner']  = $this->index->get_banner();
         $data['pengawas'] = $this->team->get_all_team_pengawas();
         $data['pengurus'] = $this->team->get_all_team_pengurus();
@@ -41,12 +41,12 @@ class Index extends CI_Controller
 
         $this->load->view('_parts/User/Wrapper', $data);
     }
-    public function index2()
-    {
-        $data['content']  = 'webview/index_old/index_view';
-        $data['banner']  = $this->index->get_banner();
-        // $data['content_js'] = 'webview/user/index/index_js';
+    // public function index2()
+    // {
+    //     $data['content']  = 'webview/index_old/index_view';
+    //     $data['banner']  = $this->index->get_banner();
+    //     // $data['content_js'] = 'webview/user/index/index_js';
 
-        $this->load->view('_parts/User/Wrapper', $data);
-    }
+    //     $this->load->view('_parts/User/Wrapper', $data);
+    // }
 }

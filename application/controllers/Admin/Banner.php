@@ -38,8 +38,8 @@ class Banner extends CI_Controller
         } else if ($this->session->userdata('role_id') == 2) {
             redirect('error404');
         }
-        $data['content']  = 'webview/admin/banner/banner_view';
-        $data['content_js'] = 'webview/admin/banner/banner_js';
+        $data['content']  = 'webview/Admin/Banner/banner_view';
+        $data['content_js'] = 'webview/Admin/Banner/banner_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
     }
 
