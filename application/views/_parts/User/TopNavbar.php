@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="tgmenu__action tgmenu__action-five d-none d-md-block">
                                     <ul class="list-wrap">
-                                        <li class="header-btn"><a href="<?= base_url('dashboard') ?>" class="btn">Login</a></li>
+                                        <li class="header-btn"><a href="<?= base_url('auth') ?>" class="btn">Login</a></li>
                                         <!-- <li class="header-btn"><a href="<?= base_url('dashboard') ?>" class="btn">Saldo Peserta</a></li> -->
                                         <!-- <li class="header-btn"><a href="<?= base_url('SaldoUser') ?>" class="btn">Saldo Peserta</a></li> -->
                                     </ul>
