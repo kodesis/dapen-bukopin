@@ -105,7 +105,7 @@ class Banner extends CI_Controller
         // $halaman_page = $this->input->post('halaman_page');
 
         $config['upload_path'] = FCPATH . 'uploads/banner/'; // Same as the config file
-        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
         $config['file_name'] = 'banner_' . $nama;
 
         $this->load->library('upload', $config);
@@ -169,7 +169,7 @@ class Banner extends CI_Controller
         ];
 
         $config['upload_path'] =  FCPATH . 'uploads/banner/'; // Same as the config file
-        $config['allowed_types'] = 'jpeg|jpg|png';
+        $config['allowed_types'] = 'jpeg|jpg|png|gif';
         $config['file_name'] = 'banner_' . $nama;
 
 
