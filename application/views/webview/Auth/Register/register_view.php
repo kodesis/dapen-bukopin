@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="auth-logo">
-                                <a href="index.html"><img src="<?= base_url() ?>/assets/cms/logo/dapenbukopin_lg1.png" alt="Logo"></a>
+                                <a href="index.html"><img src="<?= base_url() ?>/assets/cms/Logo/dapenbukopin_lg1.png" alt="Logo"></a>
                             </div>
                         </div>
                         <div class="col-md-6">
