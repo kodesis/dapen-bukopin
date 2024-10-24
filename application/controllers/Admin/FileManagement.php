@@ -38,8 +38,8 @@ class FileManagement extends CI_Controller
 		} else if ($this->session->userdata('role_id') == 2) {
 			redirect('error404');
 		}
-		$data['content']  = 'webview/Admin/Filemanagement/filemanagement_view';
-		$data['content_js'] = 'webview/Admin/Filemanagement/filemanagement_js';
+		$data['content']  = 'webview/Admin/FileManagement/filemanagement_view';
+		$data['content_js'] = 'webview/Admin/FileManagement/filemanagement_js';
 		$this->load->view('_parts/Admin/Wrapper', $data);
 	}
 
