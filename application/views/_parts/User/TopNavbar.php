@@ -150,7 +150,7 @@
                                         <input type="text" placeholder="Search here...">
                                         <button><i class="fas fa-search"></i></button>
                                     </form> -->
-                                    <a href="<?= base_url('dashboard') ?>" class="btn">Login</a>
+                                    <a href="<?= base_url('auth') ?>" class="btn">Login</a>
                                 </div>
                                 <div class="tgmobile__menu-outer">
                                     <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
