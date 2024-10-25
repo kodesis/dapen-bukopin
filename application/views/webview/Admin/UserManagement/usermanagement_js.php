@@ -22,7 +22,7 @@
 
         // Load data for the table's content from an Ajax source
         ajax: {
-            url: "<?php echo site_url('Admin/usermanagement/ajax_list') ?> ",
+            url: "<?php echo site_url('Admin/UserManagement/ajax_list') ?> ",
             type: "POST",
             data: function(data) {}
         },
@@ -181,7 +181,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/usermanagement/save') ?>";
+                    url = "<?php echo site_url('Admin/UserManagement/save') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#add_user")[0]);
@@ -293,7 +293,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/usermanagement/process_insert_excel') ?>";
+                    url = "<?php echo site_url('Admin/UserManagement/process_insert_excel') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#upload_user")[0]);
@@ -354,7 +354,7 @@
         // $('.modal-title').text('Edit Poster');
         console.log('bisa 1')
         $.ajax({
-            url: "<?php echo site_url('Admin/usermanagement/ajax_edit/') ?>" + id,
+            url: "<?php echo site_url('Admin/UserManagement/ajax_edit/') ?>" + id,
             type: "POST",
             dataType: "JSON",
             success: function(data) {
@@ -380,7 +380,7 @@
                 console.log('bisa 2')
 
                 // $.ajax({
-                //     url: '<?php echo site_url('Admin/usermanagement/cat_list'); ?>',
+                //     url: '<?php echo site_url('Admin/UserManagement/cat_list'); ?>',
                 //     type: 'GET',
                 //     dataType: 'json',
                 //     success: function(categoryData) { // Use a different variable name (e.g., categoryData) to avoid confusion
@@ -492,7 +492,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/usermanagement/update_password') ?>";
+                    url = "<?php echo site_url('Admin/UserManagement/update_password') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#edit_password_user")[0]);
@@ -708,7 +708,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/usermanagement/update') ?>";
+                    url = "<?php echo site_url('Admin/UserManagement/update') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#edit_user")[0]);
@@ -787,7 +787,7 @@
             if (result.isConfirmed) {
 
                 $.ajax({
-                    url: "<?php echo site_url('Admin/usermanagement/delete') ?>",
+                    url: "<?php echo site_url('Admin/UserManagement/delete') ?>",
                     type: "POST",
                     data: {
                         id_delete: id
@@ -835,7 +835,7 @@
         // $('.modal-title').text('Edit Poster');
 
         $.ajax({
-            url: "<?php echo site_url('Admin/usermanagement/ajax_edit/') ?>/" + id,
+            url: "<?php echo site_url('Admin/UserManagement/ajax_edit/') ?>/" + id,
             type: "POST",
             dataType: "JSON",
             success: function(data) {
@@ -862,7 +862,7 @@
     function status_req() {
         id = $('#id_edit_status').val();
         var url;
-        url = "<?php echo site_url('admin/usermanagement/status_req') ?>";
+        url = "<?php echo site_url('admin/UserManagement/status_req') ?>";
 
         var formData = new FormData($("#status_request")[0]);
         $.ajax({
