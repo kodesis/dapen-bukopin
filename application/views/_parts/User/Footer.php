@@ -127,7 +127,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright-text-two">
-                            <p>Copyright © <a href="index.html">Kodesis</a> | All Right Reserved</p>
+                            <p>Copyright © <a href="index.html">Dapen Bank KB Bukopin</a> | All Right Reserved</p>
                         </div>
                     </div>
                 </div>

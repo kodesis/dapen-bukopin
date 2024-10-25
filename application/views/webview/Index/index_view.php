@@ -90,41 +90,47 @@
                     </div>
                 </div> -->
                 <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <div class="counter-item">
-                        <div class="icon">
-                            <!-- <i class="flaticon-happy"></i> -->
-                            <img src="<?= base_url() ?>/assets/user/img/brand/bufin.png" alt="">
-                        </div>
-                        <!-- <div class="content">
+                    <a href="https://www.bukopinfinance.co.id/">
+                        <div class="counter-item">
+                            <div class="icon">
+                                <!-- <i class="flaticon-happy"></i> -->
+                                <img src="<?= base_url() ?>/assets/user/img/brand/bufin.png" alt="">
+                            </div>
+                            <!-- <div class="content">
                             <h2 class="count"><span class="odometer" data-count="92"></span>K</h2>
                             <p>Satisfied <br> 100% Our Clients</p>
                         </div> -->
-                    </div>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <div class="counter-item">
-                        <div class="icon">
-                            <!-- <i class="flaticon-time"></i> -->
-                            <img src="<?= base_url() ?>/assets/user/img/brand/logokb2.png" alt="">
-                        </div>
-                        <!-- <div class="content">
+                    <a href="https://www.kbbank.co.id/">
+                        <div class="counter-item">
+                            <div class="icon">
+                                <!-- <i class="flaticon-time"></i> -->
+                                <img src="<?= base_url() ?>/assets/user/img/brand/logokb2.png" alt="">
+                            </div>
+                            <!-- <div class="content">
                             <h2 class="count"><span class="odometer" data-count="25"></span>+</h2>
                             <p>Years of Experiences <br> To Run This Company</p>
                         </div> -->
-                    </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <div class="counter-item">
-                        <div class="icon">
-                            <!-- <i class="flaticon-china"></i> -->
-                            <img src="<?= base_url() ?>/assets/user/img/brand/LOGO-KB-BUKOPIN-SYARIAH.png" alt="">
-                        </div>
-                        <!-- <div class="content">
+                    <a href="https://www.kbbanksyariah.co.id/">
+                        <div class="counter-item">
+                            <div class="icon">
+                                <!-- <i class="flaticon-china"></i> -->
+                                <img src="<?= base_url() ?>/assets/user/img/brand/LOGO-KB-BUKOPIN-SYARIAH.png" alt="">
+                            </div>
+                            <!-- <div class="content">
                             <h2 class="count"><span class="odometer" data-count="19"></span>+</h2>
                             <p>All Over The World <br> We Are Available</p>
                         </div> -->
-                    </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
