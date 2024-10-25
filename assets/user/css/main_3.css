@@ -1930,11 +1930,19 @@ textarea {
   color: var(--tg-color-white-default);
   border-color: var(--tg-theme-secondary);
 }
+@media (max-width: 991.98px) {
+.sticky-menu {
+
+    height: 10% !important;
+  }
+}
 
 .sticky-menu {
+  /* margin-top: -10px;
+  margin-bottom: -15px; */
   position: fixed;
   left: 0;
-  margin: auto;
+  /* margin: auto; */
   top: 0;
   width: 100%;
   z-index: 99;
@@ -1944,6 +1952,7 @@ textarea {
   -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
   box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
   border-radius: 0;
+  height: 12%;
 }
 .sticky-menu ul li .sub-menu {
   -webkit-border-radius: 0 0 6px 6px;
