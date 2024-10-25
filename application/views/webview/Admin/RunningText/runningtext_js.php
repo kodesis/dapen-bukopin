@@ -82,7 +82,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/runningtext/save') ?>";
+                    url = "<?php echo site_url('Admin/RunningText/save') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#add_user")[0]);
@@ -147,7 +147,7 @@
         // $('.modal-title').text('Edit Poster');
         console.log('bisa 1')
         $.ajax({
-            url: "<?php echo site_url('Admin/runningtext/ajax_edit/') ?>" + id,
+            url: "<?php echo site_url('Admin/RunningText/ajax_edit/') ?>" + id,
             type: "POST",
             dataType: "JSON",
             success: function(data) {
@@ -245,7 +245,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/runningtext/update') ?>";
+                    url = "<?php echo site_url('Admin/RunningText/update') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#edit_user")[0]);
@@ -324,7 +324,7 @@
             if (result.isConfirmed) {
 
                 $.ajax({
-                    url: "<?php echo site_url('Admin/runningtext/delete') ?>",
+                    url: "<?php echo site_url('Admin/RunningText/delete') ?>",
                     type: "POST",
                     data: {
                         id_delete: id

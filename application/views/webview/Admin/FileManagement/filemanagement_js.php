@@ -116,7 +116,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/filemanagement/save') ?>";
+                    url = "<?php echo site_url('Admin/FileManagement/save') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#add_file")[0]);
@@ -208,7 +208,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/filemanagement/process_insert_excel') ?>";
+                    url = "<?php echo site_url('Admin/FileManagement/process_insert_excel') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#upload_user")[0]);
@@ -272,7 +272,7 @@
         // $('.modal-title').text('Edit Poster');
         console.log('bisa 1')
         $.ajax({
-            url: "<?php echo site_url('Admin/filemanagement/ajax_edit/') ?>" + id,
+            url: "<?php echo site_url('Admin/FileManagement/ajax_edit/') ?>" + id,
             type: "POST",
             dataType: "JSON",
             success: function(data) {
@@ -399,7 +399,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('Admin/filemanagement/update') ?>";
+                    url = "<?php echo site_url('Admin/FileManagement/update') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#edit_file")[0]);
@@ -478,7 +478,7 @@
             if (result.isConfirmed) {
 
                 $.ajax({
-                    url: "<?php echo site_url('Admin/filemanagement/delete') ?>",
+                    url: "<?php echo site_url('Admin/FileManagement/delete') ?>",
                     type: "POST",
                     data: {
                         id_delete: id
