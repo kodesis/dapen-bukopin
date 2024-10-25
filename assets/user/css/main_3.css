@@ -1159,7 +1159,7 @@ textarea {
 
 .tg-header__top {
   background: var(--tg-color-dark-blue);
-  padding: 12px 0;
+  padding: 7.5px 0;
 }
 @media (max-width: 767.98px) {
   .tg-header__top {
@@ -1486,6 +1486,8 @@ textarea {
   padding: 26px 0px;
 }
 .tg-header__area-five {
+  margin-top: -10px;
+  margin-bottom: -15px;
   background: transparent;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
