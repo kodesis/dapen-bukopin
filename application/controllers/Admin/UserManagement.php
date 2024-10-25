@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-// require_once APPPATH . '../vendor/autoload.php';
 
 // Use the necessary PhpSpreadsheet classes
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -44,8 +43,8 @@ class UserManagement extends CI_Controller
 			redirect('error404');
 		}
 
-		$data['content']  = 'webview/Admin/Usermanagement/usermanagement_view';
-		$data['content_js'] = 'webview/Admin/Usermanagement/usermanagement_js';
+		$data['content']  = 'webview/Admin/UserManagement/usermanagement_view';
+		$data['content_js'] = 'webview/Admin/UserManagement/usermanagement_js';
 		$this->load->view('_parts/Admin/Wrapper', $data);
 	}
 

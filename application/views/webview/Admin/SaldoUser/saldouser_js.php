@@ -9,20 +9,6 @@
 <script src="<?= base_url() ?>assets/cms/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
 <script src="<?= base_url() ?>assets/cms/static/js/pages/datatables.js"></script>
 <script>
-    $(document).ready(function() {
-        $.ajax({
-            url: '<?php echo site_url('Admin/saldouser/cat_list'); ?>',
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                // Populate the select element with data from the server
-                $.each(data, function(index, item) {
-                    $('#role_add').append('<option value="' + item.id + '">' + item.role_name + '</option>');
-                });
-            }
-        });
-
-    });
     let jquery_datatable = $("#table1").DataTable({
         responsive: true,
         processing: true, //Feature control the processing indicator.

@@ -1,5 +1,7 @@
 <script>
-    function login() {
+    function login(event) {
+        event.preventDefault(); // Prevent the default form submission
+
         const ttlnamaValue = $('#username_login').val();
         const ttlfileValue = $('#password_login').val();
 

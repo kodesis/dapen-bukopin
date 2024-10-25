@@ -40,7 +40,7 @@
                     <h6 class="auth-title">Log in.</h6>
                     <p class="auth-subtitle mb-2">Log in with your data that you entered during registration.</p>
 
-                    <form id="login_form">
+                    <form id="login_form" onsubmit="login(event)">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" id="username_login" name="username" class="form-control form-control-xl" placeholder="Email">
                             <div class="form-control-icon">
@@ -59,8 +59,8 @@
                                 Keep me logged in
                             </label>
                         </div> -->
+                        <button type="submit" onclick="login()" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     </form>
-                    <button onclick="login()" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     <div class="text-center mt-5 text-lg fs-4">
                         <!-- <p class="text-gray-600">Don't have an account? <a href="<?= base_url('auth/register') ?>" class="font-bold">Sign
                                 up</a>.</p> -->
