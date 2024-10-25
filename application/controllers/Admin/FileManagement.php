@@ -172,7 +172,7 @@ class FileManagement extends CI_Controller
 			// 'halaman_page'              => $halaman_page,
 		];
 
-		$nama_file = sanitize_filename($nama); // Sanitize the filename
+		$nama_file = $this->sanitize_filename($nama); // Sanitize the filename
 		$config['upload_path'] =  FCPATH . 'uploads/file/'; // Same as the config file
 		$config['allowed_types'] = 'pdf|word';
 		$config['file_name'] = 'file_' . $nama_file;
