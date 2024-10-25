@@ -846,10 +846,6 @@
                 $('#id_edit_status').val(data.uid);
                 $('#status_user').val(data.active);
 
-
-
-
-
                 $('#approval_modal_req').modal('show'); // show bootstrap modal when complete loaded
 
             },
