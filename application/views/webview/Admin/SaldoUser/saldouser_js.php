@@ -20,7 +20,9 @@
         ajax: {
             url: "<?php echo site_url('Admin/SaldoUser/ajax_list') ?> ",
             type: "POST",
-            data: function(data) {}
+            data: function(data) {
+                console.log(data);
+            }
         },
         columnDefs: [{
             targets: 14, // The 8th column (0-indexed)
