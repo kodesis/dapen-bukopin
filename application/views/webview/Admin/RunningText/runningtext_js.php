@@ -156,7 +156,7 @@
                 // alert(JSON.stringify(data));
 
                 $('#id_edit').val(data.uid);
-                $('#text_edit').val(data.text);
+                $('#Text_edit').val(data.text);
                 $('.dropdown-toggle').dropdown();
 
                 $('#edit_modal').modal('show'); // show bootstrap modal when complete loaded
