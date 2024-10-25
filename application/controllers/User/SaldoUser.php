@@ -44,15 +44,15 @@ class SaldoUser extends CI_Controller
 
 
 		if ($this->session->userdata('role_id') == 1) {
-			$data['content']  = 'webview/admin/saldouser/saldouser_view';
-			$data['content_js'] = 'webview/admin/saldouser/saldouser_js';
+			$data['content']  = 'webview/Admin/SaldoUser/saldouser_view';
+			$data['content_js'] = 'webview/Admin/SaldoUser/saldouser_js';
 		} else if ($this->session->userdata('role_id') == 2) {
-			$data['content']  = 'webview/user/saldouser/saldouser_view';
-			$data['content_js'] = 'webview/user/saldouser/saldouser_js';
+			$data['content']  = 'webview/User/SaldoUser/saldouser_view';
+			$data['content_js'] = 'webview/User/SaldoUser/saldouser_js';
 		}
 
 
-		$this->load->view('_parts/admin/Wrapper', $data);
+		$this->load->view('_parts/Admin/Wrapper', $data);
 	}
 
 	public function ajax_list()
