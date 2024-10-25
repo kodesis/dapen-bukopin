@@ -90,8 +90,8 @@ class FileManagement_m extends CI_Model
         $this->db->update('file', $data, $where);
     }
 
-    public function delete($data, $where)
+    public function delete($where)
     {
-        $this->db->update($this->table, $data, $where);
+        $this->db->delete($this->table, $where);
     }
 }
