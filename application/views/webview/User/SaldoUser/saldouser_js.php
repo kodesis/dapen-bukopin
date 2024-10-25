@@ -261,7 +261,7 @@
         // $('.modal-title').text('Edit Poster');
         console.log('bisa 1')
         $.ajax({
-            url: "<?php echo site_url('user/SaldoUser/ajax_edit/') ?>" + id,
+            url: "<?php echo site_url('User/SaldoUser/ajax_edit/') ?>" + id,
             type: "POST",
             dataType: "JSON",
             success: function(data) {
@@ -606,7 +606,7 @@
         // $('.modal-title').text('Edit Poster');
         console.log('bisa 1')
         $.ajax({
-            url: "<?php echo site_url('user/SaldoUser/get_last_saldo/') ?>",
+            url: "<?php echo site_url('User/SaldoUser/get_last_saldo/') ?>",
             type: "GET",
             dataType: "JSON",
             success: function(data) {
