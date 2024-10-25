@@ -139,7 +139,7 @@
                                 </td>
                                 <td><strong>Alamat</strong></td>
                                 <td>
-                                    <p>:</p>
+                                    :
                                 </td>
                                 <td><span id="alamat_user"></span></td>
                             </tr>
@@ -153,7 +153,7 @@
                                 </td>
                                 <td><strong>Tanggal Lahir</strong></td>
                                 <td>
-                                    <p>:</p>
+                                    :
                                 </td>
                                 <td><span id="tgl_lahir_user"></span></td>
                             </tr>
@@ -167,7 +167,7 @@
                                 </td>
                                 <td><strong>Tgl. Masuk Kerja </strong></td>
                                 <td>
-                                    <p>:</p>
+                                    :
                                 </td>
                                 <td><span id="pegawai_user"></span></td>
                             </tr>
@@ -179,7 +179,7 @@
                                 </td>
                                 <td><strong>Tgl. Kepesertaan </strong></td>
                                 <td>
-                                    <p>:</p>
+                                    :
                                 </td>
                                 <td><span id="peserta_user"></span></td>
                             </tr>
