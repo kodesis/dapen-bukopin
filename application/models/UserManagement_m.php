@@ -3,8 +3,8 @@
 class UserManagement_m extends CI_Model
 {
     var $table = 'user';
-    var $column_order = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active.name'); //set column field database for datatable orderable
-    var $column_search = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active.name'); //set column field database for datatable searchable 
+    var $column_order = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active'); //set column field database for datatable orderable
+    var $column_search = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active'); //set column field database for datatable searchable 
     var $order = array('user.uid' => 'asc'); // default order 
 
     function get_category()
@@ -14,9 +14,8 @@ class UserManagement_m extends CI_Model
     function _get_datatables_query()
     {
 
-        $this->db->select('user.*, role.role_name');
+        $this->db->select('user.*');
         $this->db->from('user');
-        $this->db->join('role', 'role.id = user.role_id');
         // $this->db->where('user.active', 1);
         $i = 0;
 
