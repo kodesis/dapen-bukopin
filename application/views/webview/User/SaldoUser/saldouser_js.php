@@ -11,7 +11,7 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            url: '<?php echo site_url('user/saldouser/cat_list'); ?>',
+            url: '<?php echo site_url('User/SaldoUser/cat_list'); ?>',
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -34,7 +34,7 @@
 
         // Load data for the table's content from an Ajax source
         ajax: {
-            url: "<?php echo site_url('user/saldouser/ajax_list') ?> ",
+            url: "<?php echo site_url('User/SaldoUser/ajax_list') ?> ",
             type: "POST",
             data: function(data) {}
         },
@@ -97,7 +97,7 @@
 
             console.log('bisa 1')
             $.ajax({
-                url: "<?php echo site_url('user/saldouser/cari/') ?>" + ttlbulanValue + '/' + ttltahunValue,
+                url: "<?php echo site_url('User/SaldoUser/cari/') ?>" + ttlbulanValue + '/' + ttltahunValue,
                 type: "POST",
                 dataType: "JSON",
                 success: function(response) {
@@ -197,7 +197,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('user/saldouser/process_insert_excel') ?>";
+                    url = "<?php echo site_url('User/SaldoUser/process_insert_excel') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#upload_user")[0]);
@@ -290,7 +290,7 @@
                 console.log('bisa 2')
 
                 $.ajax({
-                    url: '<?php echo site_url('user/saldouser/cat_list'); ?>',
+                    url: '<?php echo site_url('User/SaldoUser/cat_list'); ?>',
                     type: 'GET',
                     dataType: 'json',
                     success: function(categoryData) { // Use a different variable name (e.g., categoryData) to avoid confusion
@@ -479,7 +479,7 @@
 
                     var url;
                     var formData;
-                    url = "<?php echo site_url('user/saldouser/update') ?>";
+                    url = "<?php echo site_url('User/SaldoUser/update') ?>";
 
                     // window.location = url_base;
                     var formData = new FormData($("#edit_user")[0]);
@@ -558,7 +558,7 @@
             if (result.isConfirmed) {
 
                 $.ajax({
-                    url: "<?php echo site_url('user/saldouser/delete') ?>",
+                    url: "<?php echo site_url('User/SaldoUser/delete') ?>",
                     type: "POST",
                     data: {
                         id_delete: id
