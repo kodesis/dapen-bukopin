@@ -1597,6 +1597,10 @@ progress {
         --bs-gutter-y: 3rem
     }
 }
+    .col-lg-7 {
+        flex: 0 0 auto;
+        width: 30%
+    }
 
 @media (min-width: 992px) {
     .col-lg {

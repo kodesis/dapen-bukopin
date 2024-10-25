@@ -21,11 +21,10 @@
 <body>
     <script src="<?= base_url() ?>assets/cms/static/js/initTheme.js"></script>
     <div id="auth">
-
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <div class="row">
+                    <div class="row" style="margin-bottom: -3rem;">
                         <div class="col-md-6">
                             <div class="auth-logo">
                                 <a href="<?= base_url('index') ?>"><img src="<?= base_url() ?>/assets/cms/Logo/dapenbukopin_lg1.png" alt="Logo"></a>
@@ -38,8 +37,8 @@
                             </div>
                         </div>
                     </div>
-                    <h1 class="auth-title">Log in.</h1>
-                    <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+                    <h6 class="auth-title">Log in.</h6>
+                    <p class="auth-subtitle mb-2">Log in with your data that you entered during registration.</p>
 
                     <form id="login_form">
                         <div class="form-group position-relative has-icon-left mb-4">
