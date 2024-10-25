@@ -409,7 +409,7 @@
         });
 
         // $.ajax({
-        //     url: '<?php echo site_url('admin/master/announcement/cat_list'); ?>',
+        //     url: '<?php echo site_url('Admin/master/announcement/cat_list'); ?>',
         //     type: 'GET',
         //     dataType: 'json',
         //     success: function(data) {
@@ -858,7 +858,7 @@
     function status_req() {
         id = $('#id_edit_status').val();
         var url;
-        url = "<?php echo site_url('admin/UserManagement/status_req') ?>";
+        url = "<?php echo site_url('Admin/UserManagement/status_req') ?>";
 
         var formData = new FormData($("#status_request")[0]);
         $.ajax({
