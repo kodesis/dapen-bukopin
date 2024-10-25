@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="content">
                                     <!-- <h6 class="circle rotateme">Years Of - Experience 25 -</h6> -->
-                                    <h6 class="circle rotateme">Pensiun With KBBukopin -</h6>
+                                    <h6 class="circle rotateme">DAPEN KB BUKOPIN -</h6>
                                 </div>
                             </div>
                         </div>
