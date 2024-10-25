@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require 'vendor/autoload.php';
 
 // Use the necessary PhpSpreadsheet classes
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
