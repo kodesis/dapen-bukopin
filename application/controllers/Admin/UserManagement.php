@@ -71,7 +71,11 @@ class UserManagement extends CI_Controller
 			$row[] = $cat->tgl_lahir;
 			$row[] = $cat->pegawai;
 			$row[] = $cat->peserta;
-			$row[] = $cat->role_name;
+			if ($cat->role_id == 1) {
+				$row[] = 'Admin';
+			} else if ($cat->role_id == 2) {
+				$row[] = 'User';
+			}
 			if ($cat->active == 0) {
 				$row[] = '<center> <h6 title="Status" onclick="onApprove_req(' . $cat->uid . ')" data-toggle="tooltip" data-original-title="Not Publish"  class="btn btn-danger" id="btn-edit" >Non Active</button></center>';
 			} else if ($cat->active == 1) {
