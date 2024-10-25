@@ -113,7 +113,7 @@ class FileManagement extends CI_Controller
 		$jenis_file = $this->input->post('jenis_file');
 		$jenis_dokumen = $this->input->post('jenis_dokumen');
 		// $halaman_page = $this->input->post('halaman_page');
-		$nama_file = sanitize_filename($nama); // Sanitize the filename
+		$nama_file = $this->sanitize_filename($nama); // Sanitize the filename
 		$config['upload_path'] = FCPATH . 'uploads/file/'; // Same as the config file
 		$config['allowed_types'] = 'pdf|docx|doc';
 		$config['file_name'] = 'file_' . $nama_file;
