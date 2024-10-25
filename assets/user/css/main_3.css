@@ -1488,7 +1488,7 @@ textarea {
 .tg-header__area-five {
   /* margin-top: -10px; */
   /* margin-bottom: -15px; */
-  /* height: 90px; */
+  height: 90px;
   background: transparent;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
