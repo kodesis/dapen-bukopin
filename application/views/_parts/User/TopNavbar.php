@@ -44,7 +44,7 @@
     <!-- Scroll-top-end-->
     <!-- header-area -->
     <header class="tg-header__style-five">
-        <div class="tg-header__top">
+        <!-- <div class="tg-header__top">
             <div class="container custom-container">
                 <div class="running-text">
                     <?php
@@ -67,7 +67,7 @@
                     ?>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div id="sticky-header" class="tg-header__area tg-header__area-five">
             <div class="container">
                 <div class="row">
