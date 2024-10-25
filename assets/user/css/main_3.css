@@ -1596,7 +1596,7 @@ textarea {
 .tgmenu__navbar-wrap > ul > li .sub-menu {
   position: absolute;
   left: 0;
-  top: 100%;
+  top: 85%;
   min-width: 230px;
   border: 1px solid #f5f5f5;
   background: var(--tg-color-white-default);
