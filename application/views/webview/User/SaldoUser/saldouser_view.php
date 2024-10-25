@@ -125,7 +125,7 @@
                                 </td>
                                 <td><strong>NIK</strong></td>
                                 <td>
-                                    <p>:</p>
+                                    :
                                 </td>
                                 <td><span id="nik_user"></span></td>
                             </tr>
