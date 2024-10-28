@@ -361,7 +361,7 @@
     </section>
     <!-- end all services -->
     <!-- our team -->
-    <section class="our_team__area-six">
+    <!-- <section class="our_team__area-six">
         <div class="container">
             <div class="section-title mb-30 tg-heading-subheading animation-style3 text-center">
                 <span class="sub-title text-capitalize">Meet Our Amazing Team</span>
@@ -433,7 +433,7 @@
                 <a href="https://api.whatsapp.com/message/EXLTRFFRPD6MD1" class="btn" data-aos="fade-up" data-aos-delay="600">Contact Us</a>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- end our team -->
     <!-- FAQ -->
     <section class="faqs__area-six">

@@ -29,6 +29,14 @@ class AboutUs extends CI_Controller
         // 	redirect('auth'); // Redirect to the 'autentic' page
         // }
     }
+    public function VisiDanMisi()
+    {
+
+        $data['content']  = 'webview/VisiDanMisi/visimisi_view';
+        // $data['content_js'] = 'webview/user/index/index_js';
+
+        $this->load->view('_parts/User/Wrapper', $data);
+    }
     public function Sejarah()
     {
 

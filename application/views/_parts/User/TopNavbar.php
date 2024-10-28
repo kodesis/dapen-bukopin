@@ -90,6 +90,7 @@
                                                                                 echo "active";
                                                                             } ?>"><a href="#">Tentang</a>
                                             <ul class="sub-menu">
+                                                <li><a href="<?= base_url('AboutUs/VisiDanMisi') ?>">Visi Dan Misi</a></li>
                                                 <li><a href="<?= base_url('AboutUs/Sejarah') ?>">Sejarah</a></li>
                                                 <li><a href="<?= base_url('AboutUs/ProgramPensiun') ?>">Program Pensiun</a></li>
                                                 <li><a href="<?= base_url('AboutUs/Team') ?>">Team</a></li>

@@ -62,7 +62,7 @@
                                         <th>Kode Peserta</th>
                                         <th>Nama</th>
                                         <th>Email</th>
-                                        <th>NIK</th>
+                                        <th>NIP</th>
                                         <th>Alamat</th>
                                         <th>Tanggal Lahir</th>
                                         <th>Pegawai</th>
@@ -126,9 +126,9 @@
                                 <input id="kd_peserta_add_nip" name="kd_peserta" type="number" placeholder="Masukan Kode Peserta"
                                     class="form-control">
                             </div>
-                            <label for="nik">NIK </label>
+                            <label for="nik">NIP </label>
                             <div class="form-group">
-                                <input id="nik_add_nip" name="nik" type="number" placeholder="Masukan NIK"
+                                <input id="nik_add_nip" name="nik" type="number" placeholder="Masukan NIP"
                                     class="form-control">
                             </div>
                             <label for="date">Tanggal Lahir </label>
@@ -217,9 +217,9 @@
                                 <input id="password2_add" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
                                     class="form-control">
                             </div>
-                            <label for="nik">NIK </label>
+                            <label for="nik">NIP </label>
                             <div class="form-group">
-                                <input id="nik_add" name="nik" type="number" placeholder="Masukan NIK"
+                                <input id="nik_add" name="nik" type="number" placeholder="Masukan NIP"
                                     class="form-control">
                             </div>
                             <label for="date">Alamat </label>
