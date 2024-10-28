@@ -31,12 +31,12 @@
                                 <a href="<?= base_url('index') ?>"><img src="<?= base_url() ?>/assets/cms/Logo/dapenbukopin_lg1.png" alt="Logo"></a>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="auth-logo d-flex justify-content-end">
                                 <a class="font-bold" href="<?= base_url('') ?>" style="font-size:20px"><i class="bi bi-arrow-left"></i>
                                     Back</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <h1 class="auth-title">Reset Password</h1>
                     <p class="auth-subtitle mb-5">Keep your Password in Safe Place</p>

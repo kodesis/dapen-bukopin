@@ -24,18 +24,18 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <div class="row" style="margin-bottom: -3rem;">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="auth-logo">
                                 <a href="<?= base_url('index') ?>"><img src="<?= base_url() ?>/assets/cms/Logo/dapenbukopin_lg1.png" alt="Logo"></a>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="auth-logo d-flex justify-content-end">
                                 <a class="font-bold" href="<?= base_url('') ?>" style="font-size:20px"><i class="bi bi-arrow-left"></i>
                                     Back</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <h6 class="auth-title">Log in.</h6>
                     <p class="auth-subtitle mb-2">Log in with your data that you entered during registration.</p>
