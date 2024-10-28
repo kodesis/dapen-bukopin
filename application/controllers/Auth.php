@@ -303,8 +303,6 @@ class Auth extends CI_Controller
     //             $mail->isSMTP();
     //             $mail->Host       = 'smtp.gmail.com';
     //             $mail->SMTPAuth   = true;
-    //             $mail->Username   = 'dimasuciha126@gmail.com'; // Your Gmail address
-    //             $mail->Password   = 'hjhvjdxinasimojm'; // The App Password generated earlier
     //             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     //             $mail->Port       = 465; // TLS port: 587, SSL port: 465
 
