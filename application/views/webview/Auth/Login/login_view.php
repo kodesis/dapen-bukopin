@@ -62,8 +62,8 @@
                         <button type="submit" onclick="login()" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <!-- <p class="text-gray-600">Don't have an account? <a href="<?= base_url('auth/register') ?>" class="font-bold">Sign
-                                up</a>.</p> -->
+                        <p class="text-gray-600">Don't have an account? <a href="<?= base_url('auth/register') ?>" class="font-bold">Sign
+                                up</a>.</p>
                         <p><a class="font-bold" href="<?= base_url('auth/check_email') ?>">Forgot password?</a>.</p>
                     </div>
                 </div>

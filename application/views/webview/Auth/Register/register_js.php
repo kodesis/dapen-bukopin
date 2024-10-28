@@ -84,7 +84,7 @@
                     if (!data.status) {
                         swal.fire('Gagal menyimpan data', 'error');
                     }
-                    if (data.status == 'NIP Sudah Dipakai') {
+                    if (data.status == 'NIP Sudah Di Pakai') {
                         swal.fire({
                             customClass: 'slow-animation',
                             icon: 'error',
@@ -92,12 +92,20 @@
                             title: 'NIP Sudah di pakai',
                             timer: 1500
                         });
-                    } else if (data.status == 'Email Sudah Dipakai') {
+                    } else if (data.status == 'Email Sudah Di Pakai') {
                         swal.fire({
                             customClass: 'slow-animation',
                             icon: 'error',
                             showConfirmButton: false,
-                            title: 'Data Sudah di pakai',
+                            title: 'Email Sudah di pakai',
+                            timer: 1500
+                        });
+                    } else if (data.status == 'NIP dan Tanggal Lahir Tidak Di temukan') {
+                        swal.fire({
+                            customClass: 'slow-animation',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            title: 'NIP Dan Tanggal Lahir Tidak Di Temukan',
                             timer: 1500
                         });
                     } else {
@@ -111,8 +119,9 @@
                             showConfirmButton: false,
                             title: 'Berhasil Register',
                             timer: 1500
+                        }).then(() => {
+                            window.location.href = base_url + 'auth'; // Assuming 'dashboard' is the path for admin dashboard
                         });
-                        window.location.href = base_url + 'auth'; // Assuming 'dashboard' is the path for admin dashboard
                         // location.reload();
 
                     }

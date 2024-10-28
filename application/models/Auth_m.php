@@ -31,4 +31,9 @@ class Auth_m extends CI_Model
     {
         $this->db->update('user', $data, $where);
     }
+
+    public function update_user($data, $where1, $where2)
+    {
+        $this->db->update('user', $data, $where1, $where2);
+    }
 }

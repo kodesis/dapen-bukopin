@@ -81,6 +81,8 @@ class UserManagement extends CI_Controller
 				$row[] = '<center> <h6 title="Status" onclick="onApprove_req(' . $cat->uid . ')" data-toggle="tooltip" data-original-title="Not Publish"  class="btn btn-danger" id="btn-edit" >Non Active</button></center>';
 			} else if ($cat->active == 1) {
 				$row[] = '<center> <h6  title="Status" onclick="onApprove_req(' . $cat->uid . ')" data-toggle="tooltip" data-original-title="Publish"  class="btn btn-success" id="btn-edit" >Active</button></center>';
+			} else if ($cat->active == 2) {
+				$row[] = '<center> <h6 title="Status" onclick="onApprove_req(' . $cat->uid . ')" data-toggle="tooltip" data-original-title="Publish"  class="btn btn-warning" id="btn-edit" >Belum Terdaftar</button></center>';
 			}
 			$row[] = '<center> <div class="list-icons d-inline-flex">
                 <a title="Update User" onclick="onEdit(' . $cat->uid . ')" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
@@ -117,6 +119,43 @@ class UserManagement extends CI_Controller
 
 	}
 
+	public function save_nip()
+	{
+		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+		$kd_peserta = $this->input->post('kd_peserta');
+		$nik = $this->input->post('nik');
+		$tgl_lahir = $this->input->post('tgl_lahir');
+		$pegawai = $this->input->post('pegawai');
+		$peserta = $this->input->post('peserta');
+
+		// Get KD Peserta
+		$this->db->select('uid'); // Select the uid column
+		$this->db->from('user'); // Your table name
+		$this->db->where('nik', $nik); // Filter by kd_peserta
+		$result2 = $this->db->get()->row(); // Execute the query
+
+		if (!empty($result2)) {
+			echo json_encode(array("status" => "NIK Sudah di Pakai", "nik" => $nik));
+		} else {
+
+			$this->usermanagement->save_user(
+				array(
+
+					'created'           => $date->format('Y-m-d H:i:s'),
+					'kd_peserta'              => $kd_peserta,
+					'nik'              => $nik,
+					'tgl_lahir'        => $tgl_lahir,
+					'pegawai'        => $pegawai,
+					'peserta'        => $peserta,
+					'role_id'             => 2,
+					'active'           => 2,
+				),
+			);
+
+			echo json_encode(array("status" => TRUE));
+		}
+	}
+
 	public function save()
 	{
 		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
@@ -141,7 +180,7 @@ class UserManagement extends CI_Controller
 		// Get KD Peserta
 		$this->db->select('uid'); // Select the uid column
 		$this->db->from('user'); // Your table name
-		$this->db->where('kd_peserta', $nik); // Filter by kd_peserta
+		$this->db->where('nik', $nik); // Filter by kd_peserta
 		$result2 = $this->db->get()->row(); // Execute the query
 
 		if (!empty($result)) {

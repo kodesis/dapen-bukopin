@@ -26,16 +26,16 @@ class Auth extends CI_Controller
         $data['content_js'] = 'webview/Auth/Login/login_js';
         $this->load->view('_parts/Wrapper_auth', $data);
     }
-    // public function register()
-    // {
-    //     if ($this->session->userdata('user_logged_in') == True) {
-    //         redirect('dashboard');
-    //     }
+    public function register()
+    {
+        if ($this->session->userdata('user_logged_in') == True) {
+            redirect('dashboard');
+        }
 
-    //     $data['content']  = 'webview/Auth/Register/register_view';
-    //     $data['content_js'] = 'webview/Auth/Register/register_js';
-    //     $this->load->view('_parts/Wrapper_auth', $data);
-    // }
+        $data['content']  = 'webview/Auth/Register/register_view';
+        $data['content_js'] = 'webview/Auth/Register/register_js';
+        $this->load->view('_parts/Wrapper_auth', $data);
+    }
 
     public function login_process()
     {
@@ -84,41 +84,51 @@ class Auth extends CI_Controller
 
         $this->db->select('*');
         $this->db->from('user');
-        $user = $this->db->get()->result();
+        $this->db->where('nik', $this->input->post('nip'));
+        $this->db->where('tgl_lahir', $this->input->post('tgl_lahir'));
+        $user = $this->db->get()->row();
 
-        foreach ($user as $u) {
-            $nik_r   = $u->nik;
-            $email_r  = $u->email;
-        }
+        if (!empty($user)) {
 
-        if ($nik_r == $this->input->post('nip')) {
-            $data = array("status" => 'NIP Sudah Dipakai');
-            echo json_encode($data);
-        } else if ($email_r == $this->input->post('email')) {
-            $data = array("status" => 'Email Sudah Dipakai');
-            echo json_encode($data);
+            if (empty($user->email) && empty($user->nama) && empty($user->password)) {
+
+                // Email Cek
+                $this->db->select('*');
+                $this->db->from('user');
+                $this->db->where('email', $this->input->post('email'));
+                $email_cek = $this->db->get()->result();
+
+                if (!empty($email_cek)) {
+                    $data = array("status" => 'Email Sudah Di Pakai');
+                    echo json_encode($data);
+                } else {
+
+                    $enc_password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+
+                    $this->load->helper('string');
+                    $date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+
+                    $data = array(
+                        'created'         => $date->format('Y-m-d H:i:s'),
+                        'nama'       => $this->input->post('nama'),
+                        'email'           => $this->input->post('email'),
+                        'active'          => 1,
+                        'password'        => $enc_password,
+                    );
+                    $this->regis->update_user($data, array('nik' => $this->input->post('nip')), array('tgl_lahir' => $this->input->post('tgl_lahir')));
+
+
+                    $data = array("status" => 'berhasil');
+                    echo json_encode($data);
+                }
+            } else {
+
+                $data = array("status" => 'NIP Sudah Di Pakai');
+                echo json_encode($data);
+            }
         } else {
 
-
-
-            $enc_password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
-
-            $this->load->helper('string');
-            $date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-
-            $data = array(
-                'created'         => $date->format('Y-m-d H:i:s'),
-                'nama'       => $this->input->post('nama'),
-                'nik'            => $this->input->post('nip'),
-                'email'           => $this->input->post('email'),
-                'tgl_lahir'  => $this->input->post('tgl_lahir'),
-                'active'          => 1,
-                'password'        => $enc_password,
-            );
-            $this->regis->save($data);
-
-            $email = $this->input->post('email');
-            $data = array("status" => 'berhasil', "email" => $email);
+            $data = array("status" => 'NIP dan Tanggal Lahir Tidak Di temukan');
             echo json_encode($data);
         }
     }

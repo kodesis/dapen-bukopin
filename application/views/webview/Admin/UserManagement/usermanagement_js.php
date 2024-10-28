@@ -44,9 +44,150 @@
     document.getElementById('tgl_lahir_add').value = year + '-' + month + '-' + day;
     document.getElementById('pegawai_add').value = year + '-' + month + '-' + day;
     document.getElementById('peserta_add').value = year + '-' + month + '-' + day;
+
+    document.getElementById('tgl_lahir_add_nip').value = year + '-' + month + '-' + day;
+    document.getElementById('pegawai_add_nip').value = year + '-' + month + '-' + day;
+    document.getElementById('peserta_add_nip').value = year + '-' + month + '-' + day;
     document.getElementById('tanggal_upload').value = year + '-' + month + '-' + day;
 
+    function add_user_nip() {
 
+        const ttlkdpesertaValue = $('#kd_peserta_add_nip').val();
+        const ttlnikValue = $('#nik_add_nip').val();
+        const ttltgl_lahirValue = $('#tgl_lahir_add_nip').val();
+        const ttlpegawaiValue = $('#pegawai_add_nip').val();
+        const ttlpesertaValue = $('#peserta_add_nip').val();
+
+
+        if (!ttlnikValue) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom NIK Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (!ttlkdpesertaValue) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Kode Peserta Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (!ttltgl_lahirValue) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Tanggal Lahir Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (!ttlpegawaiValue) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Pegawai Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (!ttlpesertaValue) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Peserta Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    InputEvent: 'form-control',
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Ingin Menambahkan Data NIP User?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Tambahkan',
+                cancelButtonText: 'Tidak',
+                reverseButtons: true
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    var url;
+                    var formData;
+                    url = "<?php echo site_url('Admin/UserManagement/save_nip') ?>";
+
+                    // window.location = url_base;
+                    var formData = new FormData($("#add_user_nip")[0]);
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        dataType: "JSON",
+                        beforeSend: function() {
+                            swal.fire({
+                                icon: 'info',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                title: 'Loading...'
+
+                            });
+                        },
+                        success: function(data) {
+                            /* if(!data.status)alert("ho"); */
+                            if (!data.status) swal.fire('Gagal menyimpan data', 'error');
+                            else {
+                                if (data.status == 'NIK Sudah di Pakai') {
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        title: 'NIK Sudah Di gunakan',
+                                        text: 'NIK : ' + data.nik,
+                                        timer: 1500
+                                    });
+                                } else {
+                                    // document.getElementById('rumahadat').reset();
+                                    // $('#add_modal').modal('hide');
+                                    (JSON.stringify(data));
+                                    // alert(data)
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        title: 'Berhasil Menambahkan Data User',
+                                        timer: 1500
+                                    });
+                                    document.getElementById('add_user_nip').reset(); // Reset the form
+                                    $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                                    $('#add_nip_modal').modal('hide'); // Hide the modal
+                                    // location.reload();
+                                }
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            swal.fire('Operation Failed!', errorThrown, 'error');
+                        },
+                        complete: function() {
+                            console.log('Editing job done');
+                        }
+                    });
+
+
+                }
+
+            })
+        }
+    }
 
     function add_user() {
         const ttlnamaValue = $('#nama_add').val();

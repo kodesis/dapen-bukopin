@@ -41,6 +41,10 @@
                                     Upload User
                                 </button>
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#add_nip_modal" style="margin-right:10px ;">
+                                    Add NIP User
+                                </button>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#add_modal">
                                     Add User
                                 </button>
@@ -103,7 +107,67 @@
 
         </div>
 
-
+        <!--scrolling content Modal ADD -->
+        <div class="modal fade" id="add_nip_modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Add NIP User</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="add_user_nip">
+                            <label for="nik">Kode Peserta </label>
+                            <div class="form-group">
+                                <input id="kd_peserta_add_nip" name="kd_peserta" type="number" placeholder="Masukan Kode Peserta"
+                                    class="form-control">
+                            </div>
+                            <label for="nik">NIK </label>
+                            <div class="form-group">
+                                <input id="nik_add_nip" name="nik" type="number" placeholder="Masukan NIK"
+                                    class="form-control">
+                            </div>
+                            <label for="date">Tanggal Lahir </label>
+                            <div class="form-group">
+                                <input id="tgl_lahir_add_nip" name="tgl_lahir" type="date" placeholder="Masukan Tanggal Lahir"
+                                    class="form-control">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="date">Pegawai </label>
+                                    <div class="form-group">
+                                        <input id="pegawai_add_nip" name="pegawai" type="date" placeholder="Masukan Tanggal"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="date">Peserta </label>
+                                    <div class="form-group">
+                                        <input id="peserta_add_nip" name="peserta" type="date" placeholder="Masukan Tanggal"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary"
+                            data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button onclick="add_user_nip()" type="button" class="btn btn-primary ms-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Accept</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--scrolling content Modal ADD -->
         <div class="modal fade" id="add_modal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -417,6 +481,7 @@
                                         <option selected>Pilih Status</option>
                                         <option value="0">Non Active</option>
                                         <option value="1">Active</option>
+                                        <option value="2">Belum Terdaftar</option>
 
                                     </select>
 
