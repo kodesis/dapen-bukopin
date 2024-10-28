@@ -75,7 +75,8 @@
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control form-control-xl" placeholder="Tanggal Lahir">
+                            <input type="text" id="tgl_lahir" class="form-control form-control-xl" placeholder="Tanggal Lahir"
+                                onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'">
                             <div class="form-control-icon">
                                 <i class="bi bi-envelope"></i>
                             </div>
@@ -97,5 +98,12 @@
 
     </div>
 </body>
+<script>
+    const dateInput = document.getElementById("tgl_lahir");
+
+    // Add a placeholder effect
+    dateInput.addEventListener("focus", () => dateInput.setAttribute("placeholder", "Tanggal Lahir"));
+    dateInput.addEventListener("blur", () => dateInput.removeAttribute("placeholder"));
+</script>
 
 </html>
