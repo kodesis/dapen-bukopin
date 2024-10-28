@@ -142,7 +142,7 @@
     </section>
     <!-- counter-area-end -->
     <!-- services-area -->
-    <section class="services__area-seven services__bg-seven">
+    <!-- <section class="services__area-seven services__bg-seven">
         <div class="container" style="max-width: 1400px;">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
@@ -187,7 +187,6 @@
                         <div class="services__item-five services__item-six">
                             <div class="services__icon-five">
                                 <div class="icon">
-                                    <!-- <i class="flaticon-profit"></i> -->
                                     1
                                 </div>
                                 <div class="services__icon-shape">
@@ -208,7 +207,6 @@
                         <div class="services__item-five services__item-six">
                             <div class="services__icon-five">
                                 <div class="icon">
-                                    <!-- <i class="flaticon-light-bulb"></i> -->
                                     2
                                 </div>
                                 <div class="services__icon-shape">
@@ -229,7 +227,6 @@
                         <div class="services__item-five services__item-six">
                             <div class="services__icon-five">
                                 <div class="icon">
-                                    <!-- <i class="flaticon-startup"></i> -->
                                     3
                                 </div>
                                 <div class="services__icon-shape">
@@ -251,7 +248,6 @@
                         <div class="services__item-five services__item-six">
                             <div class="services__icon-five">
                                 <div class="icon">
-                                    <!-- <i class="flaticon-target"></i> -->
                                     4
                                 </div>
                                 <div class="services__icon-shape">
@@ -271,7 +267,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- services-area-end -->
     <!-- slide partners -->
     <section class="partners__area-six">
