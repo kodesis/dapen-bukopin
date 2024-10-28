@@ -15,7 +15,7 @@
             var base_url = "<?php echo base_url(); ?>";
             var url;
             var formData;
-            url = "<?php echo site_url('auth/resetpassword_tes') ?>";
+            url = "<?php echo site_url('auth/resetpassword') ?>";
 
             // window.location = url_base;
             var formData = new FormData($("#login_form")[0]);

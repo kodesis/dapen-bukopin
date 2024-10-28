@@ -149,74 +149,92 @@ class Auth extends CI_Controller
 
     public function resetpassword()
     {
+        $this->load->model('Auth_m', 'user');
+
         $this->load->library('email');
-        // $this->db->select('*');
-        // $this->db->from('user');
-        // $this->db->where('email', $this->input->post('email'));
-        // $user = $this->db->get()->result();
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('email', $this->input->post('email'));
+        $user = $this->db->get()->result();
 
-        // if (!empty($user)) {
+        if (!empty($user)) {
+            $this->load->helper('string');
+            $token_id = random_string('alnum', 32);
 
+            $this->user->update(
+                array(
 
-        //     $this->load->helper('string');
-        //     $token_id = random_string('alnum', 32);
+                    'token_reset'       => $token_id,
 
-        //     $this->user->update(
-        //         array(
-
-        //             'token_reset'       => $token_id,
-
-        //         ),
-        //         array('email' => $this->input->post('email'))
-        //     );
-
-
-
-        $subjek = 'Tes aja';
-        $pesan =
-            '
-               TES
+                ),
+                array('email' => $this->input->post('email'))
+            );
+            $subjek = 'Reset Password Confirmation';
+            $pesan =
+                '
+                <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Reset Password Confirmation</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+        
+          <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
+            <tr>
+              <td align="center" style="padding: 40px 0;">
+                <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+                  <tr>
+                    <td align="center" style="padding: 40px 20px;">
+                    <img src="https://dapenkbbukopin.co.id//assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo" style="max-width: 100%; height: auto;">
+                      <h1 style="color: #333333;">Confirm Your Email Address</h1>
+                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Tap the button below to confirm your email address. If you didnt create an account with us, you can safely ignore this email.</p>
+                      <br>
+                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . site_url('auth/confirm_reset/' . $token_id) . '</p>
+                      <a href="' . site_url('auth/confirm_reset/' . $token_id) . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        
+        </body>
+        </html>
+        
+        
             ';
-        // $pesan = nl2br(htmlspecialchars($pesan_raw));
 
-        $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://heroic.jagoanhosting.com';
-        $config['smtp_port'] = 465;
-        $config['smtp_user'] = 'admin@dapenkbbukopin.co.id'; // Your email address
-        $config['smtp_pass'] = 'bukopin123!@#'; // Your email password
-        $config['mailtype'] = 'html';
-        $config['charset']  = 'utf-8';
-        $config['newline']  = "\r\n";
-        $config['wordwrap'] = TRUE;
+            $config['protocol'] = 'smtp';
+            $config['smtp_host'] = 'ssl://heroic.jagoanhosting.com';
+            $config['smtp_port'] = 465;
+            $config['smtp_user'] = 'admin@dapenkbbukopin.co.id'; // Your email address
+            $config['smtp_pass'] = 'bukopin123!@#'; // Your email password
+            $config['mailtype'] = 'html';
+            $config['charset']  = 'utf-8';
+            $config['newline']  = "\r\n";
+            $config['wordwrap'] = TRUE;
 
-        // $config['useragent'] = "CodeIgniter";
-        // $config['mailpath'] = "/usr/bin/sendmail";
-        // $config['protocol'] = "smtp";
-        // $config['smtp_host'] = "heroic.jagoanhosting.com"; // Your hosting SMTP server
-        // $config['smtp_port'] = 465; // SMTP Port for SSL
-        // $config['smtp_user'] = "admin@dapenkbbukopin.co.id"; // Your email
-        // $config['smtp_pass'] = "bukopin123!@#"; // Your email password
-        // $config['smtp_crypto'] = "ssl"; // Use SSL with port 465
-        // $config['charset'] = "utf-8";
-        // $config['mailtype'] = "html"; // Set to 'html' for sending HTML emails
-        // $config['newline'] = "\r\n"; // Ensure proper line endings
-        // $config['smtp_timeout'] = 120; // Optional: increase timeout for long-running requests
-        // $config['wordwrap'] = TRUE; // Optional: wrap long lines
+            $this->email->initialize($config);
+            $this->email->from('admin@dapenkbbukopin.co.id', 'Dapen KB Bukopin'); // Set sender
+            $this->email->to($this->input->post('email')); // Set recipient
+            $this->email->subject($subjek); // Set email subject
+            $this->email->message($pesan); // Set email body (HTML)
 
-        $this->email->initialize($config);
-        $this->email->from('admin@dapenkbbukopin.co.id', 'Dapen KB Bukopin'); // Set sender
-        $this->email->to('dimasuzumaki126@gmail.com'); // Set recipient
-        $this->email->subject('Test Email'); // Set email subject
-        $this->email->message('<p>This is a test email</p>'); // Set email body (HTML)
-
-
-        if ($this->email->send()) {
-            echo 'Success! Email has been sent.';
+            if ($this->email->send()) {
+                // echo 'Success! Email has been sent.';
+                echo json_encode(array("status" => True));
+                // return;
+            } else {
+                echo 'Error! Email could not be sent.<br>';
+                echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
+                echo json_encode(array("status" => False));
+                return;
+            }
         } else {
-            echo 'Error! Email could not be sent.<br>';
-            echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
+            echo json_encode(array("status" => "Email Tidak Ada"));
         }
     }
+
 
     public function send_email()
     {
@@ -373,18 +391,14 @@ class Auth extends CI_Controller
             // $pesan = nl2br(htmlspecialchars($pesan_raw));
 
             // print_r($alumni);
-            $config['useragent'] = "CodeIgniter";
-            $config['mailpath'] = "/usr/bin/sendmail";
-            $config['protocol']     = "smtp";
-            $config['smtp_host']     = "smtp.gmail.com";
-            $config['smtp_port']     = 465;
-            $config['smtp_user']     = "dimasuciha126@gmail.com";
-            $config['smtp_pass']     = "hjhv jdxi nasi mojm ";
-            $config['smtp_crypto']     = "ssl";
-            $config['charset']         = "utf-8";
-            $config['mailtype'] = "html";
-            $config['newline'] = "\r\n";
-            $config['smtp_timeout'] = 30;
+            $config['protocol'] = 'smtp';
+            $config['smtp_host'] = 'ssl://heroic.jagoanhosting.com';
+            $config['smtp_port'] = 465;
+            $config['smtp_user'] = 'admin@dapenkbbukopin.co.id'; // Your email address
+            $config['smtp_pass'] = 'bukopin123!@#'; // Your email password
+            $config['mailtype'] = 'html';
+            $config['charset']  = 'utf-8';
+            $config['newline']  = "\r\n";
             $config['wordwrap'] = TRUE;
 
             $this->load->library('email');
