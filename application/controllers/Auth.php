@@ -236,196 +236,196 @@ class Auth extends CI_Controller
     }
 
 
-    public function send_email()
-    {
-        $this->load->model('Auth_m', 'auth');
+    // public function send_email()
+    // {
+    //     $this->load->model('Auth_m', 'auth');
 
-        $this->db->select('*');
-        $this->db->from('user');
-        $this->db->where('email', 'dimasuzumaki126@gmail.com');
-        $user = $this->db->get()->result();
+    //     $this->db->select('*');
+    //     $this->db->from('user');
+    //     $this->db->where('email', 'dimasuzumaki126@gmail.com');
+    //     $user = $this->db->get()->result();
 
-        if (!empty($user)) {
+    //     if (!empty($user)) {
 
-            $this->load->helper('string');
-            $token_id = random_string('alnum', 32);
+    //         $this->load->helper('string');
+    //         $token_id = random_string('alnum', 32);
 
-            $this->auth->update(
-                array(
+    //         $this->auth->update(
+    //             array(
 
-                    'token_reset'       => $token_id,
+    //                 'token_reset'       => $token_id,
 
-                ),
-                array('email' => $this->input->post('email'))
-            );
-
-
-
-            $subjek = 'Reset Password Confirmation';
-            $pesan =
-                '
-                <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Reset Password Confirmation</title>
-        </head>
-        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
-        
-          <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
-            <tr>
-              <td align="center" style="padding: 40px 0;">
-                <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
-                  <tr>
-                    <td align="center" style="padding: 40px 20px;">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl233SSiOjA8QokbqTtt7dCIV5OhDihFWCnw&s" alt="Logo" style="max-width: 100%; height: auto;">
-                      <h1 style="color: #333333;">Confirm Your Email Address</h1>
-                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Tap the button below to confirm your email address. If you didnt create an account with us, you can safely ignore this email.</p>
-                      <br>
-                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . site_url('auth/confirm_reset/' . $token_id) . '</p>
-                      <a href="' . site_url('auth/confirm_reset/' . $token_id) . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        
-        </body>
-        </html>
-        
-        
-            ';
-            require 'vendor/autoload.php'; // Assuming you installed PHPMailer via Composer
-
-            $mail = new PHPMailer(true);
-            try {
-                // Server settings
-                $mail->isSMTP();
-                $mail->Host       = 'smtp.gmail.com';
-                $mail->SMTPAuth   = true;
-                $mail->Username   = 'dimasuciha126@gmail.com'; // Your Gmail address
-                $mail->Password   = 'hjhvjdxinasimojm'; // The App Password generated earlier
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                $mail->Port       = 465; // TLS port: 587, SSL port: 465
-
-                // Recipients
-                $mail->setFrom('dimasuciha126@gmail.com', 'Yuuta Togashi');
-                $mail->addAddress('dimasuzumaki126@gmail.com');
-
-                // Content
-                $mail->isHTML(true);
-                $mail->Subject = $subjek;
-                $mail->Body    = $pesan;
-
-                // Send the email
-                $mail->send();
-                echo 'Email has been sent';
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            }
-            echo 'ada Email';
-        } else {
-            echo 'Gak ada Email';
-        }
-    }
-
-    public function resetpassword_tes()
-    {
-        $this->load->model('Auth_m', 'auth');
-
-        $this->db->select('*');
-        $this->db->from('user');
-        $this->db->where('email', $this->input->post('email'));
-        $user = $this->db->get()->result();
-
-        if (!empty($user)) {
-
-            $this->load->helper('string');
-            $token_id = random_string('alnum', 32);
-
-            $this->auth->update(
-                array(
-
-                    'token_reset'       => $token_id,
-
-                ),
-                array('email' => $this->input->post('email'))
-            );
+    //             ),
+    //             array('email' => $this->input->post('email'))
+    //         );
 
 
 
-            $subjek = 'Reset Password Confirmation';
-            $pesan =
-                '
-                <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Reset Password Confirmation</title>
-        </head>
-        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
-        
-          <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
-            <tr>
-              <td align="center" style="padding: 40px 0;">
-                <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
-                  <tr>
-                    <td align="center" style="padding: 40px 20px;">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl233SSiOjA8QokbqTtt7dCIV5OhDihFWCnw&s" alt="Logo" style="max-width: 100%; height: auto;">
-                      <h1 style="color: #333333;">Confirm Your Email Address</h1>
-                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Tap the button below to confirm your email address. If you didnt create an account with us, you can safely ignore this email.</p>
-                      <br>
-                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . site_url('auth/confirm_reset/' . $token_id) . '</p>
-                      <a href="' . site_url('auth/confirm_reset/' . $token_id) . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        
-        </body>
-        </html>
-        
-        
-            ';
-            // $pesan = nl2br(htmlspecialchars($pesan_raw));
+    //         $subjek = 'Reset Password Confirmation';
+    //         $pesan =
+    //             '
+    //             <!DOCTYPE html>
+    //     <html>
+    //     <head>
+    //       <title>Reset Password Confirmation</title>
+    //     </head>
+    //     <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
 
-            // print_r($alumni);
-            $config['protocol'] = 'smtp';
-            $config['smtp_host'] = 'ssl://heroic.jagoanhosting.com';
-            $config['smtp_port'] = 465;
-            $config['smtp_user'] = 'admin@dapenkbbukopin.co.id'; // Your email address
-            $config['smtp_pass'] = 'bukopin123!@#'; // Your email password
-            $config['mailtype'] = 'html';
-            $config['charset']  = 'utf-8';
-            $config['newline']  = "\r\n";
-            $config['wordwrap'] = TRUE;
+    //       <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
+    //         <tr>
+    //           <td align="center" style="padding: 40px 0;">
+    //             <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    //               <tr>
+    //                 <td align="center" style="padding: 40px 20px;">
+    //                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl233SSiOjA8QokbqTtt7dCIV5OhDihFWCnw&s" alt="Logo" style="max-width: 100%; height: auto;">
+    //                   <h1 style="color: #333333;">Confirm Your Email Address</h1>
+    //                   <p style="color: #555555; font-size: 16px; line-height: 24px;">Tap the button below to confirm your email address. If you didnt create an account with us, you can safely ignore this email.</p>
+    //                   <br>
+    //                   <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . site_url('auth/confirm_reset/' . $token_id) . '</p>
+    //                   <a href="' . site_url('auth/confirm_reset/' . $token_id) . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
+    //                 </td>
+    //               </tr>
+    //             </table>
+    //           </td>
+    //         </tr>
+    //       </table>
 
-            $this->load->library('email');
-            $this->email->initialize($config);
-            $this->email->from('dimasuciha126@gmail.com', 'Yuuta Togashi');
-            $this->email->to($this->input->post('email'));
-            $this->email->subject($subjek);
+    //     </body>
+    //     </html>
 
-            $this->email->message($pesan);
 
-            if ($this->email->send()) {
-                // echo ' Sukses! email berhasil dikirim.';
-                echo json_encode(array("status" => True));
-                return;
-            } else {
-                echo  'Error! email gagal dikirim.';
-                echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
-                echo json_encode(array("status" => False));
-                return;
-            }
-            // redirect('user/passwordnotif');
-            echo  'Ada Email';
-        } else {
-            // redirect('home');
-            echo json_encode(array("status" => "Email Tidak Ada"));
-        }
-    }
+    //         ';
+    //         require 'vendor/autoload.php'; // Assuming you installed PHPMailer via Composer
+
+    //         $mail = new PHPMailer(true);
+    //         try {
+    //             // Server settings
+    //             $mail->isSMTP();
+    //             $mail->Host       = 'smtp.gmail.com';
+    //             $mail->SMTPAuth   = true;
+    //             $mail->Username   = 'dimasuciha126@gmail.com'; // Your Gmail address
+    //             $mail->Password   = 'hjhvjdxinasimojm'; // The App Password generated earlier
+    //             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    //             $mail->Port       = 465; // TLS port: 587, SSL port: 465
+
+    //             // Recipients
+    //             $mail->setFrom('dimasuciha126@gmail.com', 'Yuuta Togashi');
+    //             $mail->addAddress('dimasuzumaki126@gmail.com');
+
+    //             // Content
+    //             $mail->isHTML(true);
+    //             $mail->Subject = $subjek;
+    //             $mail->Body    = $pesan;
+
+    //             // Send the email
+    //             $mail->send();
+    //             echo 'Email has been sent';
+    //         } catch (Exception $e) {
+    //             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //         }
+    //         echo 'ada Email';
+    //     } else {
+    //         echo 'Gak ada Email';
+    //     }
+    // }
+
+    // public function resetpassword_tes()
+    // {
+    //     $this->load->model('Auth_m', 'auth');
+
+    //     $this->db->select('*');
+    //     $this->db->from('user');
+    //     $this->db->where('email', $this->input->post('email'));
+    //     $user = $this->db->get()->result();
+
+    //     if (!empty($user)) {
+
+    //         $this->load->helper('string');
+    //         $token_id = random_string('alnum', 32);
+
+    //         $this->auth->update(
+    //             array(
+
+    //                 'token_reset'       => $token_id,
+
+    //             ),
+    //             array('email' => $this->input->post('email'))
+    //         );
+
+
+
+    //         $subjek = 'Reset Password Confirmation';
+    //         $pesan =
+    //             '
+    //             <!DOCTYPE html>
+    //     <html>
+    //     <head>
+    //       <title>Reset Password Confirmation</title>
+    //     </head>
+    //     <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+    //       <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
+    //         <tr>
+    //           <td align="center" style="padding: 40px 0;">
+    //             <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    //               <tr>
+    //                 <td align="center" style="padding: 40px 20px;">
+    //                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl233SSiOjA8QokbqTtt7dCIV5OhDihFWCnw&s" alt="Logo" style="max-width: 100%; height: auto;">
+    //                   <h1 style="color: #333333;">Confirm Your Email Address</h1>
+    //                   <p style="color: #555555; font-size: 16px; line-height: 24px;">Tap the button below to confirm your email address. If you didnt create an account with us, you can safely ignore this email.</p>
+    //                   <br>
+    //                   <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . site_url('auth/confirm_reset/' . $token_id) . '</p>
+    //                   <a href="' . site_url('auth/confirm_reset/' . $token_id) . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
+    //                 </td>
+    //               </tr>
+    //             </table>
+    //           </td>
+    //         </tr>
+    //       </table>
+
+    //     </body>
+    //     </html>
+
+
+    //         ';
+    //         // $pesan = nl2br(htmlspecialchars($pesan_raw));
+
+    //         // print_r($alumni);
+    //         $config['protocol'] = 'smtp';
+    //         $config['smtp_host'] = 'ssl://heroic.jagoanhosting.com';
+    //         $config['smtp_port'] = 465;
+    //         $config['smtp_user'] = 'admin@dapenkbbukopin.co.id'; // Your email address
+    //         $config['smtp_pass'] = 'bukopin123!@#'; // Your email password
+    //         $config['mailtype'] = 'html';
+    //         $config['charset']  = 'utf-8';
+    //         $config['newline']  = "\r\n";
+    //         $config['wordwrap'] = TRUE;
+
+    //         $this->load->library('email');
+    //         $this->email->initialize($config);
+    //         $this->email->from('dimasuciha126@gmail.com', 'Yuuta Togashi');
+    //         $this->email->to($this->input->post('email'));
+    //         $this->email->subject($subjek);
+
+    //         $this->email->message($pesan);
+
+    //         if ($this->email->send()) {
+    //             // echo ' Sukses! email berhasil dikirim.';
+    //             echo json_encode(array("status" => True));
+    //             return;
+    //         } else {
+    //             echo  'Error! email gagal dikirim.';
+    //             echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
+    //             echo json_encode(array("status" => False));
+    //             return;
+    //         }
+    //         // redirect('user/passwordnotif');
+    //         echo  'Ada Email';
+    //     } else {
+    //         // redirect('home');
+    //         echo json_encode(array("status" => "Email Tidak Ada"));
+    //     }
+    // }
 
     public function confirm_reset($token)
     {
