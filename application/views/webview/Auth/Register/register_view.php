@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Mazer Admin Dashboard</title>
+    <title>Dapen Bukopin</title>
 
 
 
@@ -17,7 +17,30 @@
     <!-- SWAL NOTIF -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?= base_url() ?>assets/cms/extensions/jquery/jquery.min.js"></script>
+    <style>
+        .form-group {
+            position: relative;
+        }
 
+        .floating-placeholder {
+            background-color: #fff;
+            position: absolute;
+            left: 45px;
+            width: 150px;
+            /* Adjust this to move it past the icon */
+            top: 50%;
+            /* Center vertically */
+            transform: translateY(-50%);
+            color: #aaa;
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+
+        html[data-bs-theme=dark] .floating-placeholder {
+            color: #c2c2d9;
+            background-color: #1b1b29;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,15 +91,17 @@
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
-                        <div class="form-group position-relative has-icon-left mb-4">
+                        <div class="form-group position-relative has-icon-left mb-2">
                             <input type="password" name="password2" id="password2" class="form-control form-control-xl" placeholder="Confirm Password">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
+                        <!-- <label for="tgl_lahir" class="floating-placeholder">Tanggal Lahir</label> -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" id="tgl_lahir" class="form-control form-control-xl" placeholder="Tanggal Lahir"
-                                onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'">
+                            <label for="tgl_lahir" id="label-tgl-lahir" class="floating-placeholder">Tanggal Lahir</label>
+                            <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control form-control-xl" onclick="hidePlaceholder()">
+                            <!-- <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control form-control-xl"> -->
                             <div class="form-control-icon">
                                 <i class="bi bi-envelope"></i>
                             </div>
@@ -99,11 +124,16 @@
     </div>
 </body>
 <script>
-    const dateInput = document.getElementById("tgl_lahir");
+    function hidePlaceholder() {
+        document.getElementById("label-tgl-lahir").style.display = "none";
+    }
 
-    // Add a placeholder effect
-    dateInput.addEventListener("focus", () => dateInput.setAttribute("placeholder", "Tanggal Lahir"));
-    dateInput.addEventListener("blur", () => dateInput.removeAttribute("placeholder"));
+    document.getElementById("tgl_lahir").addEventListener("blur", function() {
+        // Show the label again if the input is empty when it loses focus
+        if (this.value === "") {
+            document.getElementById("label-tgl-lahir").style.display = "block";
+        }
+    });
 </script>
 
 </html>

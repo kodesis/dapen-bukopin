@@ -90,7 +90,7 @@ class Auth extends CI_Controller
 
         if (!empty($user)) {
 
-            if (empty($user->email) && empty($user->nama) && empty($user->password)) {
+            if (empty($user->email) && empty($user->password)) {
 
                 // Email Cek
                 $this->db->select('*');
@@ -110,7 +110,6 @@ class Auth extends CI_Controller
 
                     $data = array(
                         'created'         => $date->format('Y-m-d H:i:s'),
-                        'nama'       => $this->input->post('nama'),
                         'email'           => $this->input->post('email'),
                         'active'          => 1,
                         'password'        => $enc_password,
