@@ -49,7 +49,9 @@ class Laporan extends CI_Controller
         $this->db->where('uid', $id);
         $this->db->where('tipe', $type);
         $file = $this->db->get()->row();
-
+        if (empty($file)) {
+            redirect('error404');
+        }
         $file = $file->file;
         $file_path = base_url('uploads/file/' . $file);
         $data['id'] = $id;
