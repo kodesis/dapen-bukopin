@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'dapenbukopin',
+	'hostname' => 'dapenkbbukopin.co.id',
+	'username' => 'dapenkbb_dapen',
+	'password' => 'dapen123!@#',
+	'database' => 'dapenkbb_admin',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
