@@ -60,10 +60,10 @@
                             </a>
                         </li>
                         <li
-                            class="sidebar-item <?php if ($url == "PDP") {
+                            class="sidebar-item <?php if ($url == "PDP_Bank_KB_Bukopin") {
                                                     echo "active";
                                                 } ?> ">
-                            <a href="<?= base_url('PDP') ?>" class='sidebar-link'>
+                            <a href="<?= base_url('PDP_Bank_KB_Bukopin') ?>" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>PDP Bank KB Bukopin</span>
                             </a>

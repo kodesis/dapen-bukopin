@@ -299,53 +299,87 @@
 
                     // window.location = url_base;
                     var formData = new FormData($("#upload_user")[0]);
+                    let accumulatedResponse = ""; // Variable to accumulate the response
+
                     $.ajax({
                         url: url,
                         type: "POST",
+                        dataType: "text", // Change to 'text' to handle server-sent events
                         data: formData,
                         contentType: false,
                         processData: false,
-                        dataType: "JSON",
                         beforeSend: function() {
-                            swal.fire({
-                                icon: 'info',
-                                timer: 3000,
-                                showConfirmButton: false,
-                                title: 'Loading...'
-
+                            // Show the progress dialog before sending the request
+                            Swal.fire({
+                                title: 'Uploading...',
+                                html: `
+                <progress id="progressBar" value="0" max="100" style="width: 100%;"></progress>
+                <div id="progressText" style="margin-top: 10px; font-weight: bold;">0/0 Data</div>
+            `,
+                                allowOutsideClick: false,
+                                showConfirmButton: false
                             });
                         },
-                        success: function(data) {
-                            /* if(!data.status)alert("ho"); */
-                            if (!data.status) swal.fire('Gagal menyimpan data', 'error');
-                            else {
-                                if (data.status == "Peserta Tidak ada") {
-                                    swal.fire({
-                                        customClass: 'slow-animation',
-                                        icon: 'warning',
-                                        showConfirmButton: false,
-                                        title: 'Peserta Tidak ada',
-                                        text: 'Kode Peserta : ' + data.peserta,
-                                        timer: 1500
-                                    });
-                                } else {
-                                    // document.getElementById('rumahadat').reset();
-                                    // $('#add_modal').modal('hide');
-                                    (JSON.stringify(data));
-                                    // alert(data)
-                                    swal.fire({
-                                        customClass: 'slow-animation',
-                                        icon: 'success',
-                                        showConfirmButton: false,
-                                        title: 'Berhasil Menambahkan Data Saldo',
-                                        timer: 1500
-                                    });
-                                    document.getElementById('upload_user').reset(); // Reset the form
-                                    $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
-                                }
-                                $('#upload_modal').modal('hide'); // Hide the modal
-                                // location.reload();
+                        xhrFields: {
+                            onprogress: function(e) {
+                                // Read the response text for progress updates
+                                accumulatedResponse += e.currentTarget.responseText; // Accumulate responses
 
+                                var response = e.currentTarget.responseText.trim().split('\n');
+
+                                // Loop through each line to find progress data
+                                response.forEach(function(line) {
+                                    try {
+                                        var progressData = JSON.parse(line.replace("data: ", ""));
+                                        if (progressData.progress) {
+                                            $("#progressBar").val(progressData.progress);
+                                            $("#progressText").text(`${progressData.currentRow}/${progressData.totalRows} Data`);
+                                        }
+                                    } catch (error) {
+                                        console.error("Error parsing progress data:", error);
+                                    }
+                                });
+                            },
+                        },
+                        success: function(data) {
+                            try {
+                                // Attempt to parse the final response
+                                var finalResponse = JSON.parse(accumulatedResponse.trim().split('\n').pop()); // Get the last line which should be the status
+                                console.log("Response data:", finalResponse); // Log final response to see its structure
+                                if (!finalResponse.status) swal.fire('Gagal menyimpan data', 'error');
+                                else {
+                                    if (finalResponse.status == "Data Peserta Tidak Ada") {
+                                        swal.fire({
+                                            customClass: 'slow-animation',
+                                            icon: 'warning',
+                                            showConfirmButton: false,
+                                            title: 'Data Peserta Tidak Ditemukan',
+                                            text: 'Kode Peserta : ' + finalResponse.kd_peserta,
+                                            timer: 3000
+                                        });
+                                    } else {
+                                        // document.getElementById('rumahadat').reset();
+                                        // $('#add_modal').modal('hide');
+                                        (JSON.stringify(data));
+                                        // alert(data)
+                                        swal.fire({
+                                            customClass: 'slow-animation',
+                                            icon: 'success',
+                                            showConfirmButton: false,
+                                            title: 'Berhasil Menambahkan Data Saldo',
+                                            timer: 3000
+                                        });
+                                        document.getElementById('upload_user').reset(); // Reset the form
+                                        $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                                        $('#upload_modal').modal('hide'); // Hide the modal
+                                    }
+                                    // location.reload();
+
+                                }
+                            } catch (error) {
+                                // If parsing fails, log the error
+                                console.error("Error parsing final response:", error);
+                                swal.fire('Gagal menyimpan data', 'error');
                             }
                         },
                         error: function(jqXHR, textStatus, errorThrown) {

@@ -1052,14 +1052,125 @@ textarea {
   transition: 1s ease;
   border: none;
 }
+.floating-share-buttons {
+  position: fixed;
+  bottom: 80px;
+  /* Adjust distance from the bottom */
+  right: 50px;
+  /* Distance from the right */
+  z-index: 1000;
+  /* Ensure buttons are on top */
+}
+.share-button {
+  background-color: var(--tg-theme-primary);
+  /* Default color for share button */
+  color: white;
+  /* Icon color */
+  border: none;
+  /* Remove border */
+  border-radius: 50%;
+  /* Circular shape */
+  width: 40px;
+  /* Button width */
+  height: 40px;
+  /* Button height */
+  display: flex;
+  /* Center the icon */
+  align-items: center;
+  /* Center vertically */
+  justify-content: center;
+  /* Center horizontally */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  transition: background-color 0.3s;
+  /* Smooth transition */
+}
+
+.share-button:hover {
+  background: var(--tg-theme-secondary);
+  color: var(--tg-color-white-default);
+  /* Darker shade on hover */
+}
+
+.social-media-list {
+  display: none;
+  /* Initially hidden */
+  list-style: none;
+  /* Remove default list style */
+  padding: 0;
+  /* Remove padding */
+  margin: 0;
+  /* Remove margin */
+}
+
+.social-media-list li {
+  margin: 5px 0;
+  /* Space between buttons */
+}
+
+.social-media-list .share-button {
+  display: flex;
+  /* Flex for alignment */
+  align-items: center;
+  /* Center vertically */
+  justify-content: center;
+  /* Center horizontally */
+  width: 40px;
+  /* Button width */
+  height: 40px;
+  /* Button height */
+  color: white;
+  /* Icon color */
+  border-radius: 50%;
+  /* Circular buttons */
+  text-decoration: none;
+  /* Remove underline */
+  transition: background-color 0.3s;
+  /* Smooth transition */
+}
+
+.share-button.facebook {
+  background-color: #3b5998;
+  /* Facebook color */
+}
+
+.share-button.instagram {
+  background-color: #f26af4;
+  /* Twitter color */
+}
+
+.share-button.linkedin {
+  background-color: #0077B5;
+  /* LinkedIn color */
+}
+
+.share-button.whatsapp {
+  background-color: #25D366;
+  /* WhatsApp color */
+}
+
+.social-media-list .share-button:hover {
+  background-color: #2d4373;
+  /* Darker color on hover */
+}
+
+/*# sourceMappingURL=main.css.map */
 @media (max-width: 1199.98px) {
   .scroll__top {
     right: 25px;
     bottom: 25px;
   }
+  .floating-share-buttons{
+    right: 25px;
+    bottom: 80px;
+  }
 }
 @media (max-width: 991.98px) {
   .scroll__top {
+    right: 30px;
+  }
+
+  .floating-share-buttons {
     right: 30px;
   }
 }
@@ -1070,6 +1181,21 @@ textarea {
     height: 30px;
     line-height: 30px;
     text-align: center;
+  }
+  .floating-share-buttons {
+    right: 15px;
+    bottom: 70px;
+  }
+  .share-button {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  .social-media-list .share-button
+  {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
   }
 }
 .scroll__top.open {
@@ -14641,106 +14767,3 @@ blockquote p {
     right: -15px;
   }
 }
-.floating-share-buttons {
-  position: fixed;
-  bottom: 80px;
-  /* Adjust distance from the bottom */
-  right: 50px;
-  /* Distance from the right */
-  z-index: 1000;
-  /* Ensure buttons are on top */
-}
-
-.share-button {
-  background-color: var(--tg-theme-primary);
-  /* Default color for share button */
-  color: white;
-  /* Icon color */
-  border: none;
-  /* Remove border */
-  border-radius: 50%;
-  /* Circular shape */
-  width: 40px;
-  /* Button width */
-  height: 40px;
-  /* Button height */
-  display: flex;
-  /* Center the icon */
-  align-items: center;
-  /* Center vertically */
-  justify-content: center;
-  /* Center horizontally */
-  cursor: pointer;
-  /* Pointer cursor on hover */
-  transition: background-color 0.3s;
-  /* Smooth transition */
-}
-
-.share-button:hover {
-  background: var(--tg-theme-secondary);
-  color: var(--tg-color-white-default);
-    /* Darker shade on hover */
-}
-
-.social-media-list {
-  display: none;
-  /* Initially hidden */
-  list-style: none;
-  /* Remove default list style */
-  padding: 0;
-  /* Remove padding */
-  margin: 0;
-  /* Remove margin */
-}
-
-.social-media-list li {
-  margin: 5px 0;
-  /* Space between buttons */
-}
-
-.social-media-list .share-button {
-  display: flex;
-  /* Flex for alignment */
-  align-items: center;
-  /* Center vertically */
-  justify-content: center;
-  /* Center horizontally */
-  width: 40px;
-  /* Button width */
-  height: 40px;
-  /* Button height */
-  color: white;
-  /* Icon color */
-  border-radius: 50%;
-  /* Circular buttons */
-  text-decoration: none;
-  /* Remove underline */
-  transition: background-color 0.3s;
-  /* Smooth transition */
-}
-
-.share-button.facebook {
-  background-color: #3b5998;
-  /* Facebook color */
-}
-
-.share-button.instagram {
-  background-color: #f26af4;
-  /* Twitter color */
-}
-
-.share-button.linkedin {
-  background-color: #0077B5;
-  /* LinkedIn color */
-}
-
-.share-button.whatsapp {
-  background-color: #25D366;
-  /* WhatsApp color */
-}
-
-.social-media-list .share-button:hover {
-  background-color: #2d4373;
-  /* Darker color on hover */
-}
-/*# sourceMappingURL=main.css.map */

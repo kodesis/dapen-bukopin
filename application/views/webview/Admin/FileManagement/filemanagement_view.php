@@ -142,6 +142,7 @@
                                     <option value="Buku Layanan Kepesertaan">Buku Layanan Kepesertaan</option>
                                     <option value="Laporan Triwulan">Laporan Triwulan</option>
                                     <option value="Laporan Tahunan">Laporan Tahunan</option>
+                                    <option value="PDP Bank KB Bukopin">PDP Bank KB Bukopin</option>
                                     <!-- <option value="Laporan Tahunan">Laporan Tahunan</option> -->
                                 </select>
                             </fieldset>
@@ -223,6 +224,7 @@
                                     <option value="Buku Layanan Kepesertaan">Buku Layanan Kepesertaan</option>
                                     <option value="Laporan Triwulan">Laporan Triwulan</option>
                                     <option value="Laporan Tahunan">Laporan Tahunan</option>
+                                    <option value="PDP Bank KB Bukopin">PDP Bank KB Bukopin</option>
                                 </select>
                             </fieldset>
                             <!-- <label for="email">Halaman Page </label>

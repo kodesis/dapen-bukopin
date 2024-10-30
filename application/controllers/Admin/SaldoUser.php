@@ -299,13 +299,52 @@ class SaldoUser extends CI_Controller
 				$worksheet = $spreadsheet->getActiveSheet();
 
 				// Iterate over each row
-				$rowCounter = 1; // Start at 1 since the first row (0) is the header
+				$rowCounterCekUser = 1; // Start at 1 since the first row (0) is the header
 
+				foreach ($worksheet->getRowIterator() as $row) {
+					// Increment the row counter
+					$rowCounterCekUser++;
+
+					$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
+					$totalRows -= 2; // Adjust for headers
+					$insertedRows = 0; // Initialize inserted rows counter
+					// Skip the first row (header)
+					if (
+						$rowCounterCekUser === 2 || $rowCounterCekUser === 3
+					) {
+						continue; // Skip processing for the header row
+					}
+
+					$cellIterator = $row->getCellIterator();
+					$cellIterator->setIterateOnlyExistingCells(false); // This loops through all cells, even empty ones
+
+					$data = []; // Create an array to hold row data
+					foreach ($cellIterator as $cell) {
+						$data[] = $cell->getValue(); // Get cell value
+					}
+
+					// Assuming columns are: 'Nama' in column A, 'kd_peserta' in column B, etc.
+					$kd_peserta = isset($data[1]) ? $data[1] : null; // Column 
+
+					$this->db->select('uid'); // Select the uid column
+					$this->db->from('user'); // Your table name
+					$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
+					$result = $this->db->get()->row(); // Execute the query
+					if (empty($result)) {
+						echo json_encode(array("status" => "Data Peserta Tidak Ada", 'kd_peserta' => $kd_peserta));
+						return;
+					}
+				}
+
+				$rowCounter = 1; // Start at 1 since the first row (0) is the header
 				// INPUT DATA USER
 				foreach ($worksheet->getRowIterator() as $row) {
 					// Increment the row counter
 					$rowCounter++;
 
+					$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
+					$totalRows -= 2; // Adjust for headers
+					$insertedRows = 0; // Initialize inserted rows counter
 					// Skip the first row (header)
 					if (
 						$rowCounter === 2 || $rowCounter === 3
@@ -334,26 +373,19 @@ class SaldoUser extends CI_Controller
 					$ipk_akhir = isset($data[14]) ? $data[14] : null; // Column 
 					$total_akhir = isset($data[15]) ? $data[15] : null; // Column 
 
-					// Get KD Peserta
-					$this->db->select('uid'); // Select the uid column
-					$this->db->from('user'); // Your table name
-					$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
-					$result = $this->db->get()->row(); // Execute the query
-
-					// Check if a result was found
-					// Access the uid
-					if (empty($result)) {
-						echo json_encode(array("status" => "Peserta Tidak ada", "peserta" => $kd_peserta));
-						return;
-					}
-
-					$uid = $result->uid;
 					// Cek Data di database
 					$tanggal = $this->input->post('tanggal');
 					// Extract the month and year from the input date
 					$month = date('m', strtotime($tanggal)); // Get the month
 					$year = date('Y', strtotime($tanggal));  // Get the year
 					// Build the query
+					// Get KD Peserta
+					$this->db->select('uid'); // Select the uid column
+					$this->db->from('user'); // Your table name
+					$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
+					$result = $this->db->get()->row(); // Execute the query
+					$uid = $result->uid;
+
 					$this->db->from('saldo'); // Your table name
 					$this->db->where(
 						'MONTH(tanggal_data)',
@@ -382,7 +414,7 @@ class SaldoUser extends CI_Controller
 							'tanggal_data' => $this->input->post('tanggal'),
 						];
 
-						$this->saldouser->update_user($data_update, array('uid' => $cek_data->uid));
+						$this->saldouser->update_user($data_update, array('uid' => $uid));
 						// echo json_encode(array("status" => 'Menimpa', "uid" => $uid, "Cek Data" => $cek_data));
 					} else {
 						$this->db->insert('saldo', [
@@ -402,6 +434,11 @@ class SaldoUser extends CI_Controller
 						]);
 						// echo json_encode(array("status" => True));
 					}
+					$insertedRows++;
+					$progress = round(($insertedRows / $totalRows) * 100);
+					echo "data: " . json_encode(['progress' => $progress, 'currentRow' => $insertedRows, 'totalRows' => $totalRows]) . "\n\n";
+					ob_flush();
+					flush();
 				}
 				echo json_encode(array("status" => True));
 				return;

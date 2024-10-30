@@ -50,24 +50,17 @@
     document.getElementById('peserta_add_nip').value = year + '-' + month + '-' + day;
     document.getElementById('tanggal_upload').value = year + '-' + month + '-' + day;
 
+
     function add_user_nip() {
 
         const ttlkdpesertaValue = $('#kd_peserta_add_nip').val();
-        const ttlnikValue = $('#nik_add_nip').val();
+        // const ttlnikValue = $('#nik_add_nip').val();
         const ttltgl_lahirValue = $('#tgl_lahir_add_nip').val();
         const ttlpegawaiValue = $('#pegawai_add_nip').val();
         const ttlpesertaValue = $('#peserta_add_nip').val();
 
 
-        if (!ttlnikValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom NIK Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlkdpesertaValue) {
+        if (!ttlkdpesertaValue) {
             swal.fire({
                 customClass: 'slow-animation',
                 icon: 'error',
@@ -75,6 +68,14 @@
                 title: 'Kolom Kode Peserta Tidak Boleh Kosong',
                 timer: 1500
             });
+            // } else if (!ttlnikValue) {
+            //     swal.fire({
+            //         customClass: 'slow-animation',
+            //         icon: 'error',
+            //         showConfirmButton: false,
+            //         title: 'Kolom NIK Tidak Boleh Kosong',
+            //         timer: 1500
+            //     });
         } else if (!ttltgl_lahirValue) {
             swal.fire({
                 customClass: 'slow-animation',
@@ -435,52 +436,85 @@
                     var url;
                     var formData;
                     url = "<?php echo site_url('Admin/UserManagement/process_insert_excel') ?>";
-
                     // window.location = url_base;
                     var formData = new FormData($("#upload_user")[0]);
+                    let accumulatedResponse = ""; // Variable to accumulate the response
+
                     $.ajax({
                         url: url,
                         type: "POST",
+                        dataType: "text", // Change to 'text' to handle server-sent events
                         data: formData,
                         contentType: false,
                         processData: false,
-                        dataType: "JSON",
                         beforeSend: function() {
-                            swal.fire({
-                                icon: 'info',
-                                timer: 10000,
-                                showConfirmButton: false,
-                                title: 'Loading...'
-
+                            // Show the progress dialog before sending the request
+                            Swal.fire({
+                                title: 'Uploading...',
+                                html: `
+                <progress id="progressBar" value="0" max="100" style="width: 100%;"></progress>
+                <div id="progressText" style="margin-top: 10px; font-weight: bold;">0/0 Data</div>
+            `,
+                                allowOutsideClick: false,
+                                showConfirmButton: false
                             });
                         },
-                        success: function(data) {
-                            /* if(!data.status)alert("ho"); */
-                            if (!data.status) swal.fire('Gagal menyimpan data', 'error');
-                            else {
-                                swal.fire({
-                                    customClass: 'slow-animation',
-                                    icon: 'success',
-                                    showConfirmButton: false,
-                                    title: 'Berhasil Menambahkan Data User',
-                                    timer: 3000 // Adjust timer for visibility
+                        xhrFields: {
+                            onprogress: function(e) {
+                                // Read the response text for progress updates
+                                accumulatedResponse += e.currentTarget.responseText; // Accumulate responses
+
+                                var response = e.currentTarget.responseText.trim().split('\n');
+
+                                // Loop through each line to find progress data
+                                response.forEach(function(line) {
+                                    try {
+                                        var progressData = JSON.parse(line.replace("data: ", ""));
+                                        if (progressData.progress) {
+                                            $("#progressBar").val(progressData.progress);
+                                            $("#progressText").text(`${progressData.currentRow}/${progressData.totalRows} Data`);
+                                        }
+                                    } catch (error) {
+                                        console.error("Error parsing progress data:", error);
+                                    }
                                 });
+                            },
+                        },
+                        success: function(data) {
+                            try {
+                                // Attempt to parse the final response
+                                var finalResponse = JSON.parse(accumulatedResponse.trim().split('\n').pop()); // Get the last line which should be the status
+                                console.log("Response data:", finalResponse); // Log final response to see its structure
 
-                                document.getElementById('upload_user').reset(); // Reset the form
-                                $('#upload_modal').modal('hide'); // Hide the modal
-                                $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
-                                // location.reload();
+                                if (!finalResponse.status) {
+                                    swal.fire('Gagal menyimpan data', 'error');
+                                } else {
+                                    swal.fire({
+                                        customClass: 'slow-animation',
+                                        icon: 'success',
+                                        showConfirmButton: false,
+                                        title: 'Berhasil Menambahkan Data User',
+                                        timer: 3000 // Adjust timer for visibility
+                                    });
 
+                                    document.getElementById('upload_user').reset(); // Reset the form
+                                    $('#upload_modal').modal('hide'); // Hide the modal
+                                    $('#table1').DataTable().ajax.reload(); // Reload the data table
+                                }
+                            } catch (error) {
+                                // If parsing fails, log the error
+                                console.error("Error parsing final response:", error);
+                                swal.fire('Gagal menyimpan data', 'error');
                             }
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
+                            // Handle error here
                             swal.fire('Operation Failed!', errorThrown, 'error');
                         },
                         complete: function() {
                             console.log('Editing job done');
                         }
                     });
-
 
                 }
 

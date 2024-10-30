@@ -57,7 +57,11 @@ class Dashboard extends CI_Controller
 		$user_count = $this->dashboard->total_user(); // Call the model method
 		echo json_encode(array('user_count' => $user_count)); // Return the count as JSON
 	}
-
+	public function user_count_non()
+	{
+		$user_count_non = $this->dashboard->total_user_non(); // Call the model method
+		echo json_encode(array('user_count_non' => $user_count_non)); // Return the count as JSON
+	}
 	public function saldo_con_count()
 	{
 		$user_con_count = $this->dashboard->total_saldo_connected(); // Call the model method

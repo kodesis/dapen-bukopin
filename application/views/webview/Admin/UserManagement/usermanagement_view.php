@@ -62,7 +62,7 @@
                                         <th>Kode Peserta</th>
                                         <th>Nama</th>
                                         <th>Email</th>
-                                        <th>NIP</th>
+                                        <!-- <th>NIP</th> -->
                                         <th>Alamat</th>
                                         <th>Tanggal Lahir</th>
                                         <th>Pegawai</th>
@@ -126,11 +126,11 @@
                                 <input id="kd_peserta_add_nip" name="kd_peserta" type="number" placeholder="Masukan Kode Peserta"
                                     class="form-control">
                             </div>
-                            <label for="nik">NIP </label>
+                            <!-- <label for="nik">NIP </label>
                             <div class="form-group">
                                 <input id="nik_add_nip" name="nik" type="number" placeholder="Masukan NIP"
                                     class="form-control">
-                            </div>
+                            </div> -->
                             <label for="date">Tanggal Lahir </label>
                             <div class="form-group">
                                 <input id="tgl_lahir_add_nip" name="tgl_lahir" type="date" placeholder="Masukan Tanggal Lahir"
@@ -217,11 +217,11 @@
                                 <input id="password2_add" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
                                     class="form-control">
                             </div>
-                            <label for="nik">NIP </label>
+                            <!-- <label for="nik">NIP </label>
                             <div class="form-group">
                                 <input id="nik_add" name="nik" type="number" placeholder="Masukan NIP"
                                     class="form-control">
-                            </div>
+                            </div> -->
                             <label for="date">Alamat </label>
                             <div class="form-group">
                                 <div class="form-floating">
@@ -324,11 +324,11 @@
                                 <input id="password2_edit" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
                                     class="form-control" readonly>
                             </div> -->
-                            <label for="nik">NIK </label>
+                            <!-- <label for="nik">NIK </label>
                             <div class="form-group">
                                 <input id="nik_edit" name="nik" type="number" placeholder="Masukan NIK"
                                     class="form-control">
-                            </div>
+                            </div> -->
                             <label for="date">Alamat </label>
                             <div class="form-group">
                                 <div class="form-floating">

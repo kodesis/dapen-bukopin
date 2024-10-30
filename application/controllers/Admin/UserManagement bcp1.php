@@ -305,8 +305,7 @@ class UserManagement extends CI_Controller
 				$rowCounter = 1; // Start at 1 since the first row (0) is the header
 
 
-				$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
-				$totalRows -= 2; // Adjust for headers
+				$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows to calculate progress
 				$insertedRows = 0; // Initialize inserted rows counter
 				// INPUT DATA USER
 				foreach ($worksheet->getRowIterator() as $row) {
@@ -327,16 +326,15 @@ class UserManagement extends CI_Controller
 					}
 
 					// Assuming columns are: 'Nama' in column A, 'kd_peserta' in column B, etc.
-					$nama = $data[0] ?? null; // Column A
-					$kd_peserta = $data[1] ?? null; // Column B
-					$email = $data[2] ?? null; // Column C
-					$password = $data[3] ?? null; // Column D
-					$alamat = $data[4] ?? null; // Column F
-
-					// Process date fields
-					$tgl_lahir = $this->processDate($data[5] ?? null);
-					$pegawai = $this->processDate($data[6] ?? null);
-					$peserta = $this->processDate($data[7] ?? null);
+					$nama = isset($data[0]) ? $data[0] : null; // Column A
+					$kd_peserta = isset($data[1]) ? $data[1] : null; // Column B
+					$email = isset($data[2]) ? $data[2] : null; // Column C
+					$password = isset($data[3]) ? $data[3] : null; // Column D
+					// $nik = isset($data[4]) ? $data[4] : null; // Column E
+					$alamat = isset($data[5]) ? $data[5] : null; // Column F
+					$tgl_lahir = isset($data[6]) ? DateTime::createFromFormat('m/d/Y', $data[6])->format('Y-m-d') : null;
+					$pegawai = isset($data[7]) ? DateTime::createFromFormat('m/d/Y', $data[7])->format('Y-m-d') : null;
+					$peserta = isset($data[8]) ? DateTime::createFromFormat('m/d/Y', $data[8])->format('Y-m-d') : null;
 
 					// Insert into the database
 					if ($nama && $kd_peserta) {
@@ -354,34 +352,108 @@ class UserManagement extends CI_Controller
 							'active' => 1, // Default value for 'active'
 						]);
 					}
-					$insertedRows++;
-					$progress = round(($insertedRows / $totalRows) * 100);
-					echo "data: " . json_encode(['progress' => $progress, 'currentRow' => $insertedRows, 'totalRows' => $totalRows]) . "\n\n";
-					ob_flush();
-					flush();
 				}
-
-				echo json_encode(["status" => True]);
+				echo json_encode(array("status" => True));
 				return;
+				// $rowCounter = 1; // Start at 1 since the first row (0) is the header
+				// $missingUsers = []; // Array to hold kd_peserta of missing users
+				// $duplicates = []; // Array to hold duplicate kd_peserta
+
+				// // INPUT SALDO USER
+				// foreach ($worksheet->getRowIterator() as $row) {
+				// 	// Increment the row counter
+				// 	$rowCounter++;
+
+				// 	// Skip the first row (header)
+				// 	if ($rowCounter === 2) {
+				// 		continue; // Skip processing for the header row
+				// 	}
+
+				// 	$cellIterator = $row->getCellIterator();
+				// 	$cellIterator->setIterateOnlyExistingCells(false); // This loops through all cells, even empty ones
+
+				// 	$data = []; // Create an array to hold row data
+				// 	foreach ($cellIterator as $cell) {
+				// 		$data[] = $cell->getValue(); // Get cell value
+				// 	}
+
+				// 	$kd_peserta = isset($data[1]) ? $data[1] : null; // Column B
+				// 	$ips_awal = isset($data[6]) ? floatval($this->clean_input($data[6])) : null; // Column G
+				// 	// ... (same for other variables)
+
+				// 	// Check for duplicates based on kd_peserta and input month-year
+				// 	$inputDate = $this->input->post('tanggal'); // Assuming this is in Y-m-d format
+				// 	$monthYear = date('Y-m', strtotime($inputDate));
+
+				// 	$this->db->select('uid'); // Select the uid column
+				// 	$this->db->from('user'); // Your table name
+				// 	$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
+				// 	$query = $this->db->get(); // Execute the query
+
+				// 	if ($query->num_rows() > 0) {
+				// 		$result = $query->row(); // Get the first result row
+				// 		$this->db->select('*');
+				// 		$this->db->from('saldo');
+				// 		$this->db->where('uid_user', $result->uid); // Filter by uid_user
+				// 		$this->db->where("DATE_FORMAT(tanggal_data, '%Y-%m') =", date('Y-m', strtotime($inputDate))); // Check duplicates
+				// 		$duplicateCheck = $this->db->get();
+
+				// 		// If duplicate exists, add to duplicates array
+				// 		if ($duplicateCheck->num_rows() > 0) {
+				// 			$duplicates[] = $kd_peserta;
+				// 			continue; // Skip to the next row
+				// 		}
+
+				// 		// Check if a result was found
+				// 		$uid = $result->uid; // Access the uid
+				// 		$this->db->insert('saldo', [
+				// 			'uid_user' => $uid,
+				// 			'ips_awal' => $ips_awal,
+				// 			'ipk_awal' => $ipk_awal,
+				// 			'total_awal' => $total_awal,
+				// 			'ips_iuran' => $ips_iuran,
+				// 			'ipk_iuran' => $ipk_iuran,
+				// 			'ips_p' => $ips_p,
+				// 			'ipk_p' => $ipk_p,
+				// 			'ips_akhir' => $ips_akhir,
+				// 			'ipk_akhir' => $ipk_akhir,
+				// 			'total_akhir' => $total_akhir,
+				// 			'tanggal_data' => $this->input->post('tanggal'),
+				// 			'active' => 1,
+				// 		]);
+				// 	} else {
+				// 		$missingUsers[] = $kd_peserta; // Store the kd_peserta of the missing user
+				// 	}
+				// }
+
+				// // Prepare the response data
+				// $data = [];
+				// if (!empty($missingUsers)) {
+				// 	$data['status'] = "Missing";
+				// 	$data['missing'] = [
+				// 		"count" => count($missingUsers),
+				// 		"users" => $missingUsers,
+				// 	];
+				// 	// Call export function for missing users
+				// 	// $this->exportToExcel($missingUsers); // Call the export function here
+				// }
+
+				// if (!empty($duplicates)) {
+				// 	$data['status'] = "Duplicates";
+				// 	$data['duplicates'] = [
+				// 		"count" => count($duplicates),
+				// 		"users" => $duplicates,
+				// 	];
+				// }
+
+				// Respond with JSON
+				// echo json_encode($data);
 			} catch (Exception $e) {
 				// echo 'Error loading file: ', $e->getMessage();
 				echo json_encode(array("status" => False));
 			}
 		}
 		// echo json_encode(array("status" => TRUE));
-	}
-
-	function processDate($dateValue)
-	{
-		if (is_numeric($dateValue)) {
-			// Handle Excel date integer
-			return DateTime::createFromFormat('U', ($dateValue - 25569) * 86400)->format('Y-m-d');
-		} elseif (DateTime::createFromFormat('m/d/Y', $dateValue) !== false) {
-			// Handle string date format
-			return DateTime::createFromFormat('m/d/Y', $dateValue)->format('Y-m-d');
-		}
-		// If the date format is not recognized, return null or handle accordingly
-		return null;
 	}
 
 	private function exportToExcel($missingUsers)

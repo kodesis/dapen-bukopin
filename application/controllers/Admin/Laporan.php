@@ -40,13 +40,45 @@ class Laporan extends CI_Controller
         // $data['content_js'] = 'webview/user/laporan/laporan_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
     }
-
-    public function PDP()
+    public function detail($type, $id)
     {
-        // $file_path = FCPATH . 'uploads/PDP/PDP_Bank_KB_Bukopin.pdf';
-        $file_path = base_url('uploads/PDP/PDP_Bank_KB_Bukopin.pdf');
+        // $tipe = 'Laporan ' . $type;
+
+        $this->db->select('*');
+        $this->db->from('file');
+        $this->db->where('uid', $id);
+        $this->db->where('tipe', $type);
+        $file = $this->db->get()->row();
+
+        $file = $file->file;
+        $file_path = base_url('uploads/file/' . $file);
+        $data['id'] = $id;
 
         $data['data_file'] = $file_path;
+        $data['content']  = 'webview/Admin/Laporan/laporan_detail_view';
+        // $data['content_js'] = 'webview/user/laporan/laporan_js';
+        $this->load->view('_parts/Admin/Wrapper', $data);
+    }
+    // public function Detail_PDP()
+    // {
+    //     $file_path = base_url('uploads/PDP/PDP_Bank_KB_Bukopin.pdf');
+    //     $data['data_file'] = $file_path;
+    //     $data['content']  = 'webview/Admin/Laporan/laporan_detail_view';
+    //     // $data['content_js'] = 'webview/user/laporan/laporan_js';
+    //     $this->load->view('_parts/Admin/Wrapper', $data);
+    // }
+    public function PDP()
+    {
+        $this->db->select('*');
+        $this->db->from('file');
+        $this->db->where('active', 1);
+        $this->db->where('tipe', 'PDP Bank KB Bukopin');
+        // Order by 'tanggal' column in descending order to get the latest one
+        $this->db->order_by('created', 'DESC');
+        $pdp = $this->db->get()->result();
+
+        $data['Title'] = 'PDP Bank KB Bukopin';
+        $data['data_file'] = $pdp;
         $data['content']  = 'webview/Admin/Laporan/laporan_view';
         // $data['content_js'] = 'webview/user/laporan/laporan_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
@@ -60,14 +92,10 @@ class Laporan extends CI_Controller
         $this->db->where('tipe', 'Laporan Triwulan');
         // Order by 'tanggal' column in descending order to get the latest one
         $this->db->order_by('created', 'DESC');
+        $triwulan = $this->db->get()->result();
 
-        // Limit to 1 to get only the latest record
-        $this->db->limit(1);
-
-        $triwulan = $this->db->get()->row();
-        $file = $triwulan->file;
-        $file_path = base_url('uploads/file/' . $file);
-        $data['data_file'] = $file_path;
+        $data['Title'] = 'Laporan Triwulan';
+        $data['data_file'] = $triwulan;
         $data['content']  = 'webview/Admin/Laporan/laporan_view';
         // $data['content_js'] = 'webview/user/laporan/laporan_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
@@ -82,16 +110,33 @@ class Laporan extends CI_Controller
         // Order by 'tanggal' column in descending order to get the latest one
         $this->db->order_by('created', 'DESC');
 
-        // Limit to 1 to get only the latest record
-        $this->db->limit(1);
-        $tahunan = $this->db->get()->row();
+        $tahunan = $this->db->get()->result();
 
-        $file = $tahunan->file;
-        $file_path = base_url('uploads/file/' . $file);
-
-        $data['data_file'] = $file_path;
+        $data['Title'] = 'Laporan Tahunan';
+        $data['data_file'] = $tahunan;
         $data['content']  = 'webview/Admin/Laporan/laporan_view';
         // $data['content_js'] = 'webview/user/laporan/laporan_js';
         $this->load->view('_parts/Admin/Wrapper', $data);
     }
+    // public function tahunan()
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('file');
+    //     $this->db->where('active', 1);
+    //     $this->db->where('tipe', 'Laporan Tahunan');
+    //     // Order by 'tanggal' column in descending order to get the latest one
+    //     $this->db->order_by('created', 'DESC');
+
+    //     // Limit to 1 to get only the latest record
+    //     $this->db->limit(1);
+    //     $tahunan = $this->db->get()->row();
+
+    //     $file = $tahunan->file;
+    //     $file_path = base_url('uploads/file/' . $file);
+
+    //     $data['data_file'] = $file_path;
+    //     $data['content']  = 'webview/Admin/Laporan/laporan_view';
+    //     // $data['content_js'] = 'webview/user/laporan/laporan_js';
+    //     $this->load->view('_parts/Admin/Wrapper', $data);
+    // }
 }

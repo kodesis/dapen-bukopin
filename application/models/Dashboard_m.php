@@ -10,6 +10,14 @@ class Dashboard_m extends CI_Model
         // $this->db->where('role_id', 2);
         return $this->db->count_all_results();
     }
+    public function total_user_non()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('active', 2);
+        // $this->db->where('role_id', 2);
+        return $this->db->count_all_results();
+    }
     public function total_saldo_connected()
     {
         $this->db->from('user');

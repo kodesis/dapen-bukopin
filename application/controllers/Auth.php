@@ -84,7 +84,7 @@ class Auth extends CI_Controller
 
         $this->db->select('*');
         $this->db->from('user');
-        $this->db->where('nik', $this->input->post('nip'));
+        $this->db->where('kd_peserta', $this->input->post('nip'));
         $this->db->where('tgl_lahir', $this->input->post('tgl_lahir'));
         $user = $this->db->get()->row();
 
@@ -115,7 +115,7 @@ class Auth extends CI_Controller
                         'active'          => 1,
                         'password'        => $enc_password,
                     );
-                    $this->regis->update_user($data, array('nik' => $this->input->post('nip')), array('tgl_lahir' => $this->input->post('tgl_lahir')));
+                    $this->regis->update_user($data, array('kd_peserta' => $this->input->post('nip')), array('tgl_lahir' => $this->input->post('tgl_lahir')));
 
 
                     $data = array("status" => 'berhasil');

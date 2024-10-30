@@ -16,6 +16,20 @@
         });
     }
 
+    function updateUserNonCount() {
+        $.ajax({
+            url: 'Admin/Dashboard/user_count_non', // Replace with the actual URL to your controller
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                $('#user_count_belum_aktif').text(data.user_count_non); // Update the user count in the modal
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching user count:", error);
+            }
+        });
+    }
+
     function updateConnectedCount() {
         $.ajax({
             url: 'Admin/Dashboard/saldo_con_count', // Replace with the actual URL to your controller
@@ -45,11 +59,13 @@
     }
     // Call the function every 5 seconds (5000 milliseconds)
     setInterval(updateUserCount, 5000);
+    setInterval(updateUserNonCount, 5000);
     setInterval(updateConnectedCount, 5000);
     setInterval(updateSaldoCount, 5000);
 
     // Initial call to update immediately when the page loads
     updateUserCount();
+    updateUserNonCount();
     updateConnectedCount();
     updateSaldoCount();
 

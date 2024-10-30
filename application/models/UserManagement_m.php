@@ -3,8 +3,8 @@
 class UserManagement_m extends CI_Model
 {
     var $table = 'user';
-    var $column_order = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active'); //set column field database for datatable orderable
-    var $column_search = array('user.uid', 'kd_peserta', 'nama', 'email', 'nik', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active'); //set column field database for datatable searchable 
+    var $column_order = array('user.uid', 'kd_peserta', 'nama', 'email', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active'); //set column field database for datatable orderable
+    var $column_search = array('user.uid', 'kd_peserta', 'nama', 'email', 'alamat', 'tgl_lahir', 'pegawai', 'peserta', 'role_id', 'active'); //set column field database for datatable searchable 
     var $order = array('user.uid' => 'asc'); // default order 
 
     function get_category()
