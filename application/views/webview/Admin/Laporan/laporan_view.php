@@ -46,7 +46,11 @@
                                         <a class="btn btn-primary" href="<?= base_url('uploads/file/' . $i->file) ?>" download>Unduh</a>
                                         <?php
                                         $tipe = trim(explode(' ', $i->tipe)[1]);
-                                        if ($tipe != 'Triwulan' || $tipe != 'Tahunan') {
+                                        if ($tipe == 'Triwulan') {
+                                            $tipe == 'Triwulan';
+                                        } else if ($tipe == 'Tahunan') {
+                                            $tipe == 'Tahunan';
+                                        } else {
                                             $tipe = 'PDP';
                                         }
                                         ?>
