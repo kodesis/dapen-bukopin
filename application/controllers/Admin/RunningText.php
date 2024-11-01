@@ -65,6 +65,7 @@ class runningtext extends CI_Controller
 			$row = array();
 			$row[] = $no;
 			$row[] = $cat->text;
+			$row[] = $cat->lokasi;
 
 			$row[] = '<center> <div class="list-icons d-inline-flex">
                 <a title="Update User" onclick="onEdit(' . $cat->uid . ')" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
@@ -97,12 +98,14 @@ class runningtext extends CI_Controller
 	{
 		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 		$text = $this->input->post('text');
+		$lokasi = $this->input->post('lokasi');
 
 		$this->runningtext->save(
 			array(
 
 				'created'           => $date->format('Y-m-d H:i:s'),
 				'text'             => $text,
+				'lokasi'             => $lokasi,
 				'active'           => 1,
 			),
 		);
@@ -121,10 +124,12 @@ class runningtext extends CI_Controller
 	{
 		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 		$text = $this->input->post('text');
+		$lokasi = $this->input->post('lokasi');
 
 		$data_update = [
 			'updated'           => $date->format('Y-m-d H:i:s'),
 			'text'             => $text,
+			'lokasi'             => $lokasi,
 		];
 
 

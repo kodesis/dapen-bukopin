@@ -52,6 +52,7 @@
                     $this->db->select('*');
                     $this->db->from('running_text');
                     $this->db->where('active', 1);
+                    $this->db->where('lokasi', 'Landing');
                     $running_text =  $this->db->get()->result();
                     if (isset($running_text) || !(empty($running_text))) {
                     ?>

@@ -48,6 +48,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Text</th>
+                                        <th>Lokasi</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -86,6 +87,15 @@
                                     <label for="Text_add" style="margin-top: -5px;">Text</label>
                                 </div>
                             </div>
+                            <label for="date">Lokasi Running Text </label>
+                            <fieldset class="form-group">
+                                <select class="form-select" id="lokasi_add" name="lokasi">
+                                    <option selected disabled>Pilih Lokasi Running Text</option>
+                                    <option value="Landing">Landing Page</option>
+                                    <option value="Login">Login Page</option>
+
+                                </select>
+                            </fieldset>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -126,6 +136,15 @@
                                     <label for="Text_edit" style="margin-top: -5px;">Text</label>
                                 </div>
                             </div>
+                            <label for="date">Lokasi Running Text </label>
+                            <fieldset class="form-group">
+                                <select class="form-select" id="lokasi_edit" name="lokasi">
+                                    <option selected disabled>Pilih Lokasi Running Text</option>
+                                    <option value="Landing">Landing Page</option>
+                                    <option value="Login">Login Page</option>
+
+                                </select>
+                            </fieldset>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -135,47 +154,6 @@
                             <span class="d-none d-sm-block">Close</span>
                         </button>
                         <button onclick="update_user()" type="button" class="btn btn-primary ms-1">
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Accept</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--scrolling content Modal Upload Excel -->
-        <div class="modal fade" id="upload_modal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalScrollableTitle">Upload User</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal"
-                            aria-label="Close">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="upload_user">
-                            <!-- <label for="name">Tanggal Data</label>
-                            <div class="form-group">
-                                <input id="tanggal_upload" name="tanggal" type="date" placeholder="Masukan Tanggal"
-                                    class="form-control">
-                            </div> -->
-                            <label for="name">Upload File Excel </label>
-                            <div class="form-group">
-                                <input id="file" name="file" type="file" placeholder="Masukan File"
-                                    class="form-control">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary"
-                            data-bs-dismiss="modal">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Close</span>
-                        </button>
-                        <button onclick="upload_user()" type="button" class="btn btn-primary ms-1">
                             <i class="bx bx-check d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Accept</span>
                         </button>

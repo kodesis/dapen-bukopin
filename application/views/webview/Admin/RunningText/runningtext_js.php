@@ -49,6 +49,7 @@
 
     function add_user() {
         const ttlnamaValue = $('#Text_add').val();
+        const ttllokasiValue = $('#lokasi_add').val();
 
 
         if (!ttlnamaValue) {
@@ -57,6 +58,14 @@
                 icon: 'error',
                 showConfirmButton: false,
                 title: 'Kolom Text Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (!ttllokasiValue) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Lokasi Tidak Boleh Kosong',
                 timer: 1500
             });
         } else {
@@ -157,6 +166,7 @@
 
                 $('#id_edit').val(data.uid);
                 $('#Text_edit').val(data.text);
+                $('#lokasi_edit').val(data.lokasi);
                 $('.dropdown-toggle').dropdown();
 
                 $('#edit_modal').modal('show'); // show bootstrap modal when complete loaded
@@ -211,6 +221,7 @@
     function update_user() {
 
         const ttlnamaValue = $('#Text_edit').val();
+        const ttllokasiValue = $('#lokasi_edit').val();
 
 
 
@@ -220,6 +231,14 @@
                 icon: 'error',
                 showConfirmButton: false,
                 title: 'Kolom Text Tidak Boleh Kosong',
+                timer: 1500
+            });
+        } else if (!ttllokasiValue) {
+            swal.fire({
+                customClass: 'slow-animation',
+                icon: 'error',
+                showConfirmButton: false,
+                title: 'Kolom Lokasi Tidak Boleh Kosong',
                 timer: 1500
             });
         } else {

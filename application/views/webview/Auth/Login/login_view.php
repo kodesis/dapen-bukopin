@@ -37,9 +37,34 @@
                             </div>
                         </div> -->
                     </div>
-                    <h6 class="auth-title">Log in.</h6>
-                    <p class="auth-subtitle mb-2">Log in with your data that you entered during registration.</p>
+                    <div class="running-text">
+                        <?php
+                        $this->db->select('*');
+                        $this->db->from('running_text');
+                        $this->db->where('active', 1);
+                        $this->db->where('lokasi', 'Login');
+                        $running_text =  $this->db->get()->result();
+                        if (isset($running_text) || !(empty($running_text))) {
+                        ?>
+                            <marquee behavior="scroll" direction="left">
+                                <?php
+                                foreach ($running_text as $rt) {
+                                    echo $rt->text . ' || ';
+                                }
+                                ?>
+                            </marquee>
+                        <?php
+                        } else {
+                        ?>
+                            <marquee behavior="scroll" style="color:#fff" direction="left">
+                                <p class="auth-subtitle mb-2">Log in with your data that you entered during registration.</p>
+                            </marquee>
+                        <?php
+                        }
+                        ?>
+                    </div>
 
+                    <h6 class="auth-title">Log in.</h6>
                     <form id="login_form" onsubmit="login(event)">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" id="username_login" name="username" class="form-control form-control-xl" placeholder="Email">

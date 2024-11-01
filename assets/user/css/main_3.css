@@ -1289,7 +1289,7 @@ textarea {
 }
 @media (max-width: 767.98px) {
   .tg-header__top {
-    display: none;
+    /* display: none; */
   }
 }
 .tg-header__top-info {
