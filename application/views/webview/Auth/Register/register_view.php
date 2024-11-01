@@ -17,6 +17,12 @@
     <!-- SWAL NOTIF -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?= base_url() ?>assets/cms/extensions/jquery/jquery.min.js"></script>
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <style>
         .form-group {
             position: relative;
@@ -56,12 +62,12 @@
                                 <a href="<?= base_url('index') ?>"><img src="<?= base_url() ?>/assets/cms/Logo/dapenbukopin_lg1.png" alt="Logo"></a>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="auth-logo d-flex justify-content-end">
                                 <a class="font-bold" href="<?= base_url('') ?>" style="font-size:20px"><i class="bi bi-arrow-left"></i>
                                     Back</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <h1 class="auth-title">Sign Up</h1>
                     <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
@@ -87,8 +93,17 @@
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="password" name="password1" id="password1" class="form-control form-control-xl" placeholder="Password">
+
+                            <!-- Left icon (lock) -->
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
+                            </div>
+
+                            <!-- Right icon (eye) -->
+                            <div style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 2; font-size: 1.6rem;">
+                                <a style="color: #adb5bd;" href="javascript:void(0)" onclick="changePassword(1)">
+                                    <i class="bi bi-eye"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
@@ -96,14 +111,18 @@
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
+                            <div style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 2; font-size: 1.6rem;">
+                                <a style="color: #adb5bd;" href="javascript:void(0)" onclick="changePassword(2)">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                            </div>
                         </div>
                         <!-- <label for="tgl_lahir" class="floating-placeholder">Tanggal Lahir</label> -->
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <label for="tgl_lahir" id="label-tgl-lahir" class="floating-placeholder">Tanggal Lahir</label>
-                            <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control form-control-xl" onclick="hidePlaceholder()">
-                            <!-- <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control form-control-xl"> -->
+                            <!-- <label for="tgl_lahir" id="label-tgl-lahir" class="floating-placeholder">Tanggal Lahir</label> -->
+                            <input type="text" id="tgl_lahir" name="tgl_lahir" class="form-control form-control-xl" onclick="hidePlaceholder()" placeholder="Tanggal Lahir" height="10">
                             <div class="form-control-icon">
-                                <i class="bi bi-envelope"></i>
+                                <i class="bi bi-calendar"></i>
                             </div>
                         </div>
                     </form>
@@ -124,6 +143,13 @@
     </div>
 </body>
 <script>
+    // Initialize Flatpickr with dd/mm/yyyy format
+    flatpickr("#tgl_lahir", {
+        dateFormat: "d/m/Y",
+        allowInput: true, // Allows user to type in the date manually as well
+        placeholder: "Tanggal Lahir" // Adds a placeholder to the input
+    });
+
     function hidePlaceholder() {
         document.getElementById("label-tgl-lahir").style.display = "none";
     }
@@ -134,6 +160,34 @@
             document.getElementById("label-tgl-lahir").style.display = "block";
         }
     });
+
+    function changePassword(id) {
+        var passwordField = document.getElementById("password" + id);
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+
+
+    function formatDateInput(input) {
+        // Remove any characters that are not digits
+        let date = input.value.replace(/[^0-9]/g, '');
+
+        // Format as dd/mm/yyyy
+        if (date.length >= 2) {
+            date = date.slice(0, 2) + '/' + date.slice(2);
+        }
+        if (date.length >= 5) {
+            date = date.slice(0, 5) + '/' + date.slice(5, 9);
+        }
+
+        // Set the formatted value back to the input field
+        input.value = date;
+    }
+</script>
 </script>
 
 </html>

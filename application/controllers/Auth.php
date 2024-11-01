@@ -81,11 +81,13 @@ class Auth extends CI_Controller
     public function register_process()
     {
         $this->load->model('Auth_m', 'regis');
+        $tgl_lahir = $this->input->post('tgl_lahir');
+        $tgl_lahir = date('Y-m-d', strtotime($tgl_lahir));
 
         $this->db->select('*');
         $this->db->from('user');
         $this->db->where('kd_peserta', $this->input->post('nip'));
-        $this->db->where('tgl_lahir', $this->input->post('tgl_lahir'));
+        $this->db->where('tgl_lahir', $tgl_lahir);
         $user = $this->db->get()->row();
 
         if (!empty($user)) {

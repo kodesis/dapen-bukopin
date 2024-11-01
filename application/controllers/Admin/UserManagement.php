@@ -121,21 +121,26 @@ class UserManagement extends CI_Controller
 
 	public function save_nip()
 	{
+
 		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 		$kd_peserta = $this->input->post('kd_peserta');
-		$nik = $this->input->post('nik');
+		// $nik = $this->input->post('nik');
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$pegawai = $this->input->post('pegawai');
 		$peserta = $this->input->post('peserta');
 
+		$tgl_lahir = date('Y-m-d', strtotime($tgl_lahir));
+
+		// echo json_encode(array("status" => $tgl_lahir));
+		// return;
 		// Get KD Peserta
 		$this->db->select('uid'); // Select the uid column
 		$this->db->from('user'); // Your table name
-		$this->db->where('nik', $nik); // Filter by kd_peserta
+		$this->db->where('kd_peserta', $kd_peserta); // Filter by kd_peserta
 		$result2 = $this->db->get()->row(); // Execute the query
 
 		if (!empty($result2)) {
-			echo json_encode(array("status" => "NIK Sudah di Pakai", "nik" => $nik));
+			echo json_encode(array("status" => "NIK Sudah di Pakai", "kd_peserta" => $kd_peserta));
 		} else {
 
 			$this->usermanagement->save_user(
@@ -143,7 +148,7 @@ class UserManagement extends CI_Controller
 
 					'created'           => $date->format('Y-m-d H:i:s'),
 					'kd_peserta'              => $kd_peserta,
-					'nik'              => $nik,
+					// 'nik'              => $nik,
 					'tgl_lahir'        => $tgl_lahir,
 					'pegawai'        => $pegawai,
 					'peserta'        => $peserta,

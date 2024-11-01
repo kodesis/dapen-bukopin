@@ -197,7 +197,7 @@
         const ttlroleValue = $('#role_add').val();
         const ttlpassword1Value = $('#password1_add').val();
         const ttlpassword2Value = $('#password2_add').val();
-        const ttlnikValue = $('#nik_add').val();
+        // const ttlnikValue = $('#nik_add').val();
         const ttlalamatValue = $('#alamat_add').val();
         const ttltgl_lahirValue = $('#tgl_lahir_add').val();
         const ttlpegawaiValue = $('#pegawai_add').val();
@@ -260,14 +260,14 @@
                 title: 'Password dan Konfirmasi Password Tidak Cocok',
                 timer: 1500
             });
-        } else if (!ttlnikValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom NIK Tidak Boleh Kosong',
-                timer: 1500
-            });
+            // } else if (!ttlnikValue) {
+            //     swal.fire({
+            //         customClass: 'slow-animation',
+            //         icon: 'error',
+            //         showConfirmButton: false,
+            //         title: 'Kolom NIK Tidak Boleh Kosong',
+            //         timer: 1500
+            //     });
         } else if (!ttlalamatValue) {
             swal.fire({
                 customClass: 'slow-animation',
@@ -749,7 +749,7 @@
         const ttlemailValue = $('#email_edit').val();
         const ttlkd_pesertaValue = $('#kd_peserta_edit').val();
         const ttlroleValue = $('#role_edit').val();
-        const ttlnikValue = $('#nik_edit').val();
+        // const ttlnikValue = $('#nik_edit').val();
         const ttlupdate_passwordValue = $('#update_password').is(':checked');
         const ttlalamatValue = $('#alamat_edit').val();
         const ttltgl_lahirValue = $('#tgl_lahir_edit').val();
@@ -788,157 +788,157 @@
             }
         }
 
-        if (!ttlnamaValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Nama Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlemailValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Email Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlkd_pesertaValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Kode Peserta Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlroleValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Role Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlnikValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom NIK Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlalamatValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Alamat Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttltgl_lahirValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Tanggal Lahir Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlpegawaiValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Pegawai Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlpesertaValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Peserta Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else {
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    InputEvent: 'form-control',
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            })
+        // if (!ttlnamaValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Nama Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else if (!ttlemailValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Email Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else if (!ttlkd_pesertaValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Kode Peserta Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else if (!ttlroleValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Role Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else if (!ttlnikValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom NIK Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else if (!ttlalamatValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Alamat Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else if (!ttltgl_lahirValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Tanggal Lahir Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else if (!ttlpegawaiValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Pegawai Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else if (!ttlpesertaValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Peserta Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                InputEvent: 'form-control',
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
 
-            swalWithBootstrapButtons.fire({
-                title: 'Ingin Mengubah Data User?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Ubah',
-                cancelButtonText: 'Tidak',
-                reverseButtons: true
-            }).then((result) => {
+        swalWithBootstrapButtons.fire({
+            title: 'Ingin Mengubah Data User?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Ubah',
+            cancelButtonText: 'Tidak',
+            reverseButtons: true
+        }).then((result) => {
 
-                if (result.isConfirmed) {
+            if (result.isConfirmed) {
 
-                    var url;
-                    var formData;
-                    url = "<?php echo site_url('Admin/UserManagement/update') ?>";
+                var url;
+                var formData;
+                url = "<?php echo site_url('Admin/UserManagement/update') ?>";
 
-                    // window.location = url_base;
-                    var formData = new FormData($("#edit_user")[0]);
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        data: formData,
-                        contentType: false,
-                        processData: false,
-                        dataType: "JSON",
-                        beforeSend: function() {
+                // window.location = url_base;
+                var formData = new FormData($("#edit_user")[0]);
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    dataType: "JSON",
+                    beforeSend: function() {
+                        swal.fire({
+                            icon: 'info',
+                            timer: 3000,
+                            showConfirmButton: false,
+                            title: 'Loading...'
+
+                        });
+                    },
+                    success: function(data) {
+                        /* if(!data.status)alert("ho"); */
+                        if (!data.status) swal.fire('Gagal menyimpan data', 'error');
+                        else {
+                            // document.getElementById('rumahadat').reset();
+                            // $('#add_modal').modal('hide');
+                            (JSON.stringify(data));
+                            // alert(data)
                             swal.fire({
-                                icon: 'info',
-                                timer: 3000,
+                                customClass: 'slow-animation',
+                                icon: 'success',
                                 showConfirmButton: false,
-                                title: 'Loading...'
-
+                                title: 'Berhasil Mengubah Data User',
+                                timer: 1500
                             });
-                        },
-                        success: function(data) {
-                            /* if(!data.status)alert("ho"); */
-                            if (!data.status) swal.fire('Gagal menyimpan data', 'error');
-                            else {
-                                // document.getElementById('rumahadat').reset();
-                                // $('#add_modal').modal('hide');
-                                (JSON.stringify(data));
-                                // alert(data)
-                                swal.fire({
-                                    customClass: 'slow-animation',
-                                    icon: 'success',
-                                    showConfirmButton: false,
-                                    title: 'Berhasil Mengubah Data User',
-                                    timer: 1500
-                                });
-                                document.getElementById('edit_user').reset(); // Reset the form
-                                $('#edit_modal').modal('hide'); // Hide the modal
-                                $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
-                                // location.reload();
+                            document.getElementById('edit_user').reset(); // Reset the form
+                            $('#edit_modal').modal('hide'); // Hide the modal
+                            $('#table1').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                            // location.reload();
 
-                            }
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            swal.fire('Operation Failed!', errorThrown, 'error');
-                        },
-                        complete: function() {
-                            console.log('Editing job done');
                         }
-                    });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        swal.fire('Operation Failed!', errorThrown, 'error');
+                    },
+                    complete: function() {
+                        console.log('Editing job done');
+                    }
+                });
 
 
-                }
+            }
 
-            })
-        }
+        })
     }
+    // }
 
     function onDelete(id) {
 

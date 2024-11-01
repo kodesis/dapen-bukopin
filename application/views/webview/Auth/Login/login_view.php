@@ -52,6 +52,11 @@
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
+                            <div style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 2; font-size: 1.6rem;">
+                                <a style="color: #adb5bd;" href="javascript:void(0)" onclick="changePassword()">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                            </div>
                         </div>
                         <!-- <div class="form-check form-check-lg d-flex align-items-end">
                             <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
@@ -77,5 +82,16 @@
 
     </div>
 </body>
+<script>
+    function changePassword() {
+        var passwordField = document.getElementById("password_login");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+</script>
 
 </html>

@@ -1,4 +1,10 @@
 <script src="<?= base_url() ?>assets/cms/extensions/jquery/jquery.min.js"></script>
+<?php
+// Prepare the title string in PHP
+$nama = $this->session->userdata('name');
+$nip = $this->session->userdata('kd_peserta');
+$title = "Nama: " . $nama . " | NIP: " . $nip;
+?>
 <script>
     function fetchChartData() {
         $.ajax({
@@ -61,6 +67,15 @@
                         // Format the value for the tooltip
                         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
+                }
+            },
+            title: {
+                text: "<?php echo $title; ?>", // Set the title using the PHP variable
+                align: 'center', // Align the title to the center
+                style: {
+                    fontSize: '16px', // You can adjust the font size here
+                    fontWeight: 'bold', // Make the title bold
+                    color: '#333' // You can adjust the color here
                 }
             }
         };

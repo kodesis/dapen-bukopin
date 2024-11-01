@@ -4,6 +4,10 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header> -->
+        <!-- Flatpickr CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <!-- Flatpickr JS -->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
         <div class="page-heading">
             <div class="page-title">
@@ -207,15 +211,29 @@
                                 </select>
                             </fieldset>
                             <label for="password">Password </label>
-                            <div class="form-group">
-                                <input id="password1_add" name="password1" type="password" placeholder="Masukan Password"
-                                    class="form-control">
+                            <div class="form-group row">
+                                <div class="col-md-10">
+                                    <input id="password1_add" name="password1" type="password" placeholder="Masukan Password"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <a onclick="changePassword('password1_add')" class="btn">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                </div>
                             </div>
 
                             <label for="password">Konfirmasi Password </label>
-                            <div class="form-group">
-                                <input id="password2_add" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
-                                    class="form-control">
+                            <div class="form-group row">
+                                <div class="col-md-10">
+                                    <input id="password2_add" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <a onclick="changePassword('password2_add')" class="btn">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                </div>
                             </div>
                             <!-- <label for="nik">NIP </label>
                             <div class="form-group">
@@ -391,15 +409,29 @@
                         <form id="edit_password_user">
                             <input type="hidden" id="id_edit" name="id_edit">
                             <label for="password">Password </label>
-                            <div class="form-group">
-                                <input id="password1_edit" name="password1" type="password" placeholder="Masukan Password"
-                                    class="form-control">
+                            <div class="form-group row">
+                                <div class="col-md-10">
+                                    <input id="password1_edit" name="password1" type="password" placeholder="Masukan Konfimrasi Password"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <a onclick="changePassword('password1_edit')" class="btn">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                </div>
                             </div>
 
                             <label for="password">Konfirmasi Password </label>
-                            <div class="form-group">
-                                <input id="password2_edit" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
-                                    class="form-control">
+                            <div class="form-group row">
+                                <div class="col-md-10">
+                                    <input id="password2_edit" name="password2" type="password" placeholder="Masukan Konfimrasi Password"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <a onclick="changePassword('password2_edit')" class="btn">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -508,3 +540,30 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+
+        <script>
+            function changePassword(id) {
+                var passwordField = document.getElementById(id);
+
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                } else {
+                    passwordField.type = "password";
+                }
+            }
+            // flatpickr("#tgl_lahir_add_nip", {
+            //     dateFormat: "d/m/Y",
+            //     allowInput: true, // Allows user to type in the date manually as well
+            //     placeholder: "Tanggal Lahir" // Adds a placeholder to the input
+            // });
+            // flatpickr("#tgl_lahir", {
+            //     dateFormat: "d/m/Y",
+            //     allowInput: true, // Allows user to type in the date manually as well
+            //     placeholder: "Tanggal Lahir" // Adds a placeholder to the input
+            // });
+            // flatpickr("#tgl_lahir", {
+            //     dateFormat: "d/m/Y",
+            //     allowInput: true, // Allows user to type in the date manually as well
+            //     placeholder: "Tanggal Lahir" // Adds a placeholder to the input
+            // });
+        </script>
