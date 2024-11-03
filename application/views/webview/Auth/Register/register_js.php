@@ -7,15 +7,16 @@
         const ttlpassword2Value = $('#password2').val();
         const ttltglLahirValue = $('#tgl_lahir').val();
 
-        if (!ttlnamaValue) {
-            swal.fire({
-                customClass: 'slow-animation',
-                icon: 'error',
-                showConfirmButton: false,
-                title: 'Kolom Nama Tidak Boleh Kosong',
-                timer: 1500
-            });
-        } else if (!ttlnipValue) {
+        // if (!ttlnamaValue) {
+        //     swal.fire({
+        //         customClass: 'slow-animation',
+        //         icon: 'error',
+        //         showConfirmButton: false,
+        //         title: 'Kolom Nama Tidak Boleh Kosong',
+        //         timer: 1500
+        //     });
+        // } else 
+        if (!ttlnipValue) {
             swal.fire({
                 customClass: 'slow-animation',
                 icon: 'error',

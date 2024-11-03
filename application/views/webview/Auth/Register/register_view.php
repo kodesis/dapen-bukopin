@@ -73,12 +73,12 @@
                     <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
 
                     <form id="register_form">
-                        <div class="form-group position-relative has-icon-left mb-4">
+                        <!-- <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" name="nama" id="nama" class="form-control form-control-xl" placeholder="Nama">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" name="nip" id="nip" class="form-control form-control-xl" placeholder="NIP">
                             <div class="form-control-icon">

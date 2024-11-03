@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use SebastianBergmann\Environment\Console;
 
 class Auth extends CI_Controller
 {
@@ -82,7 +83,7 @@ class Auth extends CI_Controller
     {
         $this->load->model('Auth_m', 'regis');
         $tgl_lahir = $this->input->post('tgl_lahir');
-        $tgl_lahir = date('Y-m-d', strtotime($tgl_lahir));
+        $tgl_lahir = DateTime::createFromFormat('d/m/Y', $tgl_lahir)->format('Y-m-d');
 
         $this->db->select('*');
         $this->db->from('user');
@@ -129,7 +130,7 @@ class Auth extends CI_Controller
             }
         } else {
 
-            $data = array("status" => 'NIP dan Tanggal Lahir Tidak Di temukan');
+            $data = array("status" => 'NIP dan Tanggal Lahir Tidak Di temukan', "tanggal_lahir" => $tgl_lahir, "nip" => $this->input->post('nip'));
             echo json_encode($data);
         }
     }
