@@ -25,6 +25,7 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
     function updateChart(data) {
         // Keep original sales data for the chart
         var salesData = data.sales;
+        const isDarkTheme = true; // Set this based on your theme toggle
 
         var optionsProfileVisit = {
             annotations: {
@@ -75,7 +76,7 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
                 style: {
                     fontSize: '16px', // You can adjust the font size here
                     fontWeight: 'bold', // Make the title bold
-                    color: '#333' // You can adjust the color here
+                    color: '#607080'
                 }
             }
         };
