@@ -207,7 +207,11 @@ class Auth extends CI_Controller
                 array('email' => $this->input->post('email'))
             );
 
-            $link = 'https://dapenkbbukopin.co.id/auth/confirm_reset/' . $token_id;
+            // $link = 'https://dapenkbbukopin.co.id/auth/confirm_reset/' . $token_id;
+            $link = base_url(
+                'auth/confirm_reset/' . $token_id
+            );
+
             $subjek = 'Reset Password Confirmation';
             //     $pesan =
             //         '
