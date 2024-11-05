@@ -27,7 +27,7 @@
             var base_url = "<?php echo base_url(); ?>";
             var url;
             var formData;
-            url = "<?php echo site_url('auth/reset_password') ?>";
+            url = "<?php echo site_url('auth/resetpassword') ?>";
 
             // window.location = url_base;
             var formData = new FormData($("#login_form")[0]);
@@ -74,7 +74,7 @@
                         }).then(() => {
                             // This code will execute after the timer ends
                             // window.location.href = base_url + 'auth'; // Redirect after the timer
-                            window.location.href = base_url + data.url; // Redirect after the timer
+                            // window.location.href = base_url + data.url; // Redirect after the timer
                         });
 
 

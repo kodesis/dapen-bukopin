@@ -282,16 +282,17 @@ class Auth extends CI_Controller
             $this->email->subject($subjek); // Set email subject
             $this->email->message($pesan); // Set email body (HTML)
 
-            if ($this->email->send()) {
-                // echo 'Success! Email has been sent.';
-                echo json_encode(array("status" => True));
-                // return;
-            } else {
-                echo 'Error! Email could not be sent.<br>';
-                echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
-                echo json_encode(array("status" => False));
-                return;
-            }
+            // if ($this->email->send()) {
+            // echo 'Success! Email has been sent.';
+            echo json_encode(array("status" => True, "email" => $this->input->post('email'), "token" => $token_id, "pesan" => $pesan));
+            return $pesan;
+            // return;
+            // } else {
+            //     echo 'Error! Email could not be sent.<br>';
+            //     echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
+            //     echo json_encode(array("status" => False));
+            //     return;
+            // }
         } else {
             echo json_encode(array("status" => "Email Tidak Ada"));
         }

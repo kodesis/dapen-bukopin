@@ -125,7 +125,7 @@
                                 <i class="bi bi-calendar"></i>
                             </div>
                         </div>
-                        <div class="g-recaptcha" data-sitekey="6LeS8ykqAAAAAMMLxrZQMfdH37sxjgQPiVYhd0Z4"></div>
+                        <div class="g-recaptcha" data-sitekey="6LcJjnUqAAAAAMbhYFi0kL6_OylrgtzfNVEW4Wpm"></div>
                     </form>
                     <button onclick="register()" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Sign Up</button>
                     <div class="text-center mt-5 text-lg fs-4">
