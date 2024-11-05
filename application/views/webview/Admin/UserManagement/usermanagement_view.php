@@ -128,7 +128,7 @@
                         <form id="add_user_nip">
                             <label for="nik">Kode Peserta </label>
                             <div class="form-group">
-                                <input id="kd_peserta_add_nip" name="kd_peserta" type="number" placeholder="Masukan Kode Peserta"
+                                <input id="kd_peserta_add_nip" name="kd_peserta" type="text" placeholder="Masukan Kode Peserta"
                                     class="form-control">
                             </div>
                             <!-- <label for="nik">NIP </label>
@@ -200,7 +200,7 @@
                             </div>
                             <label for="email">Kode Peserta </label>
                             <div class="form-group">
-                                <input id="kd_peserta_add" name="kd_peserta" type="number" placeholder="Masukan Kode Peserta"
+                                <input id="kd_peserta_add" name="kd_peserta" type="text" placeholder="Masukan Kode Peserta"
                                     class="form-control">
                             </div>
                             <label for="email">Role </label>
@@ -321,7 +321,7 @@
                             </div>
                             <label for="email">Kode Peserta </label>
                             <div class="form-group">
-                                <input id="kd_peserta_edit" name="kd_peserta" type="number" placeholder="Masukan Kode Peserta"
+                                <input id="kd_peserta_edit" name="kd_peserta" type="text" placeholder="Masukan Kode Peserta"
                                     class="form-control">
                             </div>
                             <label for="email">Role </label>
