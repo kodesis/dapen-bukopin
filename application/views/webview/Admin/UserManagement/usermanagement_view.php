@@ -72,6 +72,7 @@
                                         <th>Pegawai</th>
                                         <th>Peserta</th>
                                         <th>Role</th>
+                                        <th>Relasi Akun</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -268,6 +269,13 @@
                                             class="form-control">
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <label for="date">Relasi Peserta (Kode Peserta) </label>
+                                    <div class="form-group">
+                                        <input id="relasi_add" name="relasi" type="text" placeholder="Masukan Kode Peserta Sebagai Relasi"
+                                            class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -372,6 +380,13 @@
                                     <label for="date">Peserta </label>
                                     <div class="form-group">
                                         <input id="peserta_edit" name="peserta" type="date" placeholder="Masukan Tanggal"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="date">Relasi Peserta (Kode Peserta) </label>
+                                    <div class="form-group">
+                                        <input id="relasi_edit" name="relasi" type="text" placeholder="Masukan Kode Peserta Sebagai Relasi"
                                             class="form-control">
                                     </div>
                                 </div>
@@ -540,6 +555,48 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+
+        <div class="modal modal-table fade" id="relasi_modal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document" style="width: 1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Relasi User</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table" id="table2" style="overflow-x:auto; max-height:400px; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Kode Peserta</th>
+                                        <th>Nama</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary"
+                            data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <!-- <button onclick="update_user()" type="button" class="btn btn-primary ms-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Accept</span>
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <script>
             function changePassword(id) {

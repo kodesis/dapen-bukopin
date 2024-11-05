@@ -93,7 +93,7 @@ class Auth extends CI_Controller
 
         if (!empty($user)) {
 
-            if (empty($user->email) && empty($user->password)) {
+            if ($user->active == '2' && empty($user->email) && empty($user->password)) {
 
                 // Email Cek
                 $this->db->select('*');
@@ -105,7 +105,6 @@ class Auth extends CI_Controller
                     $data = array("status" => 'Email Sudah Di Pakai');
                     echo json_encode($data);
                 } else {
-
                     $enc_password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
 
                     $this->load->helper('string');
@@ -158,7 +157,33 @@ class Auth extends CI_Controller
         $data['content_js'] = 'webview/Auth/check_email/check_email_js';
         $this->load->view('_parts/Wrapper_auth', $data);
     }
+    public function reset_password()
+    {
+        $this->load->model('Auth_m', 'user');
 
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('email', $this->input->post('email'));
+        $user = $this->db->get()->result();
+
+        if (!empty($user)) {
+            $this->load->helper('string');
+            $token_id = random_string('alnum', 32);
+
+            $this->user->update(
+                array(
+
+                    'token_reset'       => $token_id,
+
+                ),
+                array('email' => $this->input->post('email'))
+            );
+            $url = 'auth/confirm_reset/' . $token_id;
+            echo json_encode(array("status" => True, "url" => $url));
+        } else {
+            echo json_encode(array("status" => "Email Tidak Ada"));
+        }
+    }
     public function resetpassword()
     {
         $this->load->model('Auth_m', 'user');
@@ -181,13 +206,44 @@ class Auth extends CI_Controller
                 ),
                 array('email' => $this->input->post('email'))
             );
+
+            $link = 'https://dapenkbbukopin.co.id/auth/confirm_reset/' . $token_id;
             $subjek = 'Reset Password Confirmation';
+            //     $pesan =
+            //         '
+            //         <!DOCTYPE html>
+            // <html>
+            // <head>
+            //   <title>Reset Password Confirmation</title>
+            // </head>
+            // <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+            //   <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
+            //     <tr>
+            //       <td align="center" style="padding: 40px 0;">
+            //         <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+            //           <tr>
+            //             <td align="center" style="padding: 40px 20px;">
+            //             <img src="https://dapenkbbukopin.co.id//assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo" style="max-width: 100%; height: auto;">
+            //               <h1 style="color: #333333;">Confirm Your Email Address</h1>
+            //               <br>
+            //               <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . $link . '</p>
+            //               <a ses:no-track href="' . $link . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
+            //             </td>
+            //           </tr>
+            //         </table>
+            //       </td>
+            //     </tr>
+            //   </table>
+
+            // </body>
+            // </html>    ';
+
             $pesan =
-                '
-                <!DOCTYPE html>
+                '<!DOCTYPE html>
         <html>
         <head>
-          <title>Reset Password Confirmation</title>
+          <title>Reset Password Berhaso;</title>
         </head>
         <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
         
@@ -197,13 +253,11 @@ class Auth extends CI_Controller
                 <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
                   <tr>
                     <td align="center" style="padding: 40px 20px;">
-                    <img src="https://dapenkbbukopin.co.id//assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo" style="max-width: 100%; height: auto;">
+                    <img src="https://dapenkbbukopin.co.id/assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo" style="max-width: 100%; height: auto;">
                       <h1 style="color: #333333;">Confirm Your Email Address</h1>
-                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Tap the button below to confirm your email address. If you didnt create an account with us, you can safely ignore this email.</p>
-                      <br>
-                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . site_url('auth/confirm_reset/' . $token_id) . '</p>
-                      <a href="' . site_url('auth/confirm_reset/' . $token_id) . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
-                    </td>
+                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . $link . '</p>
+                      <a ses:no-track href="' . $link . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
+                      </td>
                   </tr>
                 </table>
               </td>
@@ -211,11 +265,7 @@ class Auth extends CI_Controller
           </table>
         
         </body>
-        </html>
-        
-        
-            ';
-
+        </html>';
             $config['protocol'] = 'smtp';
             $config['smtp_host'] = 'ssl://heroic.jagoanhosting.com';
             $config['smtp_port'] = 465;
@@ -254,7 +304,7 @@ class Auth extends CI_Controller
 
     //     $this->db->select('*');
     //     $this->db->from('user');
-    //     $this->db->where('email', 'dimasuzumaki126@gmail.com');
+    //     $this->db->where('email', 'dimasuciha126@gmail.com');
     //     $user = $this->db->get()->result();
 
     //     if (!empty($user)) {
@@ -268,7 +318,7 @@ class Auth extends CI_Controller
     //                 'token_reset'       => $token_id,
 
     //             ),
-    //             array('email' => $this->input->post('email'))
+    //             array('email' => 'dimasuciha126@gmail.com')
     //         );
 
 

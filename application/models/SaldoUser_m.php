@@ -93,12 +93,12 @@ class SaldoUser_m extends CI_Model
 
         return $query->row();
     }
-    public function get_cari($bulan, $tahun)
+    public function get_cari($bulan, $tahun, $uid)
     {
-        $this->db->select('saldo.*, user.nik, user.alamat, user.tgl_lahir, user.alamat, user.pegawai, user.peserta');
+        $this->db->select('saldo.*, user.nama, user.kd_peserta, user.alamat, user.tgl_lahir, user.alamat, user.pegawai, user.peserta');
         $this->db->from($this->table);
         $this->db->join('user', 'saldo.uid_user = user.uid');
-        $this->db->where('saldo.uid_user', $this->session->userdata('user_user_id'));
+        $this->db->where('saldo.uid_user', $uid);
 
         // Add where clause for bulan and tahun
         $this->db->where('MONTH(saldo.tanggal_data)', $bulan);
@@ -122,7 +122,7 @@ class SaldoUser_m extends CI_Model
     public function get_last_saldo()
     {
         $this->db->select('saldo.*');
-        $this->db->from($this->table);
+        $this->db->from('saldo');
         $this->db->where('saldo.uid_user', $this->session->userdata('user_user_id'));
 
         // Order by tanggal_data in descending order to get the latest record

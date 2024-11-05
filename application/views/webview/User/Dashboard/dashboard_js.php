@@ -32,32 +32,43 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
                 position: "back",
             },
             dataLabels: {
-                enabled: true, // Enable data labels for better visibility
+                enabled: true,
                 formatter: function(value) {
-                    // Format the value for data labels with commas as thousand separators
                     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
             },
             chart: {
                 type: "bar",
                 height: 300,
+                events: {
+                    mounted: function(chartContext, config) {
+                        // Add custom title below the chart after it has mounted
+                        let chartEl = chartContext.el;
+                        let titleEl = document.createElement('div');
+                        titleEl.style.textAlign = 'center';
+                        titleEl.style.marginTop = '10px';
+                        titleEl.style.fontSize = '12px';
+                        titleEl.style.fontWeight = 'bold';
+                        titleEl.style.color = '#607080';
+                        titleEl.innerText = "<?php echo $title; ?>"; // Use the PHP variable for title text
+                        chartEl.parentNode.appendChild(titleEl);
+                    }
+                }
             },
             fill: {
                 opacity: 1,
             },
-            plotOptions: {},
             series: [{
                 name: "sales",
-                data: salesData, // Use the original sales data for the chart
+                data: salesData,
             }],
             colors: "#F7A400",
             xaxis: {
-                categories: data.categories, // Use the categories returned from the AJAX call
+                categories: data.categories,
             },
             yaxis: {
                 labels: {
                     formatter: function(value) {
-                        // Format the value for the vertical axis with commas as thousand separators
                         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
                 }
@@ -65,18 +76,8 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
             tooltip: {
                 y: {
                     formatter: function(value) {
-                        // Format the value for the tooltip
                         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
-                }
-            },
-            title: {
-                text: "<?php echo $title; ?>", // Set the title using the PHP variable
-                align: 'center', // Align the title to the center
-                style: {
-                    fontSize: '16px', // You can adjust the font size here
-                    fontWeight: 'bold', // Make the title bold
-                    color: '#607080'
                 }
             }
         };

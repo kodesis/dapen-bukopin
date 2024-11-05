@@ -30,6 +30,7 @@ class UserManagement extends CI_Controller
 		// require_once APPPATH . 'third_party/PhpSpreadsheet/src/Bootstrap.php';
 		parent::__construct();
 		$this->load->model('UserManagement_m', 'usermanagement');
+		$this->load->model('UserManagementRelation_m', 'usermanagementrelation');
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('upload');
 		// if (!$this->session->userdata('user_logged_in')) {
@@ -76,6 +77,15 @@ class UserManagement extends CI_Controller
 				$row[] = 'Admin';
 			} else if ($cat->role_id == 2) {
 				$row[] = 'User';
+			}
+
+			$this->db->from('user');
+			$this->db->where('related_user_uid', $cat->kd_peserta);
+			$cek_relasi = $this->db->get()->result();
+			if (!empty($cek_relasi)) {
+				$row[] = '<center> <h6 title="Status" onclick="onRelation(' . $cat->kd_peserta . ')" data-toggle="tooltip" data-original-title="Publish"  class="btn btn-secondary" id="btn-edit" >Relasi Akun</button></center>';
+			} else {
+				$row[] = '';
 			}
 			if ($cat->active == 0) {
 				$row[] = '<center> <h6 title="Status" onclick="onApprove_req(' . $cat->uid . ')" data-toggle="tooltip" data-original-title="Not Publish"  class="btn btn-danger" id="btn-edit" >Non Active</button></center>';
@@ -174,6 +184,7 @@ class UserManagement extends CI_Controller
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$pegawai = $this->input->post('pegawai');
 		$peserta = $this->input->post('peserta');
+		$relasi = $this->input->post('relasi');
 
 		// Get KD Peserta
 		$this->db->select('uid'); // Select the uid column
@@ -202,6 +213,7 @@ class UserManagement extends CI_Controller
 					'tgl_lahir'        => $tgl_lahir,
 					'pegawai'          => $pegawai,
 					'peserta'          => $peserta,
+					'related_user_uid'          => $relasi,
 					'active'           => 1,
 				),
 			);
@@ -231,6 +243,7 @@ class UserManagement extends CI_Controller
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$pegawai = $this->input->post('pegawai');
 		$peserta = $this->input->post('peserta');
+		$relasi = $this->input->post('relasi');
 
 		$data_update = [
 			'updated'           => $date->format('Y-m-d H:i:s'),
@@ -243,7 +256,12 @@ class UserManagement extends CI_Controller
 			'tgl_lahir'        => $tgl_lahir,
 			'pegawai'          => $pegawai,
 			'peserta'          => $peserta,
+			'related_user_uid'          => $relasi,
 		];
+
+		if (!empty($relasi)) {
+			$data_update['active'] = 1;
+		}
 
 		if ($update_password) {
 			$password1 = $this->input->post('password1');
@@ -436,6 +454,61 @@ class UserManagement extends CI_Controller
 			array('uid' => $this->input->post('id_edit_status'))
 		);
 
+		echo json_encode(array("status" => TRUE));
+	}
+
+	public function ajax_list_relasi($id)
+	{
+		$list = $this->usermanagementrelation->get_datatables($id);
+		$data = array();
+		$crs = "";
+		$no = $_POST['start'];
+
+
+
+
+		foreach ($list as $cat) {
+
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $cat->kd_peserta;
+			$row[] = $cat->nama;
+			$row[] = $cat->tgl_lahir;
+			$row[] = '<center> <div class="list-icons d-inline-flex">
+													<a title="Delete User" onclick="onDeleteRelasi(' . $cat->uid . ')" class="btn btn-danger"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                    </svg></a>
+            </div>
+    </center>';
+
+
+			$data[] = $row;
+		}
+
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->usermanagementrelation->count_all($id),
+			"recordsFiltered" => $this->usermanagementrelation->count_filtered($id),
+			"data" => $data,
+		);
+		echo json_encode($output);
+	}
+	public function delete_relasi($id)
+	{
+		$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+
+		$data_update = [
+			'updated'           => $date->format('Y-m-d H:i:s'),
+			'active'             => 2,
+			'related_user_uid'             => Null,
+
+		];
+
+		$this->usermanagement->update_user($data_update, array('uid' => $id));
 		echo json_encode(array("status" => TRUE));
 	}
 }

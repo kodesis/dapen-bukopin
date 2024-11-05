@@ -6235,7 +6235,9 @@ fieldset:disabled .btn {
     overflow-y: auto;
     outline: 0
 }
-
+.modal-table {
+    --bs-modal-width: 1000px;
+}
 .modal-dialog {
     position: relative;
     width: auto;

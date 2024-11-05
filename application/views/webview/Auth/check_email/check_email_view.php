@@ -16,6 +16,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?= base_url() ?>assets/cms/extensions/jquery/jquery.min.js"></script>
 
+    <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lc1w3QqAAAAAGxJKaD3eLRTvuqrwQPvC38boi3J"></script> -->
+    <!-- Your code -->
 </head>
 
 <body>
@@ -49,8 +51,18 @@
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
+                        <div class="g-recaptcha" data-sitekey="6LeS8ykqAAAAAMMLxrZQMfdH37sxjgQPiVYhd0Z4"></div>
                     </form>
-                    <button onclick="check_email()" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Check</button>
+                    <!-- <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5 g-recaptcha"
+                        onclick="check_email()"
+                        data-sitekey="6Lc1w3QqAAAAAGxJKaD3eLRTvuqrwQPvC38boi3J"
+                        data-callback='onSubmit'
+                        data-action='submit'>
+                        Submit -->
+                    </button>
+                    <button onclick="check_email()" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Submit</button>
+
+                    <!-- <button onclick="check_email()" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Check</button> -->
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">Already have an account? <a href="<?= base_url('auth/') ?>" class="font-bold">Sign in</a>.</p>
                         <p class="text-gray-600">Don't have an account? <a href="<?= base_url('auth/register') ?>" class="font-bold">Sign
@@ -68,5 +80,11 @@
 
     </div>
 </body>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+    }
+</script>
 
 </html>

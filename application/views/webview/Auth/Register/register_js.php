@@ -57,6 +57,17 @@
                 timer: 1500
             });
         } else {
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                swal.fire({
+                    customClass: 'slow-animation',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    title: 'Please complete the reCAPTCHA',
+                    timer: 1500
+                });
+                return;
+            }
             var base_url = "<?php echo base_url(); ?>";
             var url;
             var formData;
@@ -121,7 +132,7 @@
                             title: 'Berhasil Register',
                             timer: 1500
                         }).then(() => {
-                            window.location.href = base_url + 'auth'; // Assuming 'dashboard' is the path for admin dashboard
+                            // window.location.href = base_url + 'auth'; // Assuming 'dashboard' is the path for admin dashboard
                         });
                         // location.reload();
 

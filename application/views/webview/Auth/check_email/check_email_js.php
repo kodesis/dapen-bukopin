@@ -12,10 +12,22 @@
                 timer: 1500
             });
         } else {
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                swal.fire({
+                    customClass: 'slow-animation',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    title: 'Please complete the reCAPTCHA',
+                    timer: 1500
+                });
+                return;
+            }
+
             var base_url = "<?php echo base_url(); ?>";
             var url;
             var formData;
-            url = "<?php echo site_url('auth/resetpassword') ?>";
+            url = "<?php echo site_url('auth/reset_password') ?>";
 
             // window.location = url_base;
             var formData = new FormData($("#login_form")[0]);
@@ -56,11 +68,13 @@
                             customClass: 'slow-animation',
                             icon: 'success',
                             showConfirmButton: false,
-                            title: 'Silahkan Cek Email',
+                            // title: 'Silahkan Cek Email',
+                            title: 'Email Ditemukan!',
                             timer: 5000
                         }).then(() => {
                             // This code will execute after the timer ends
-                            window.location.href = base_url + 'auth'; // Redirect after the timer
+                            // window.location.href = base_url + 'auth'; // Redirect after the timer
+                            window.location.href = base_url + data.url; // Redirect after the timer
                         });
 
 

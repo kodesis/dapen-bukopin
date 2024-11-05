@@ -7318,7 +7318,9 @@ html[data-bs-theme=dark] .modal {
     overflow-y: auto;
     outline: 0
 }
-
+html[data-bs-theme=dark] .modal-table {
+    --bs-modal-width: 1000px;
+}
 html[data-bs-theme=dark] .modal-dialog {
     position: relative;
     width: auto;

@@ -27,7 +27,7 @@
             data: function(data) {}
         },
         columnDefs: [{
-            targets: 10, // The 8th column (0-indexed)
+            targets: [9, 11], // The 8th column (0-indexed)
             orderable: false // Disable sorting
         }]
     })
@@ -547,31 +547,13 @@
                 $('#pegawai_edit').val(data.pegawai);
                 $('#peserta_edit').val(data.peserta);
                 $('#role_edit').val(data.role_id);
-
+                $('#role_edit').val(data.role_id);
+                $('#relasi_edit').val(data.related_user_uid);
 
                 $('.dropdown-toggle').dropdown();
 
                 $('#edit_modal').modal('show'); // show bootstrap modal when complete loaded
                 console.log('bisa 2')
-
-                // $.ajax({
-                //     url: '<?php echo site_url('Admin/UserManagement/cat_list'); ?>',
-                //     type: 'GET',
-                //     dataType: 'json',
-                //     success: function(categoryData) { // Use a different variable name (e.g., categoryData) to avoid confusion
-                //         console.log('Data from server:', categoryData);
-                //         $('#role_edit').empty();
-
-                //         // Populate the select element with data from the server
-                //         $.each(categoryData, function(index, item) {
-                //             var option = $('<option value="' + item.id + '">' + item.role_name + '</option>');
-                //             if (item.id === data.role_id) { // Compare with data.id_cat_announcement
-                //                 option.prop('selected', true); // Automatically select the desired option
-                //             }
-                //             $('#role_edit').append(option);
-                //         });
-                //     }
-                // });
 
                 console.log('bisa 3')
 
@@ -1080,5 +1062,99 @@
             }
 
         });
+    }
+
+    function onRelation(id) {
+        // $('#edit_modal')[0].reset(); // reset form on modals
+        $('.form-group').removeClass('has-error'); // clear error class
+        $('.help-block').empty(); // clear error string
+        // $('.modal-title').text('Edit Poster');
+        if ($.fn.DataTable.isDataTable('#table2')) {
+            // Destroy the existing DataTable instance
+            $('#table2').DataTable().destroy();
+        }
+
+        $('#table2').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "order": [],
+            "iDisplayLength": 10,
+            "ajax": {
+                "url": "<?php echo site_url('Admin/UserManagement/ajax_list_relasi/') ?>" + id,
+                "type": "POST",
+                "data": function(data) {
+                    // Custom data can be sent here if needed
+                }
+            },
+            "columnDefs": [{
+                "targets": [4],
+                "orderable": false
+            }]
+        });
+        $('#relasi_modal').modal('show'); // show bootstrap modal when complete loaded
+
+    }
+
+    function onDeleteRelasi(id) {
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Apakah anda yakin ingin menghapus Relasi?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, hapus Relasi',
+            cancelButtonText: 'Tidak',
+            reverseButtons: true
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    url: "<?php echo site_url('Admin/UserManagement/delete_relasi/') ?>" + id,
+                    type: "POST",
+                    data: {
+                        id_delete: id
+                    },
+                    dataType: "JSON",
+                    beforeSend: function() {
+                        // showLoading("Saving data...", "Mohon tunggu");
+                    },
+                    success: function(data) {
+                        if (!data.status) showAlert('Gagal!', data.message.toString().replace(/<[^>]*>/g, ''), 'error');
+                        else {
+                            swalWithBootstrapButtons.fire(
+                                'Terhapus!',
+                                'Relasi berhasil dihapus.',
+                                'success'
+                            )
+                            $('#table2').DataTable().ajax.reload(); // Assuming you are using AJAX to load data
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        swalWithBootstrapButtons.fire(
+                            'Gagal',
+                            'Relasi gagal dihapus',
+                            'error'
+                        )
+                    },
+                    complete: function() {
+                        console.log('published job done');
+                    }
+                });
+
+
+            }
+
+        })
+
+
+
     }
 </script>
