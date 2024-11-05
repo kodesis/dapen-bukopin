@@ -206,93 +206,72 @@ class Auth extends CI_Controller
                 ),
                 array('email' => $this->input->post('email'))
             );
-
-            $link = 'https://dapenkbbukopin.co.id/auth/confirm_reset/' . $token_id;
-            $subjek = 'Reset Password Confirmation';
-            //     $pesan =
-            //         '
-            //         <!DOCTYPE html>
-            // <html>
-            // <head>
-            //   <title>Reset Password Confirmation</title>
-            // </head>
-            // <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
-
-            //   <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
-            //     <tr>
-            //       <td align="center" style="padding: 40px 0;">
-            //         <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
-            //           <tr>
-            //             <td align="center" style="padding: 40px 20px;">
-            //             <img src="https://dapenkbbukopin.co.id//assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo" style="max-width: 100%; height: auto;">
-            //               <h1 style="color: #333333;">Confirm Your Email Address</h1>
-            //               <br>
-            //               <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . $link . '</p>
-            //               <a ses:no-track href="' . $link . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
-            //             </td>
-            //           </tr>
-            //         </table>
-            //       </td>
-            //     </tr>
-            //   </table>
-
-            // </body>
-            // </html>    ';
+            $link = base_url('auth/confirm_reset/' . $token_id);
+            $subjek = 'Reset Password Confirmation 123';
+            // $subjek = "Content-Transfer-Encoding: base64\r\n\r\n";
 
             $pesan =
-                '<!DOCTYPE html>
-        <html>
-        <head>
-          <title>Reset Password Berhaso;</title>
-        </head>
-        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
-        
-          <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
-            <tr>
-              <td align="center" style="padding: 40px 0;">
-                <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
-                  <tr>
-                    <td align="center" style="padding: 40px 20px;">
-                    <img src="https://dapenkbbukopin.co.id/assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo" style="max-width: 100%; height: auto;">
-                      <h1 style="color: #333333;">Confirm Your Email Address</h1>
-                      <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . $link . '</p>
-                      <a ses:no-track href="' . $link . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
-                      </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        
-        </body>
-        </html>';
+                '
+                    <!DOCTYPE html>
+            <html>
+            <head>
+              <title>Reset Password Confirmation</title>
+            </head>
+            <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+              <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
+                <tr>
+                  <td align="center" style="padding: 40px 0;">
+                    <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+                      <tr>
+                        <td align="center" style="padding: 40px 20px;">
+                        <img src="https://dapenkbbukopin.co.id//assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo" style="max-width: 100%; height: auto;">
+                          <h1 style="color: #333333;">Confirm Your Email Address</h1>
+                          <br>
+                          <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . $link . '</p>
+                          <a ses:no-track href="' . $link . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+            </body>
+            </html>';
+
+            // $pesan = chunk_split(base64_encode($pesan));
+
+            // $pesan = "ini link" . $link;
             $config['protocol'] = 'smtp';
-            $config['smtp_host'] = 'ssl://heroic.jagoanhosting.com';
+            $config['smtp_host'] = 'ssl://srv101.niagahoster.com';
             $config['smtp_port'] = 465;
-            $config['smtp_user'] = 'admin@dapenkbbukopin.co.id'; // Your email address
-            $config['smtp_pass'] = 'bukopin123!@#'; // Your email password
+            $config['smtp_user'] = 'tes@bdlwarehouse.com';
+            $config['smtp_pass'] = 'bdl123!@#';
             $config['mailtype'] = 'html';
             $config['charset']  = 'utf-8';
             $config['newline']  = "\r\n";
             $config['wordwrap'] = TRUE;
+            // Add this line to set encoding to base64
+            // $config['encoding'] = 'base64';
 
             $this->email->initialize($config);
-            $this->email->from('admin@dapenkbbukopin.co.id', 'Dapen KB Bukopin'); // Set sender
+            $this->email->from('tes@bdlwarehouse.com', 'bdl warehouse'); // Set sender
             $this->email->to($this->input->post('email')); // Set recipient
             $this->email->subject($subjek); // Set email subject
+            // $this->email->set_header('Content-Transfer-Encoding', 'base64');
             $this->email->message($pesan); // Set email body (HTML)
 
-            // if ($this->email->send()) {
-            // echo 'Success! Email has been sent.';
-            echo json_encode(array("status" => True, "email" => $this->input->post('email'), "token" => $token_id, "pesan" => $pesan));
-            return $pesan;
-            // return;
-            // } else {
-            //     echo 'Error! Email could not be sent.<br>';
-            //     echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
-            //     echo json_encode(array("status" => False));
-            //     return;
-            // }
+            if ($this->email->send()) {
+                // echo 'Success! Email has been sent.';
+                echo json_encode(array("status" => True, "email" => $this->input->post('email'), "token" => $token_id, "pesan" => $pesan));
+                // return;
+            } else {
+                echo 'Error! Email could not be sent.<br>';
+                echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
+                echo json_encode(array("status" => False));
+                // return;
+            }
         } else {
             echo json_encode(array("status" => "Email Tidak Ada"));
         }
