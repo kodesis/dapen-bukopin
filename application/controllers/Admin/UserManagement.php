@@ -299,100 +299,106 @@ class UserManagement extends CI_Controller
 
 	public function process_insert_excel()
 	{
+		ob_start(); // Start output buffering
+
+		// Initialize variables outside the if block
+		$insertedRows = 0; // Initialize inserted rows counter
+		$progressUpdates = []; // Array to hold progress data
+
 		// Configure upload settings
 		$config['upload_path'] = FCPATH . 'uploads/';
-		$config['allowed_types'] = 'xls|xlsx|csv'; // Allowed file types
+		$config['allowed_types'] = 'xls|xlsx|csv';
 
-		// $this->load->library('upload', $config);
 		$this->upload->initialize($config);
-		// Debugging output
-
 
 		if (!$this->upload->do_upload('file')) {
-			// If the upload fails, show the error
+			// Handle upload failure
 			$error = array('error' => $this->upload->display_errors());
-			print_r($error);
-			echo "Upload Path: " . $config['upload_path'];
-			exit; // Stop execution for debugging
+			echo json_encode($error); // Return the error as JSON
+			exit;
 		} else {
-			// Get file info
+			// Get file info if upload succeeds
 			$file_data = $this->upload->data();
-			$file_path = $file_data['full_path']; // Full path of the uploaded file
+			$file_path = $file_data['full_path'];
 
-			// Load the spreadsheet using PhpSpreadsheet
 			try {
 				$spreadsheet = IOFactory::load($file_path);
 				$worksheet = $spreadsheet->getActiveSheet();
 
-				// Iterate over each row
-				$rowCounter = 1; // Start at 1 since the first row (0) is the header
+				$totalRows = iterator_count($worksheet->getRowIterator()) - 2; // Adjust for headers
+				$rowCounter = 0; // Start the row counter
 
-
-				$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
-				$totalRows -= 2; // Adjust for headers
-				$insertedRows = 0; // Initialize inserted rows counter
-				// INPUT DATA USER
+				// Process each row in the worksheet
 				foreach ($worksheet->getRowIterator() as $row) {
-					// Increment the row counter
 					$rowCounter++;
 
-					// Skip the first row (header)
-					if ($rowCounter === 2 || $rowCounter === 3) {
-						continue; // Skip processing for the header row
+					// Skip header rows
+					if ($rowCounter === 1 || $rowCounter === 2) {
+						continue;
 					}
 
 					$cellIterator = $row->getCellIterator();
-					$cellIterator->setIterateOnlyExistingCells(false); // This loops through all cells, even empty ones
+					$cellIterator->setIterateOnlyExistingCells(false);
+					$data = [];
 
-					$data = []; // Create an array to hold row data
 					foreach ($cellIterator as $cell) {
-						$data[] = $cell->getValue(); // Get cell value
+						$data[] = $cell->getValue();
 					}
 
-					// Assuming columns are: 'Nama' in column A, 'kd_peserta' in column B, etc.
-					$nama = $data[0] ?? null; // Column A
-					$kd_peserta = $data[1] ?? null; // Column B
-					$email = $data[2] ?? null; // Column C
-					$password = $data[3] ?? null; // Column D
-					$alamat = $data[4] ?? null; // Column F
+					// Extract data from the row
+					$nama = $data[0] ?? null;
+					$kd_peserta = $data[1] ?? null;
+					$email = $data[2] ?? null;
+					$password = $data[3] ?? null;
+					$alamat = $data[5] ?? null;
+					$tgl_lahir = $this->processDate($data[6] ?? null);
+					$pegawai = $this->processDate($data[7] ?? null);
+					$peserta = $this->processDate($data[8] ?? null);
 
-					// Process date fields
-					$tgl_lahir = $this->processDate($data[5] ?? null);
-					$pegawai = $this->processDate($data[6] ?? null);
-					$peserta = $this->processDate($data[7] ?? null);
+					$this->db->select('uid');
+					$this->db->from('user');
+					$this->db->where('kd_peserta', $kd_peserta);
+					$result = $this->db->get()->row();
 
-					// Insert into the database
-					if ($nama && $kd_peserta) {
+					if (empty($result) && $nama && $kd_peserta) {
 						$this->db->insert('user', [
 							'nama' => $nama,
 							'kd_peserta' => $kd_peserta,
 							'email' => $email,
-							'password'  => password_hash($password, PASSWORD_BCRYPT), // Hashing the password
-							// 'nik' => $nik,
+							'password' => password_hash($password, PASSWORD_BCRYPT),
 							'alamat' => $alamat,
 							'tgl_lahir' => $tgl_lahir,
 							'pegawai' => $pegawai,
 							'peserta' => $peserta,
-							'role_id' => 2, // Set role_id to 1 as required
-							'active' => 2, // Default value for 'active'
+							'role_id' => 2,
+							'active' => 2,
 						]);
+
+						$insertedRows++; // Increment inserted rows counter
+						$progress = round(($insertedRows / $totalRows) * 100); // Calculate progress
+						$progressUpdates[] = [
+							'progress' => $progress,
+							'currentRow' => $insertedRows,
+							'totalRows' => $totalRows,
+						];
 					}
-					$insertedRows++;
-					$progress = round(($insertedRows / $totalRows) * 100);
-					echo "data: " . json_encode(['progress' => $progress, 'currentRow' => $insertedRows, 'totalRows' => $totalRows]) . "\n\n";
-					ob_flush();
-					flush();
 				}
 
-				echo json_encode(["status" => True]);
-				return;
+				// Output final result with all progress updates
+				echo json_encode([
+					"status" => true,
+					"insertedRows" => $insertedRows,
+					"progressUpdates" => $progressUpdates,
+				]);
 			} catch (Exception $e) {
-				// echo 'Error loading file: ', $e->getMessage();
-				echo json_encode(array("status" => False));
+				echo json_encode([
+					"status" => false,
+					"error" => 'Error loading file: ' . $e->getMessage(),
+				]);
 			}
 		}
-		// echo json_encode(array("status" => TRUE));
 	}
+
 
 	function processDate($dateValue)
 	{
