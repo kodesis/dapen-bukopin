@@ -350,10 +350,10 @@ class UserManagement extends CI_Controller
 					$kd_peserta = $data[1] ?? null;
 					$email = $data[2] ?? null;
 					$password = $data[3] ?? null;
-					$alamat = $data[5] ?? null;
-					$tgl_lahir = $this->processDate($data[6] ?? null);
-					$pegawai = $this->processDate($data[7] ?? null);
-					$peserta = $this->processDate($data[8] ?? null);
+					$alamat = $data[4] ?? null;
+					$tgl_lahir = $this->processDate($data[5] ?? null);
+					$pegawai = $this->processDate($data[6] ?? null);
+					$peserta = $this->processDate($data[7] ?? null);
 
 					$this->db->select('uid');
 					$this->db->from('user');
