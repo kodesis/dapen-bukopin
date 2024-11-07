@@ -374,7 +374,7 @@ class UserManagement extends CI_Controller
 							'pegawai' => $pegawai,
 							'peserta' => $peserta,
 							'role_id' => 2, // Set role_id to 1 as required
-							'active' => 1, // Default value for 'active'
+							'active' => 2, // Default value for 'active'
 						]);
 					}
 					$insertedRows++;
