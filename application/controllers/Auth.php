@@ -260,12 +260,12 @@ class Auth extends CI_Controller
 
             if ($this->email->send()) {
                 // echo 'Success! Email has been sent.';
-                echo json_encode(array("status" => True, "email" => $this->input->post('email'), "token" => $token_id, "pesan" => $pesan));
+                echo json_encode(array("status" => True, "email" => $this->input->post('email')));
                 return;
             } else {
                 $debug_info = $this->email->print_debugger(array('headers', 'subject', 'body'));
                 if (strpos($debug_info, '250 OK') !== false) {
-                    echo json_encode(array("status" => True, "email" => $this->input->post('email'), "token" => $token_id, "pesan" => $pesan));
+                    echo json_encode(array("status" => True, "email" => $this->input->post('email')));
                 } else {
                     echo 'Error! Email could not be sent.<br>';
                     echo $debug_info;
