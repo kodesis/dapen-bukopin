@@ -213,35 +213,6 @@ class Auth extends CI_Controller
             );
 
             $subjek = 'Reset Password Confirmation';
-            //     $pesan =
-            //         '
-            //         <!DOCTYPE html>
-            // <html>
-            // <head>
-            //   <title>Reset Password Confirmation</title>
-            // </head>
-            // <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
-
-            //   <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
-            //     <tr>
-            //       <td align="center" style="padding: 40px 0;">
-            //         <table width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
-            //           <tr>
-            //             <td align="center" style="padding: 40px 20px;">
-            //             <img src="https://dapenkbbukopin.co.id//assets/user/img/logo/dapenbukopin_lg1.png" alt="Logo" style="max-width: 100%; height: auto;">
-            //               <h1 style="color: #333333;">Confirm Your Email Address</h1>
-            //               <br>
-            //               <p style="color: #555555; font-size: 16px; line-height: 24px;">Or click this following link : ' . $link . '</p>
-            //               <a ses:no-track href="' . $link . '" style="display: inline-block; padding: 12px 24px; background-color: #1a82e2; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">Confirm Email</a>
-            //             </td>
-            //           </tr>
-            //         </table>
-            //       </td>
-            //     </tr>
-            //   </table>
-
-            // </body>
-            // </html>    ';
 
             $pesan =
                 '<!DOCTYPE html>
@@ -271,17 +242,18 @@ class Auth extends CI_Controller
         </body>
         </html>';
             $config['protocol'] = 'smtp';
-            $config['smtp_host'] = 'ssl://heroic.jagoanhosting.com';
+            $config['smtp_crypto'] = 'ssl';
+            $config['smtp_host'] = 'heroic.jagoanhosting.com';
             $config['smtp_port'] = 465;
             $config['smtp_user'] = 'admin@dapenkbbukopin.co.id'; // Your email address
-            $config['smtp_pass'] = 'bukopin123!@#'; // Your email password
+            $config['smtp_pass'] = 'dapen123!@#'; // Your email password
             $config['mailtype'] = 'html';
             $config['charset']  = 'utf-8';
             // $config['newline']  = "\r\n";
             $config['wordwrap'] = TRUE;
 
             $this->email->initialize($config);
-            $this->email->from('admin@dapenkbbukopin.co.id', 'Dapen KB Bukopin'); // Set sender
+            $this->email->from('Admin@dapenkbbukopin.co.id', 'Dapen KB Bukopin'); // Set sender
             $this->email->to($this->input->post('email')); // Set recipient
             $this->email->subject($subjek); // Set email subject
             $this->email->message($pesan); // Set email body (HTML)
@@ -289,12 +261,20 @@ class Auth extends CI_Controller
             if ($this->email->send()) {
                 // echo 'Success! Email has been sent.';
                 echo json_encode(array("status" => True, "email" => $this->input->post('email'), "token" => $token_id, "pesan" => $pesan));
-                // return;
-            } else {
-                echo 'Error! Email could not be sent.<br>';
-                echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
-                echo json_encode(array("status" => False));
                 return;
+            } else {
+                $debug_info = $this->email->print_debugger(array('headers', 'subject', 'body'));
+                if (strpos($debug_info, '250 OK') !== false) {
+                    echo json_encode(array("status" => True, "email" => $this->input->post('email'), "token" => $token_id, "pesan" => $pesan));
+                } else {
+                    echo 'Error! Email could not be sent.<br>';
+                    echo $debug_info;
+                    echo json_encode(array("status" => False));
+                }
+                // echo 'Error! Email could not be sent.<br>';
+                // echo $this->email->print_debugger(array('headers', 'subject', 'body')); // Print debug info
+                // echo json_encode(array("status" => False));
+                // return;
             }
         } else {
             echo json_encode(array("status" => "Email Tidak Ada"));
