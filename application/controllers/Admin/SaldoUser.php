@@ -68,16 +68,16 @@ class SaldoUser extends CI_Controller
 			$row[] = $no;
 			$row[] = $cat->kd_peserta;
 			$row[] = $cat->nama;
-			$row[] = number_format($cat->ips_awal, 2, '.', ',');
-			$row[] = number_format($cat->ipk_awal, 2, '.', ',');
-			$row[] = number_format($cat->total_awal, 2, '.', ',');
-			$row[] = number_format($cat->ips_iuran, 2, '.', ',');
-			$row[] = number_format($cat->ipk_iuran, 2, '.', ',');
-			$row[] = number_format($cat->ips_p, 2, '.', ',');
-			$row[] = number_format($cat->ipk_p, 2, '.', ',');
-			$row[] = number_format($cat->ips_akhir, 2, '.', ',');
-			$row[] = number_format($cat->ipk_akhir, 2, '.', ',');
-			$row[] = number_format($cat->total_akhir, 2, '.', ',');
+			$row[] = number_format($cat->ips_awal, 0, '.', ',');
+			$row[] = number_format($cat->ipk_awal, 0, '.', ',');
+			$row[] = number_format($cat->total_awal, 0, '.', ',');
+			$row[] = number_format($cat->ips_iuran, 0, '.', ',');
+			$row[] = number_format($cat->ipk_iuran, 0, '.', ',');
+			$row[] = number_format($cat->ips_p, 0, '.', ',');
+			$row[] = number_format($cat->ipk_p, 0, '.', ',');
+			$row[] = number_format($cat->ips_akhir, 0, '.', ',');
+			$row[] = number_format($cat->ipk_akhir, 0, '.', ',');
+			$row[] = number_format($cat->total_akhir, 0, '.', ',');
 			$row[] = $cat->tanggal_data;
 
 
@@ -300,14 +300,14 @@ class SaldoUser extends CI_Controller
 
 				// Iterate over each row
 				$rowCounterCekUser = 1; // Start at 1 since the first row (0) is the header
-
+				$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
+				$totalRows -= 2; // Adjust for headers
+				$insertedRows = 0;
 				foreach ($worksheet->getRowIterator() as $row) {
 					// Increment the row counter
 					$rowCounterCekUser++;
 
-					$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
-					$totalRows -= 2; // Adjust for headers
-					$insertedRows = 0; // Initialize inserted rows counter
+					// Initialize inserted rows counter
 					// Skip the first row (header)
 					if (
 						$rowCounterCekUser === 2 || $rowCounterCekUser === 3
@@ -398,45 +398,27 @@ class SaldoUser extends CI_Controller
 					$cek_data = $this->db->get()->row(); // Execute the query
 
 					// if ($cek_data != null) {
-					if (!empty($cek_data)) {
-						$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-						$this->db->where('uid', $cek_data->uid);
-						$this->db->delete('saldo');
-						$this->db->insert('saldo', [
-							'uid_user' => $uid,
-							'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
-							'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
-							'total_awal' => floatval(str_replace(',', '', $total_awal)),
-							'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
-							'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
-							'ips_p' => floatval(str_replace(',', '', $ips_p)),
-							'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
-							'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
-							'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
-							'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
-							'tanggal_data' => $this->input->post('tanggal'),
-							'active' => 1,
-						]);
+					$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+					$this->db->where('uid', $cek_data->uid);
+					$this->db->delete('saldo');
+					$this->db->insert('saldo', [
+						'uid_user' => $uid,
+						'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
+						'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
+						'total_awal' => floatval(str_replace(',', '', $total_awal)),
+						'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
+						'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
+						'ips_p' => floatval(str_replace(',', '', $ips_p)),
+						'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
+						'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
+						'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
+						'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
+						'tanggal_data' => $this->input->post('tanggal'),
+						'active' => 1,
+					]);
 
-						// echo json_encode(array("status" => 'Menimpa', "uid" => $uid, "Cek Data" => $cek_data));
-					} else {
-						$this->db->insert('saldo', [
-							'uid_user' => $uid,
-							'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
-							'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
-							'total_awal' => floatval(str_replace(',', '', $total_awal)),
-							'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
-							'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
-							'ips_p' => floatval(str_replace(',', '', $ips_p)),
-							'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
-							'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
-							'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
-							'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
-							'tanggal_data' => $this->input->post('tanggal'),
-							'active' => 1,
-						]);
-						// echo json_encode(array("status" => True));
-					}
+					// echo json_encode(array("status" => 'Menimpa', "uid" => $uid, "Cek Data" => $cek_data));
+
 					$insertedRows++;
 					$progress = round(($insertedRows / $totalRows) * 100);
 					echo "data: " . json_encode(['progress' => $progress, 'currentRow' => $insertedRows, 'totalRows' => $totalRows]) . "\n\n";
