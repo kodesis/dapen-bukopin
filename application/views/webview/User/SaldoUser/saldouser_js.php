@@ -81,12 +81,18 @@
 
                         // Ensure data fields are present and format them
                         function formatNumber(num) {
-                            // Convert num to a float, just in case it is a string
-                            num = parseFloat(num);
-                            return num.toLocaleString('en-US', {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            });
+                            const floatNum = parseFloat(num); // Convert num to a float
+
+                            if (floatNum % 1 === 0) {
+                                // If whole, format without decimals
+                                return floatNum.toLocaleString('en-US');
+                            } else {
+                                // If not whole, format with two decimal places
+                                return floatNum.toLocaleString('en-US', {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                });
+                            }
                         }
 
 
