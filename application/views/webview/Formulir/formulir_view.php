@@ -54,7 +54,7 @@
                             </div>
                             <div class="services__content-three">
                                 <p><?= $item->deskripsi_file ?></p>
-                                <a href="<?= base_url('uploads/file/' . $item->file) ?>" class="btn btn-two">Unduh</a>
+                                <a href="<?= base_url('uploads/file/' . $item->file) ?>" class="btn btn-two" download>Unduh</a>
                                 <?php
                                 if ($item->jenis_file == "pdf") {
                                 ?>

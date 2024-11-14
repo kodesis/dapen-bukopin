@@ -68,16 +68,16 @@ class SaldoUser extends CI_Controller
 			$row[] = $no;
 			$row[] = $cat->kd_peserta;
 			$row[] = $cat->nama;
-			$row[] = number_format($cat->ips_awal, 0, ',', '.');
-			$row[] = number_format($cat->ipk_awal, 0, ',', '.');
-			$row[] = number_format($cat->total_awal, 0, ',', '.');
-			$row[] = number_format($cat->ips_iuran, 0, ',', '.');
-			$row[] = number_format($cat->ipk_iuran, 0, ',', '.');
-			$row[] = number_format($cat->ips_p, 0, ',', '.');
-			$row[] = number_format($cat->ipk_p, 0, ',', '.');
-			$row[] = number_format($cat->ips_akhir, 0, ',', '.');
-			$row[] = number_format($cat->ipk_akhir, 0, ',', '.');
-			$row[] = number_format($cat->total_akhir, 0, ',', '.');
+			$row[] = number_format($cat->ips_awal, 2, '.', ',');
+			$row[] = number_format($cat->ipk_awal, 2, '.', ',');
+			$row[] = number_format($cat->total_awal, 2, '.', ',');
+			$row[] = number_format($cat->ips_iuran, 2, '.', ',');
+			$row[] = number_format($cat->ipk_iuran, 2, '.', ',');
+			$row[] = number_format($cat->ips_p, 2, '.', ',');
+			$row[] = number_format($cat->ipk_p, 2, '.', ',');
+			$row[] = number_format($cat->ips_akhir, 2, '.', ',');
+			$row[] = number_format($cat->ipk_akhir, 2, '.', ',');
+			$row[] = number_format($cat->total_akhir, 2, '.', ',');
 			$row[] = $cat->tanggal_data;
 
 
@@ -165,16 +165,16 @@ class SaldoUser extends CI_Controller
 			$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 			$data_update = [
 				'updated'           => $date->format('Y-m-d H:i:s'),
-				'ips_awal' => $ips_awal, // Remove dots and commas
-				'ipk_awal' => $ipk_awal,
-				'total_awal' => $total_awal,
-				'ips_iuran' => $ips_iuran,
-				'ipk_iuran' => $ipk_iuran,
-				'ips_p' => $ips_p,
-				'ipk_p' => $ipk_p,
-				'ips_akhir' => $ips_akhir,
-				'ipk_akhir' => $ipk_akhir,
-				'total_akhir' => $total_akhir,
+				'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
+				'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
+				'total_awal' => floatval(str_replace(',', '', $total_awal)),
+				'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
+				'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
+				'ips_p' => floatval(str_replace(',', '', $ips_p)),
+				'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
+				'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
+				'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
+				'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
 				'tanggal_data' => $this->input->post('tanggal'),
 			];
 
@@ -183,16 +183,16 @@ class SaldoUser extends CI_Controller
 		} else {
 			$this->db->insert('saldo', [
 				'uid_user' => $uid,
-				'ips_awal' => $ips_awal, // Remove dots and commas
-				'ipk_awal' => $ipk_awal,
-				'total_awal' => $total_awal,
-				'ips_iuran' => $ips_iuran,
-				'ipk_iuran' => $ipk_iuran,
-				'ips_p' => $ips_p,
-				'ipk_p' => $ipk_p,
-				'ips_akhir' => $ips_akhir,
-				'ipk_akhir' => $ipk_akhir,
-				'total_akhir' => $total_akhir,
+				'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
+				'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
+				'total_awal' => floatval(str_replace(',', '', $total_awal)),
+				'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
+				'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
+				'ips_p' => floatval(str_replace(',', '', $ips_p)),
+				'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
+				'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
+				'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
+				'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
 				'tanggal_data' => $this->input->post('tanggal'),
 				'active' => 1,
 			]);
@@ -234,16 +234,16 @@ class SaldoUser extends CI_Controller
 		// Assuming $date is a DateTime object
 		$data_update = [
 			'updated'           => $date->format('Y-m-d H:i:s'),
-			'ips_awal'         => $ips_awal,
-			'ipk_awal'         => $ipk_awal,
-			'total_awal'       => $total_awal,
-			'ips_iuran'        => $ips_iuran,
-			'ipk_iuran'        => $ipk_iuran,
-			'ips_p'            => $ips_p,
-			'ipk_p'            => $ipk_p,
-			'ips_akhir'        => $ips_akhir,
-			'ipk_akhir'        => $ipk_akhir,
-			'total_akhir'      => $total_akhir,
+			'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
+			'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
+			'total_awal' => floatval(str_replace(',', '', $total_awal)),
+			'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
+			'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
+			'ips_p' => floatval(str_replace(',', '', $ips_p)),
+			'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
+			'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
+			'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
+			'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
 			'tanggal_data'     => $tanggal_data
 		];
 
@@ -399,36 +399,38 @@ class SaldoUser extends CI_Controller
 					// if ($cek_data != null) {
 					if (!empty($cek_data)) {
 						$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-						$data_update = [
-							'updated'           => $date->format('Y-m-d H:i:s'),
-							'ips_awal' => (int) str_replace(['.', ','], '', $ips_awal), // Remove dots and commas
-							'ipk_awal' => (int) str_replace(['.', ','], '', $ipk_awal),
-							'total_awal' => (int) str_replace(['.', ','], '', $total_awal),
-							'ips_iuran' => (int) str_replace(['.', ','], '', $ips_iuran),
-							'ipk_iuran' => (int) str_replace(['.', ','], '', $ipk_iuran),
-							'ips_p' => (int) str_replace(['.', ','], '', $ips_p),
-							'ipk_p' => (int) str_replace(['.', ','], '', $ipk_p),
-							'ips_akhir' => (int) str_replace(['.', ','], '', $ips_akhir),
-							'ipk_akhir' => (int) str_replace(['.', ','], '', $ipk_akhir),
-							'total_akhir' => (int) str_replace(['.', ','], '', $total_akhir),
+						$this->db->where('uid', $cek_data->uid);
+						$this->db->delete('saldo');
+						$this->db->insert('saldo', [
+							'uid_user' => $uid,
+							'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
+							'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
+							'total_awal' => floatval(str_replace(',', '', $total_awal)),
+							'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
+							'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
+							'ips_p' => floatval(str_replace(',', '', $ips_p)),
+							'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
+							'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
+							'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
+							'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
 							'tanggal_data' => $this->input->post('tanggal'),
-						];
+							'active' => 1,
+						]);
 
-						$this->saldouser->update_user($data_update, array('uid' => $uid));
 						// echo json_encode(array("status" => 'Menimpa', "uid" => $uid, "Cek Data" => $cek_data));
 					} else {
 						$this->db->insert('saldo', [
 							'uid_user' => $uid,
-							'ips_awal' => (int) str_replace(['.', ','], '', $ips_awal), // Remove dots and commas
-							'ipk_awal' => (int) str_replace(['.', ','], '', $ipk_awal),
-							'total_awal' => (int) str_replace(['.', ','], '', $total_awal),
-							'ips_iuran' => (int) str_replace(['.', ','], '', $ips_iuran),
-							'ipk_iuran' => (int) str_replace(['.', ','], '', $ipk_iuran),
-							'ips_p' => (int) str_replace(['.', ','], '', $ips_p),
-							'ipk_p' => (int) str_replace(['.', ','], '', $ipk_p),
-							'ips_akhir' => (int) str_replace(['.', ','], '', $ips_akhir),
-							'ipk_akhir' => (int) str_replace(['.', ','], '', $ipk_akhir),
-							'total_akhir' => (int) str_replace(['.', ','], '', $total_akhir),
+							'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
+							'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
+							'total_awal' => floatval(str_replace(',', '', $total_awal)),
+							'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
+							'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
+							'ips_p' => floatval(str_replace(',', '', $ips_p)),
+							'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
+							'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
+							'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
+							'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
 							'tanggal_data' => $this->input->post('tanggal'),
 							'active' => 1,
 						]);

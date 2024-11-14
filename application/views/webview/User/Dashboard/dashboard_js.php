@@ -23,8 +23,9 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
 
     // Function to update the chart with new data
     function updateChart(data) {
-        // Keep original sales data for the chart
-        var salesData = data.sales;
+        // Ensure sales data is numeric
+        var salesData = data.sales.map(Number);
+
         const isDarkTheme = true; // Set this based on your theme toggle
 
         var optionsProfileVisit = {
@@ -34,7 +35,8 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
             dataLabels: {
                 enabled: true,
                 formatter: function(value) {
-                    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    // Format the data label with thousands separator and two decimals
+                    return value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
             },
             chart: {
@@ -50,7 +52,7 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
                         titleEl.style.fontSize = '12px';
                         titleEl.style.fontWeight = 'bold';
                         titleEl.style.color = '#607080';
-                        titleEl.innerText = "<?php echo $title; ?>"; // Use the PHP variable for title text
+                        titleEl.innerText = "<?php echo addslashes($title); ?>"; // Use the PHP variable for title text
                         chartEl.parentNode.appendChild(titleEl);
                     }
                 }
@@ -69,18 +71,21 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
             yaxis: {
                 labels: {
                     formatter: function(value) {
-                        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        // Format the y-axis label with thousands separator and two decimals
+                        return value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
                 }
             },
             tooltip: {
                 y: {
                     formatter: function(value) {
-                        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        // Format the tooltip value with thousands separator and two decimals
+                        return value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
                 }
             }
         };
+
         // Render the chart with the updated options
         var chartProfileVisit = new ApexCharts(
             document.querySelector("#chart-profile-visit"),
@@ -88,6 +93,7 @@ $title = "Nama: " . $nama . " | NIP: " . $nip;
         );
         chartProfileVisit.render();
     }
+
 
     $(document).ready(function() {
         fetchChartData(); // Call the function to fetch and render chart data

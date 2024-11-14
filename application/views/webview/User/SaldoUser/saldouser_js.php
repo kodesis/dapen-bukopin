@@ -81,11 +81,14 @@
 
                         // Ensure data fields are present and format them
                         function formatNumber(num) {
-                            if (num === null || num === undefined || num === '') {
-                                return "0"; // Fallback value
-                            }
-                            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            // Convert num to a float, just in case it is a string
+                            num = parseFloat(num);
+                            return num.toLocaleString('en-US', {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            });
                         }
+
 
                         // Fill in the data into the HTML
                         $('#nama_user').text(data.nama || 'N/A');
