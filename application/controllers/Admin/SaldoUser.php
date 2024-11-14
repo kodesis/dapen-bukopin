@@ -338,13 +338,14 @@ class SaldoUser extends CI_Controller
 
 				$rowCounter = 1; // Start at 1 since the first row (0) is the header
 				// INPUT DATA USER
+				$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
+				$totalRows -= 2; // Adjust for headers
+				$insertedRows = 0; // Initialize inserted rows counter
+
 				foreach ($worksheet->getRowIterator() as $row) {
 					// Increment the row counter
 					$rowCounter++;
 
-					$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
-					$totalRows -= 2; // Adjust for headers
-					$insertedRows = 0; // Initialize inserted rows counter
 					// Skip the first row (header)
 					if (
 						$rowCounter === 2 || $rowCounter === 3
