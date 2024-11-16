@@ -303,11 +303,6 @@ class SaldoUser extends CI_Controller
 				$totalRows = iterator_count($worksheet->getRowIterator()); // Get the total rows for progress calculation
 				$totalRows -= 2; // Adjust for headers
 				$insertedRows = 0;
-
-				header('Content-Type: text/event-stream');
-				header('Cache-Control: no-cache');
-				header('Connection: keep-alive');
-
 				foreach ($worksheet->getRowIterator() as $row) {
 					// Increment the row counter
 					$rowCounterCekUser++;
@@ -403,35 +398,50 @@ class SaldoUser extends CI_Controller
 					$cek_data = $this->db->get()->row(); // Execute the query
 
 					// if ($cek_data != null) {
-					$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-					$this->db->where('uid', $cek_data->uid);
-					$this->db->delete('saldo');
-					$this->db->insert('saldo', [
-						'uid_user' => $uid,
-						'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
-						'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
-						'total_awal' => floatval(str_replace(',', '', $total_awal)),
-						'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
-						'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
-						'ips_p' => floatval(str_replace(',', '', $ips_p)),
-						'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
-						'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
-						'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
-						'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
-						'tanggal_data' => $this->input->post('tanggal'),
-						'active' => 1,
-					]);
+					if (!empty($cek_data)) {
+						$date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+						$this->db->where('uid', $cek_data->uid);
+						$this->db->delete('saldo');
+						$this->db->insert('saldo', [
+							'uid_user' => $uid,
+							'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
+							'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
+							'total_awal' => floatval(str_replace(',', '', $total_awal)),
+							'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
+							'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
+							'ips_p' => floatval(str_replace(',', '', $ips_p)),
+							'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
+							'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
+							'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
+							'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
+							'tanggal_data' => $this->input->post('tanggal'),
+							'active' => 1,
+						]);
 
-					// echo json_encode(array("status" => 'Menimpa', "uid" => $uid, "Cek Data" => $cek_data));
-
+						// echo json_encode(array("status" => 'Menimpa', "uid" => $uid, "Cek Data" => $cek_data));
+					} else {
+						$this->db->insert('saldo', [
+							'uid_user' => $uid,
+							'ips_awal' => floatval(str_replace(',', '', $ips_awal)), // Remove commas and keep the decimal point
+							'ipk_awal' => floatval(str_replace(',', '', $ipk_awal)),
+							'total_awal' => floatval(str_replace(',', '', $total_awal)),
+							'ips_iuran' => floatval(str_replace(',', '', $ips_iuran)),
+							'ipk_iuran' => floatval(str_replace(',', '', $ipk_iuran)),
+							'ips_p' => floatval(str_replace(',', '', $ips_p)),
+							'ipk_p' => floatval(str_replace(',', '', $ipk_p)),
+							'ips_akhir' => floatval(str_replace(',', '', $ips_akhir)),
+							'ipk_akhir' => floatval(str_replace(',', '', $ipk_akhir)),
+							'total_akhir' => floatval(str_replace(',', '', $total_akhir)),
+							'tanggal_data' => $this->input->post('tanggal'),
+							'active' => 1,
+						]);
+						// echo json_encode(array("status" => True));
+					}
 					$insertedRows++;
 					$progress = round(($insertedRows / $totalRows) * 100);
-
 					echo "data: " . json_encode(['progress' => $progress, 'currentRow' => $insertedRows, 'totalRows' => $totalRows]) . "\n\n";
 					ob_flush();
 					flush();
-
-					if (connection_aborted()) break; // Stop if client disconnects
 				}
 				echo json_encode(array("status" => True));
 				return;
