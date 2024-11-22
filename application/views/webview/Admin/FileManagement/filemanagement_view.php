@@ -32,7 +32,7 @@
                                     Table File Management
                                 </h5>
                             </div>
-                            <div class="col-md-4 d-flex justify-content-end">
+                            <div class="col-md-6 d-flex flex-wrap justify-content-end gap-2">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#add_modal">
                                     Add File

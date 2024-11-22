@@ -32,7 +32,7 @@
                                     Table Saldo User
                                 </h5>
                             </div>
-                            <div class="col-md-6 d-flex justify-content-end">
+                            <div class="col-md-6 d-flex flex-wrap justify-content-end gap-2">
                                 <a class="btn btn-light" href="<?= base_url('assets/cms/format/Contoh_Format_Saldo.csv') ?>" style="margin-right:10px;" download>
                                     Download Format
                                 </a>

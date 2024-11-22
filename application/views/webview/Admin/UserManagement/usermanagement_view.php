@@ -36,24 +36,36 @@
                                     Table Management User
                                 </h5>
                             </div>
-                            <div class="col-md-6 d-flex justify-content-end">
-                                <a class="btn btn-light" href="<?= base_url('assets\cms\format\Contoh_Format_user.xlsx') ?>" style="margin-right:10px ;" download>
+                            <div class="col-md-6 d-flex flex-wrap justify-content-end gap-2">
+                                <a
+                                    class="btn btn-light"
+                                    href="<?= base_url('assets\cms\format\Contoh_Format_user.xlsx') ?>"
+                                    download>
                                     Download Format
                                 </a>
-                                <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                    data-bs-target="#upload_modal" style="margin-right:10px ;">
+                                <button
+                                    type="button"
+                                    class="btn btn-light"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#upload_modal">
                                     Upload User
                                 </button>
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#add_nip_modal" style="margin-right:10px ;">
+                                <button
+                                    type="button"
+                                    class="btn btn-success"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#add_nip_modal">
                                     Add NIP User
                                 </button>
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                <button
+                                    type="button"
+                                    class="btn btn-success"
+                                    data-bs-toggle="modal"
                                     data-bs-target="#add_modal">
                                     Add User
                                 </button>
-                                <!-- <button class="btn btn-primary">Add User</button> -->
                             </div>
+
                         </div>
                     </div>
                     <div class="card-body">
