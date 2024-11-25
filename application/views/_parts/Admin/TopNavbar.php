@@ -128,6 +128,10 @@
                                 <hr class="dropdown-divider" />
                             </li>
                             <li>
+                                <a class="dropdown-item" href="<?= base_url('profile') ?>"><i class="icon-mid bi bi-person me-2"></i>
+                                    Profile</a>
+                            </li>
+                            <li>
                                 <a class="dropdown-item" href="<?= base_url('') ?>"><i class="icon-mid bi bi-arrow-left me-2"></i>
                                     Back</a>
                             </li>
