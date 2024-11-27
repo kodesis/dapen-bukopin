@@ -255,11 +255,11 @@
                             </div> -->
                             <label for="date">Alamat </label>
                             <div class="form-group">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Masukan Alamat"
-                                        id="alamat_add" name="alamat"></textarea>
-                                    <label for="floatingTextarea">Alamat</label>
-                                </div>
+                                <!-- <div class="form-floating"> -->
+                                <textarea class="form-control" placeholder="Masukan Alamat"
+                                    id="alamat_add" name="alamat"></textarea>
+                                <!-- <label for="floatingTextarea">Alamat</label> -->
+                                <!-- </div> -->
                             </div>
                             <label for="date">Tanggal Lahir </label>
                             <div class="form-group">
@@ -369,11 +369,11 @@
                             </div> -->
                             <label for="date">Alamat </label>
                             <div class="form-group">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Masukan Alamat"
-                                        id="alamat_edit" name="alamat"></textarea>
-                                    <label for="floatingTextarea">Alamat</label>
-                                </div>
+                                <!-- <div class="form-floating"> -->
+                                <textarea class="form-control" placeholder="Masukan Alamat"
+                                    id="alamat_edit" name="alamat"></textarea>
+                                <!-- <label for="floatingTextarea">Alamat</label> -->
+                                <!-- </div> -->
                             </div>
                             <label for="date">Tanggal Lahir </label>
                             <div class="form-group">
