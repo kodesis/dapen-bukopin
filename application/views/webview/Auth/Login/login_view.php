@@ -100,7 +100,7 @@
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right" style="background: #fffeff; height: 100%; display: flex; justify-content: center; align-items: center;">
-                    <img src="<?= base_url('assets/cms/Logo/Logo Dapen KB Bukopin PNG1.png') ?>" alt="" width="70%">
+                    <img src="<?= base_url('assets/cms/Logo/dapenbukopin_lg1.png') ?>" alt="" width="70%">
                 </div>
             </div>
         </div>
