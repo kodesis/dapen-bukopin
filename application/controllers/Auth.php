@@ -74,6 +74,7 @@ class Auth extends CI_Controller
             } else if ($user->role_id == 2) {
                 echo json_encode(array("status" => 'user'));
             }
+            // echo json_encode(array("status" => TRUE));
         } else {
             echo json_encode(array("status" => 'Gagal Cari'));
         }

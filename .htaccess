@@ -3,6 +3,16 @@ RewriteCond $1 !^(index\.php|resources|robots\.txt)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+RewriteRule ^(.*/)?\.git(/|$) - [F,L]
+RewriteRule ^vendor(/|$) - [F,L]
+# Block all access to assets/ except CSS, JS, images
+RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|otf)$
+RewriteRule ^assets(/|$) - [F,L]
+
+# Allow only images, videos, PDFs, and text files in uploads/
+RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|svg|webp|mp4|avi|mov|pdf|txt|doc|docx|xls|xlsx|zip|rar)$ [NC]
+RewriteRule ^uploads/ - [F,L]
+
 
 <IfModule mod_php.c>
 php_value post_max_size 400M
