@@ -219,7 +219,7 @@ class Auth extends CI_Controller
                 '<!DOCTYPE html>
         <html>
         <head>
-          <title>Reset Password Berhaso;</title>
+          <title>Reset Password Berhasil;</title>
         </head>
         <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
         
